@@ -21,7 +21,7 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="home">Home</a></li>
         
         <li>
 	        <div class="dropdown" style="background-color: black;">
@@ -39,6 +39,7 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+       	<li><a href="memberInsertForm" id="login"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
         <li><a href="#" id="login"><span class="glyphicon glyphicon-user"></span>  로그인</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> 마일리지</a></li>
       </ul>
