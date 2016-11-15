@@ -5,18 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<content tag="local_script">
 
-<!-- <link rel="stylesheet" -->
-<!-- 	href="resources/css/font-awesome.min.css"> -->
 <script src="resources/js/parsley.min.js"></script>
+<link rel="stylesheet" href="resources/css/font-awesome.min.css">
 
 
 
 
 
 
-
-
+</content>
 </head>
 <body>
 
@@ -31,10 +30,10 @@
 		     
 		   	  <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
 		      <input type="text" class="form-control" id="usr"  placeholder="이메일" />
-		      <span class="input-group-btn" style="margin-left:10px ">
+		      <div class="input-group-btn" style="margin-left:30px ">
 				<button type="button" id="confirm" class="btn btn-default" >Confirm</button>
 				<input id="confirm_chk" type="hidden" name="confirm_chk" value="no"/>
-		      </span>
+		      </div>
 		      
 		    </div>
 		    <br>
