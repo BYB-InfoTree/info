@@ -9,8 +9,6 @@
 	<title>Member Regist</title>
 	   <link rel="stylesheet" href="resources/bootstrap-3.3.7-dist/css/font-awesome.min.css">
 	
-	   <script src="resources/js/jquery-3.1.1.js"></script>
-	   <script src="resources/js/jquery-3.1.1.min.js"></script>
 	   <script src="resources/bootstrap-3.3.7-dist/js/parsley.min.js"></script>
 	   
 	   <script type="text/javascript">
