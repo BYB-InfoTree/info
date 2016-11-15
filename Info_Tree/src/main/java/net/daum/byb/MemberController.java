@@ -18,9 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class MemberController {
-	
+	final boolean top=false;
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	final String top="top";
 	@RequestMapping(value = "/memberInsertForm", method = RequestMethod.GET)
 	public ModelAndView memberInsert(Locale locale, Model model) {
 			
@@ -30,7 +29,7 @@ public class MemberController {
 		String yyyy=df.format(currentdate);
 		ModelAndView mav=new ModelAndView("member/member_insert");
 		mav.addObject("yyyy",yyyy);
-		mav.addObject("t",top);
+		mav.addObject("top",top);
 		return mav;
 
 	}

@@ -31,7 +31,7 @@
 	<div class="container-fluid">
 		
 		<div class="row">
-		<c:if test='${t==top}'>
+		<c:if test='${top}'>
 			<page:applyDecorator name="top"/>
 		</c:if>	
 		</div>

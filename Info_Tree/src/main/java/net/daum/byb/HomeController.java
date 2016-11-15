@@ -19,12 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	final String top="top";
+	final boolean top=true;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public ModelAndView home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -33,12 +33,14 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		ModelAndView mav=new ModelAndView("home");
+		mav.addObject("top",top);
+		return mav;	
 		
-		return "home";
 	}
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView memberInsert(Locale locale, Model model) {
-		ModelAndView mav=new ModelAndView("member/member_insert");
+		ModelAndView mav=new ModelAndView("home");
 		mav.addObject("top",top);
 		return mav;	
 	}
