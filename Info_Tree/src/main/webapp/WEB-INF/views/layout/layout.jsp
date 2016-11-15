@@ -16,7 +16,7 @@
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
-	<decorator:getProperty property="page.local_script"/>
+	
 	
 	<script>
 	$(document).ready(function(){
@@ -29,8 +29,11 @@
 
 <body>
 	<div class="container-fluid">
+		
 		<div class="row">
+		<c:if test='${t==top}'>
 			<page:applyDecorator name="top"/>
+		</c:if>	
 		</div>
 		<div class="row">
 			<page:applyDecorator name="header"/>
@@ -43,7 +46,7 @@
 		</div>
 	</div>		
 	
-	
+	<decorator:getProperty property="page.local_script"/>
 	
 	
 	<!--- Modal --->
