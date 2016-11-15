@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>      
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %> 
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page" %>   
    
@@ -23,17 +24,21 @@
 	
 	<script>
 	$(document).ready(function(){
+		alert("1111")
+		alert('${aoa}');
 	    $("#login").click(function(){
 	        $("#myModal").modal();
 	    });
 	});
 	</script>
 </head>
-
+	
 <body>
 	<div class="container-fluid">
 		<div class="row">
+		<c:if test="${aoa}">
 			<page:applyDecorator name="top"/>
+		</c:if>	
 		</div>
 		<div class="row">
 			<page:applyDecorator name="header"/>

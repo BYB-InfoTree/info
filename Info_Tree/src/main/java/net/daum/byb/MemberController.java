@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import net.daum.byb.entities.Member;
 import net.daum.byb.service.MemberDao;
@@ -25,12 +26,18 @@ public class MemberController {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	final boolean aoa = false;
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
+	
 	@RequestMapping(value="member_insert" , method = RequestMethod.GET)
-	public String memberinsert() {
+	public ModelAndView memberinsert() {
 		
-		return "member/member_insert";
+		ModelAndView mvc = new ModelAndView("member/member_insert");
+		mvc.addObject("aoa",aoa);
+		return mvc;
 	}
 
 	
@@ -43,8 +50,8 @@ public class MemberController {
 		int find = 0;
 		try {
 			MemberDao dao = sqlSession.getMapper(MemberDao.class);
-			// dao에 있는 메소드를 갖다 쓰는데 그메소드가 쿼리 xml이랑 연결되있고 db랑 연결되있는 
-			// sqlSession.getMapper(MemberDao.class);를 가져다 사용한다.
+			// dao�뿉 �엳�뒗 硫붿냼�뱶瑜� 媛뽯떎 �벐�뒗�뜲 洹몃찓�냼�뱶媛� 荑쇰━ xml�씠�옉 �뿰寃곕릺�엳怨� db�옉 �뿰寃곕릺�엳�뒗 
+			// sqlSession.getMapper(MemberDao.class);瑜� 媛��졇�떎 �궗�슜�븳�떎.
 			count =  dao.selectCount(id);
 			
 			

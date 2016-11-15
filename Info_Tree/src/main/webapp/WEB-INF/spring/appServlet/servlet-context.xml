@@ -36,6 +36,10 @@
 	 value="classpath:net/daum/byb/mapper/*.xml"></beans:property>
 	</beans:bean>
 	
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactoryBean">
+		</beans:constructor-arg>
+	</beans:bean>
 	
 	
 	<context:component-scan base-package="net.daum.byb" />
