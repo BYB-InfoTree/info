@@ -11,14 +11,11 @@
 <script src="resources/js/parsley.min.js"></script>
 
 <script type="text/javascript">
-
 	$(document).ready(function(){
 		$('#save').click(function(){
 			$('#insert_form').submit();
 		});
 	});
-
-
 </script>
 
 
