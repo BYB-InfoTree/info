@@ -9,14 +9,17 @@
       
    <script type="text/javascript">
    		function doReset(){
-   				document.insert_form.id.value="";
+//    				document.insert_form.id.value="";
+//    				document.insert_form.nickname.value="";
+//    				document.insert_form.id.value="";
+//    				document.insert_form.id.value="";
    		
    			}
    
    	$(document).ready(function(){
    		$('#save').click(function(){
    			if($('#confirm_chk').val()=='no'){
-   				alert("ID 중복 체크를 하세요!");
+   				alert("E-mail 중복 체크를 하세요!");
    				return;
    			}
    			$('#insert_form').submit();
@@ -26,7 +29,7 @@
    		$('#confirm').click(function(){
    			var id =$('#id').val();
    			if(id==""){
-   				alert("ID를 입력하세요");
+   				alert("ID or NAME or NickName를 입력하세요");
    				return;
    			}
    			$.ajax({
@@ -62,51 +65,56 @@
          <div class="col-md-4">
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-               <input id="id" name="id" class="form-control" text="text" size="16" placeholder="ID or Name or NickName"
-               data-parsley-required="true" data-parsley-error-message="please insert your ID" data-parsley-errors-container="div[id='validateId']" />
+               <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="ID or Name or NickName"
+               data-parsley-required="true" data-parsley-error-message="please insert your NAME" data-parsley-errors-container="div[id='validatename']" />
             </div>            
-            <div id="validateId" style="color:#ff0000"></div>
+            <div id="validatename" style="color:#ff0000"></div>
             <br>
+            <br>            
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-               <input id="email" name="email" class="form-control" text="text" size="16" placeholder="E-MAIL"
-               data-parsley-required="true" data-parsley-error-message="please insert your ID" data-parsley-errors-container="div[id='validateEmail']" />
+               <input id="email" name="email" class="form-control input-lg" text="text" size="16" placeholder="E-MAIL"
+               data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
                <span class="input-group-btn">
-                  <button   id="email" type="button" class="btn btn-default" >Confirm</button>
+                  <button   id="email" type="button" class="btn btn-info btn-lg" >Confirm</button>
                   <input type="hidden" id="confirm_chk"   value="no" />
                </span>
             </div>
- 
+                <div id="validateEmail" style="color:#ff0000"></div>
             <br>
+            <br>    
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
-               <input name="password" class="form-control" type="password" id="password" size="16" placeholder="PASSWORD"
+               <input name="password" class="form-control input-lg" type="password" id="password" size="16" placeholder="PASSWORD"
                data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatePassword']" />
             </div>
             <div id="validatePassword" style="color:#ff0000"></div>
             <br>
+            <br>    
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-               <input name="repassword" class="form-control" type="password" id="repassword" size="16" placeholder="REPASSWORD"
+               <input name="repassword" class="form-control input-lg" type="password" id="repassword" size="16" placeholder="REPASSWORD"
                data-parsley-required="true" data-parsley-error-message="please check Password and RePASSWORD" data-parsley-errors-container="div[id='validateRePassword']" 
                data-parsley-equalto="#password"/>
             </div>
             <div id="validateRePassword" style="color:#ff0000"></div>
         </div>
       </div>
-      <br>
+                 <br>
+            <br>    
       <div class="row">
          <div class="col-md-4"><span></span></div>
          <div class="col-md-4">
 
            <div align="center">
-               <button id="save" type="button" class="btn btn-default">Save</button>
+               <button id="save" type="submit" class="btn btn-info btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
-               <button name="cancel" class="btn btn-default">Cancel</button>
+               <button name="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>
             </div>
             <div align="right">
-
+				<br>
+				<br>
                <kbd name="inputdate">${yyyy}</kbd> 
             </div>
          </div>
