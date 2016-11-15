@@ -39,6 +39,7 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="member_insert" id=""><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
         <li><a href="#" id="login"><span class="glyphicon glyphicon-user"></span>  로그인</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> 마일리지</a></li>
       </ul>
