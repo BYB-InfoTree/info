@@ -1,0 +1,42 @@
+.div-bgcolor-red{
+	background: #ff0000;
+}
+.div-bgcolor-green{
+	background: #A1FF98;
+}
+.div-bgcolor-blue{
+	font-family:cursive;
+	background: #0000ff;
+	font-size: 50px;
+}
+.div-bgcolor-white{
+	background: #ffffff;
+}
+.div-bgcolor-black{
+	background: #000000;
+}
+.div-bgcolor-gray{
+	background: #c0c0c0;
+}
+.con-new{
+	margin-top: 20px;
+}
+.align-left {
+	text-align: left; 
+	}
+.align-center { 
+	text-align: center; 
+	}
+.align-right { 
+	text-align: right; 
+	}
+.align-justify { 
+	text-align: justify; 
+	}
+.div-font-size{
+	text-align: center;
+	font-size: 23px;
+}
+.div-radius{
+	 border-radius: 10px;
+}
