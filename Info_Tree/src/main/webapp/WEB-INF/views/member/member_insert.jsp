@@ -69,7 +69,7 @@
 		    <br>
 		    
 	    	<div align="center">
-				<button id="save" name="save" type="button" class="btn btn-default">Save</button>
+				<button id="save" name="save" type="submit" class="btn btn-default">Save</button>
 				<span>&nbsp;&nbsp;</span>
 				<span>&nbsp;&nbsp;</span>
 				<button type="button" name="cancel" class="btn btn-default">Cancel</button>
