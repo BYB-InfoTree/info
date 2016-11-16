@@ -58,29 +58,30 @@
 <form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="POST" role="form" data-parsley-validate  enctype="multipart/form-data">
    <div class="contatiner">
      <span class="text-success text-center"><h1>정보나무 회원가입</h1></span>
- 
-     <br><br>
+ 	 <br>
+ 	 <br> 	
       <div class="row">
          <div class="col-md-4"><span></span></div>
          <div class="col-md-4">
             <div class="input-group">
-               <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-               <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="ID or Name or NickName"
-               data-parsley-required="true" data-parsley-error-message="please insert your NAME" data-parsley-errors-container="div[id='validatename']" />
-            </div>            
-            <div id="validatename" style="color:#ff0000"></div>
-            <br>
-            <br>            
-            <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-               <input id="email" name="email" class="form-control input-lg" text="text" size="16" placeholder="E-MAIL"
+               <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL"
                data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
                <span class="input-group-btn">
                   <button   id="email" type="button" class="btn btn-info btn-lg" >Confirm</button>
                   <input type="hidden" id="confirm_chk"   value="no" />
                </span>
             </div>
+             <br>
+            <br>       
                 <div id="validateEmail" style="color:#ff0000"></div>
+            <div class="input-group">
+               <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
+               <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="ID or Name or NickName"
+               data-parsley-required="true" data-parsley-error-message="please insert your NAME" data-parsley-errors-container="div[id='validatename']" />
+            </div>            
+            <div id="validatename" style="color:#ff0000"></div>
+                
             <br>
             <br>    
             <div class="input-group">
