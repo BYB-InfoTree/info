@@ -53,9 +53,8 @@ public class MemberController {
 	@ResponseBody
 	public ModelAndView memberInsert(@ModelAttribute("member")Member member) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		member.setSeq(3);
-		member.setName("aa");
-		member.setPhone("aa");
+		//member.setName("aa");
+		//member.setPhone("111");
 		member.setMemberlevel("1");
 		member.setJoindate("1");
 		System.out.println("=====member==="+member);

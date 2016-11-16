@@ -103,7 +103,7 @@
          <div class="col-md-4">
 
            <div align="center">
-               <button id="save" type="submit" class="btn btn-info btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+               <button id="save" type="button" class="btn btn-info btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
