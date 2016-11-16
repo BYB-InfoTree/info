@@ -8,13 +8,7 @@
 <title>Join Member Page</title>
       
    <script type="text/javascript">
-   		function doReset(){
-//    				document.insert_form.id.value="";
-//    				document.insert_form.nickname.value="";
-//    				document.insert_form.id.value="";
-//    				document.insert_form.id.value="";
-   		
-   			}
+
    
    	$(document).ready(function(){
    		$('#save').click(function(){
@@ -24,25 +18,23 @@
    			}
    			$('#insert_form').submit();
    		});
-   		
-  		
    		$('#confirm').click(function(){
-   			var id =$('#id').val();
-   			if(id==""){
-   				alert("ID or NAME or NickName를 입력하세요");
+   			var email =$('#email').val();
+   			if(email==""){
+   				alert("E-mail을 입력하세요");
    				return;
    			}
    			$.ajax({
    				type: 'POST',
-   				data: "id=" + id,
+   				data: "email=" + email,
    				dataType: 'json',
    				url :'idconfirm',
    				success : function(data){
    				//		alert(data);
    					if(data==0){
-   						alert("중복된 ID입니다.");
+   						alert("중복된 Email입니다.");
    					}else{
-   						alert("사용 가능한 ID입니다.");
+   						alert("사용 가능한 Email입니다.");
    						$('#confirm_chk').attr('value','yes');
    	   					}
    					return false;
@@ -53,9 +45,9 @@
    </script>
    </content>
 </head>
-<body class="div-bgcolor-gray" onload="doReset();">
+<body class="div-bgcolor-gray">
 
-<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="POST" role="form" data-parsley-validate  enctype="multipart/form-data">
+<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="get" role="form" data-parsley-validate="true"   enctype="multipart/form-data">
    <div class="contatiner">
      <span class="text-success text-center"><h1>정보나무 회원가입</h1></span>
  	 <br>
@@ -68,20 +60,19 @@
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL"
                data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
                <span class="input-group-btn">
-                  <button   id="email" type="button" class="btn btn-info btn-lg" >Confirm</button>
+                  <button   id="confirm" type="button" class="btn btn-info btn-lg" >Confirm</button>
                   <input type="hidden" id="confirm_chk"   value="no" />
                </span>
             </div>
-             <br>
+            <div id="validateEmail" style="color:#ff0000"></div>
+            <br>
             <br>       
-                <div id="validateEmail" style="color:#ff0000"></div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-               <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="ID or Name or NickName"
+               <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="NickName"
                data-parsley-required="true" data-parsley-error-message="please insert your NAME" data-parsley-errors-container="div[id='validatename']" />
             </div>            
             <div id="validatename" style="color:#ff0000"></div>
-                
             <br>
             <br>    
             <div class="input-group">
@@ -101,14 +92,19 @@
             <div id="validateRePassword" style="color:#ff0000"></div>
         </div>
       </div>
-                 <br>
-            <br>    
+            <br>
+            <br>
+            
+      
+                      
+                
       <div class="row">
          <div class="col-md-4"><span></span></div>
          <div class="col-md-4">
 
            <div align="center">
                <button id="save" type="submit" class="btn btn-info btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+               <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
                <button name="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>
