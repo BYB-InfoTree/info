@@ -8,7 +8,61 @@
 <title>Join Member Page</title>
       
    <script type="text/javascript">
+   $(document).ready(function(){
+		$('#save').click(function(){
+			
+			if($('#confirm_chk').val()=='no'){
+				alert("아이디 중복 체크를 하세요~");
+				return;
+			}
+			$('#insert_form').submit();
+			
+		});	
+		
+	
+		
+		$('#confirm').click(function(){
+			
+			var email = $('#email').val();
+			if( email == "") {
+				alert("ID를 입력하세요!");
+				return;
+			}
+			$.ajax({
+				type : 'POST',
+				data : "email="+email,
+				dataType : 'json',
+				url : 'idconfirm',
+				
+				success : function(data) {
+					
+					
+					if(data==0){
+						alert("사용 가능한 Email입니다.");
+						$('#confirm_chk').attr('value','yes');
+						
+					}else{
+						alert("중복된 Email입니다.");
+					}
+					return false;
+				}
+				
+			});
+			
+//			alert($('#id').val());
+//			$(location).attr('href',
+//					'http://localhost:8082/sozlo/idconfirm?id='+$('#id').val()+'&'+'password='+$('#password').val());
 
+	
+		});
+		
+		$('#ulphone1 li').click(function(){
+		
+			$('#phone1').attr('value',$(this).text());
+		});
+		
+		
+	});
    
   
    </script>
@@ -70,7 +124,7 @@
          <div class="col-md-4">
 
            <div align="center">
-               <button id="save" type="submit" class="btn btn-info btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+               <button id="save" type="button" class="btn btn-info btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
                <button name="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>

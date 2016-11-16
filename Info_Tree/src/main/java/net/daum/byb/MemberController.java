@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.daum.byb.entities.Member;
@@ -61,7 +63,7 @@ public class MemberController {
 		System.out.println("email:"+member.getEmail());
 		System.out.println("password:"+member.getPassword());
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		System.out.println("디디전~~~~~~~~`");
+		
 		int result = dao.insertRow(member);
 		System.out.println("디비후~~~~~~~~~~");
 		mav.addObject("result",result);
@@ -69,6 +71,35 @@ public class MemberController {
 		return mav;
 		
 	}
+	
+	
+	@RequestMapping(value = "/idconfirm", method = RequestMethod.POST)
+	@ResponseBody
+	public int idconfirm(@RequestParam String email ) {
+		
+		System.out.println("---->"+email);
+		int count = 0;
+		int find = 0;
+		try {
+			MemberDao dao = sqlSession.getMapper(MemberDao.class);
+			// dao에 있는 메소드를 갖다 쓰는데 그메소드가 쿼리 xml이랑 연결되있고 db랑 연결되있는 
+			// sqlSession.getMapper(MemberDao.class);를 가져다 사용한다.
+			count =  dao.selectCount(email);
+			
+			
+		} catch (Exception e) {
+			
+			System.out.println("error :" + e.getMessage());
+		}
+		if(count > 0){
+			find = 1;
+		}else{
+			find = 0;
+		}
+		return find;
+		
+	}
+	
 	
 	
 	

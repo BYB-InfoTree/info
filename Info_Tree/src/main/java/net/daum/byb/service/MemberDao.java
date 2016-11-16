@@ -5,5 +5,6 @@ import net.daum.byb.entities.Member;
 public interface MemberDao {
 	
 	public int insertRow( Member member);
+	public int selectCount( String email);
 
 }

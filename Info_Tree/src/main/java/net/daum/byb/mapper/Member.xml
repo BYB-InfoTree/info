@@ -6,21 +6,29 @@
 	<mapper namespace="net.daum.byb.service.MemberDao">
 		
 		<insert id="insertRow" parameterType="hashMap"  >
-			INSERT INTO member
+			insert into member
 				(
 				    email,
 				    nickname,
 				    password,
 				    seq
+				  
 				)
-				VALUES
+				values
 				(
 				 	#{email},
 				    #{nickname},			 	
 				    #{password},
-				    1
+				    (select coalesce(max(seq)+1,1) from member)
+				  
 				)
 		</insert>
+		
+		<select id="selectCount" parameterType="String" resultType="int">
+			select count(*) from member where email=#{email}
+		</select>
+		
+		
 	
 	
 	
