@@ -56,10 +56,7 @@
 	
 		});
 		
-		$('#ulphone1 li').click(function(){
-		
-			$('#phone1').attr('value',$(this).text());
-		});
+
 		
 		
 	});
@@ -70,7 +67,7 @@
 </head>
 <body class="div-bgcolor-gray">
 
-<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="post" role="form" data-parsley-validate="ture"  enctype="multipart/form-data">
+<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="post" role="form" data-parsley-validate="ture"  >
    <div class="contatiner">
      <span class="text-success text-center"><h1>정보나무 회원가입</h1></span>
  	 <br>
@@ -93,7 +90,7 @@
             
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-               <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="ID or Name or NickName"
+               <input id="nickname" name="nickname" class="form-control input-lg" type="text" size="16" placeholder="ID or Name or NickName"
                data-parsley-required="true" data-parsley-error-message="please insert your NICKNAME" data-parsley-errors-container="div[id='validatenickname']" />
             </div>            
             <div id="validatenickname" style="color:#ff0000"></div>
@@ -110,7 +107,7 @@
             <br>    
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-               <input name="repassword" class="form-control input-lg" type="repassword" id="repassword" size="16" placeholder="PASSWORD"
+               <input name="repassword" class="form-control input-lg" type="password" id="repassword" size="16" placeholder="PASSWORD"
                data-parsley-required="true" data-parsley-error-message="please check Password and RePASSWORD" data-parsley-errors-container="div[id='validateRePassword']" 
                data-parsley-equalto="#password"/>
             </div>

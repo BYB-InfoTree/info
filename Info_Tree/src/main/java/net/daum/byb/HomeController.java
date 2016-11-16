@@ -31,15 +31,17 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
+		int result = 2;
 		
 		model.addAttribute("serverTime", formattedDate );
 		ModelAndView mav=new ModelAndView("home");
 		mav.addObject("top",top);
+		mav.addObject("result",result);
 		return mav;	
 		
 	}
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView memberInsert(Locale locale, Model model) {
+	public ModelAndView homecome(Locale locale, Model model) {
 		ModelAndView mav=new ModelAndView("home");
 		mav.addObject("top",top);
 		return mav;	

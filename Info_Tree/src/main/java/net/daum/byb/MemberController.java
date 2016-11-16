@@ -1,7 +1,7 @@
 package net.daum.byb;
 
 
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -77,7 +77,7 @@ public class MemberController {
 	@ResponseBody
 	public int idconfirm(@RequestParam String email ) {
 		
-		System.out.println("---->"+email);
+		
 		int count = 0;
 		int find = 0;
 		try {

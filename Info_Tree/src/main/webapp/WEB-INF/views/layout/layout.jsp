@@ -20,7 +20,8 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
-		if('${result==1}') {
+		
+		if('${result}'==1) {
 			alert('회원가입을 축하합니다.');	
 		}
 		
