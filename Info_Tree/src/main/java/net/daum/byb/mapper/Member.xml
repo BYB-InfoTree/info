@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+			 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		<mapper namespace="net.daum.byb.service.MemberDao">
+				<resultMap type="net.daum.byb.entities.Member" id="memberMap">
+						<id property="email"  column="email"/>
+						<id property="password"  column="password"/>
+						<id property="name"  column="name"/>
+						<id property="nickname"  column="nickname"/>
+						<id property="point"  column="point"/>
+						<id property="phone"  column="phone"/>
+						<id property="memberlevel"  column="memberlevel"/>
+						<id property="seq"  column="seq"/>
+						<id property="joindate"  column="joindate"/>
+				
+				</resultMap>
+				<select id="selectOne" parameterType="String" resultMap="memberMap" >
+						select * from member where email=#{email}
+				</select>
+				<select id="selectCount" parameterType="String" resultType="int" >
+						select count(*) from member where email=#{email}
+				</select>
+				<insert id="insertRow" parameterType="hashMap" >
+						insert into member(email,password,nickname,seq) 
+						values (#{email},#{password},#{nickname},(select coalesce(max(seq)+1,1) from member))
+				</insert>
+				
+		</mapper>

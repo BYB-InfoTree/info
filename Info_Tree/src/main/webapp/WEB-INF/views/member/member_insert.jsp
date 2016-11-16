@@ -30,12 +30,13 @@
    				dataType: 'json',
    				url :'idconfirm',
    				success : function(data){
-   				//		alert(data);
+   					//	alert(data);
    					if(data==0){
-   						alert("중복된 Email입니다.");
-   					}else{
-   						alert("사용 가능한 Email입니다.");
+   						alert("사용 가능한  E-mail입니다.");
    						$('#confirm_chk').attr('value','yes');
+   					}else{
+   						alert("중복된 E-mail입니다.");
+   						
    	   					}
    					return false;
      				}
@@ -47,7 +48,7 @@
 </head>
 <body class="div-bgcolor-gray">
 
-<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="get" role="form" data-parsley-validate="true"   enctype="multipart/form-data">
+<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="post" role="form" data-parsley-validate >
    <div class="contatiner">
      <span class="text-success text-center"><h1>정보나무 회원가입</h1></span>
  	 <br>
@@ -60,7 +61,7 @@
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL"
                data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
                <span class="input-group-btn">
-                  <button   id="confirm" type="button" class="btn btn-info btn-lg" >Confirm</button>
+                  <button   id="confirm" name="confirm" type="button" class="btn btn-info btn-lg" >Confirm</button>
                   <input type="hidden" id="confirm_chk"   value="no" />
                </span>
             </div>

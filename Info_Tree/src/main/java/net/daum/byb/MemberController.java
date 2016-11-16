@@ -49,37 +49,33 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping(value = "/memberInsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberInsert", method=RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView memberInsert(@ModelAttribute("member")Member member) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		//member.setName("aa");
-		//member.setPhone("111");
-		member.setMemberlevel("1");
-		member.setJoindate("1");
-		System.out.println("=====member==="+member);
 		int result=dao.insertRow(member);
-
 		ModelAndView mav=new ModelAndView("member/member_insert");
 		mav.addObject("msg",dao);
 		return  mav;
 	}
 	
 	@RequestMapping(value = "/idconfirm", method = RequestMethod.POST)
-	@ResponseBody
-	public  int  idconfirm(@RequestParam  String email) {
-		int find = 1;	
-		try {
-				net.daum.byb.service.MemberDao dao = sqlSession.getMapper(MemberDao.class);
-				Member data =dao.selectOne(email);
-				if(data.getEmail()!=null)
-						find=0;
-			} catch (Exception e) {
-			//	System.out.println("===Exeption=="+e.getMessage());
-			}
-			return find;
-	}
-	
+	   @ResponseBody 
+	   public int idconform(@RequestParam String email) {
+	      int count = 0;
+	      int find = 0;
+	      try {
+	         MemberDao dao =sqlSession.getMapper(MemberDao.class);
+	         count = dao.selectCount(email);
+	      } catch (Exception e) {
+	      }
+	      if (count > 0){
+	         find = 1;
+	      }else{
+	         find = 0;
+	      }
+	      return find;
+	   }
 	
 	
 }
