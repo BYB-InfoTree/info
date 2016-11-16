@@ -21,7 +21,7 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="home">Home</a></li>
         
         <li>
 	        <div class="dropdown" style="background-color: black;">

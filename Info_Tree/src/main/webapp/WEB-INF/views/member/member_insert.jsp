@@ -18,14 +18,14 @@
 		
 		
 		
-		$('#save').click(function(){
-			if($('#confirm_chk').val=='no'){
-				alert("아이디 중복 체크를 하세요~");
-				return;				
-			}
+// 		$('#save').click(function(){
+// 			if($('#confirm_chk').val=='no'){
+// 				alert("아이디 중복 체크를 하세요~");
+// 				return;				
+// 			}
 			
-			$('#insert_form').submit();
-		});
+// 			$('#insert_form').submit();
+// 		});
 		
 		$('#confirm').click(function(){
 			var id = $('#id').val();
@@ -68,8 +68,8 @@
 		    <div class="input-group">
 		     
 		   	  <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-		      <input type="text" class="form-control" id="email" name="email"  placeholder="이메일"
-		       data-parsley-required="true" data-parsley-error-message="please insert your ID" data-parsley-errors-container="div[id='validateEmail']" />
+		      <input type="email" class="form-control" id="email" name="email"  placeholder="이메일"
+		       data-parsley-required="" data-parsley-error-message="please insert your Email" data-parsley-errors-container="div[id='validateEmail']" />
 		      <div class="col-md-offset-1 input-group-btn" style="margin-left:30px ">
 				<button type="button" id="confirm" class="btn btn-default" >Confirm</button>
 				<input id="confirm_chk" type="hidden" name="confirm_chk" value="no"/>

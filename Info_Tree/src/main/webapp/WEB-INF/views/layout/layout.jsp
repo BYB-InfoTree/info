@@ -24,8 +24,7 @@
 	
 	<script>
 	$(document).ready(function(){
-		alert("1111")
-		alert('${aoa}');
+		
 	    $("#login").click(function(){
 	        $("#myModal").modal();
 	    });

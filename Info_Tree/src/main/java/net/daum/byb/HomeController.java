@@ -26,7 +26,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		System.out.println("윤상일~~~~~~~~~~~");
+		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
@@ -39,4 +39,17 @@ public class HomeController {
 		mvc.addObject("aoa",aoa);
 		return mvc;
 	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView home() {
+		
+		ModelAndView mvc = new ModelAndView("home");
+		boolean aoa = true;
+		mvc.addObject("aoa",aoa);
+		return mvc;
+			
+	}
+	
+	
+	
 }
