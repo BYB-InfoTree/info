@@ -5,4 +5,8 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+		
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"/>
+	</bean>
 </beans>

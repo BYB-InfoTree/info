@@ -3,22 +3,24 @@
 <html>
 <head>
 <content tag="local_script">
+
 	 <link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
+	 
 	 <script src="resources/js/parsley.min.js"></script>
-<title>Join Member Page</title>
+	 
+<title>Member insert</title>
       
    <script type="text/javascript">
    		function doReset(){
-//    				document.insert_form.id.value="";
-//    				document.insert_form.nickname.value="";
-//    				document.insert_form.id.value="";
-//    				document.insert_form.id.value="";
-   		
-   			}
+   				document.insert_form.id.value="";
+   				document.insert_form.nickname.value="";
+   				document.insert_form.password.value="";
+   				document.insert_form.repassword.value="";
+   				}
    
    	$(document).ready(function(){
    		$('#save').click(function(){
-   			if($('#confirm_chk').val()=='no'){
+   			if($('#confirm_chk').val()== "no"){
    				alert("E-mail 중복 체크를 하세요!");
    				return;
    			}
@@ -27,24 +29,23 @@
    		
   		
    		$('#confirm').click(function(){
-   			var id =$('#id').val();
-   			if(id==""){
-   				alert("ID or NAME or NickName를 입력하세요");
+   			var email =$('#email').val();
+   			if(email==""){
+   				alert("E-mail를 입력하세요");
    				return;
    			}
    			$.ajax({
    				type: 'POST',
-   				data: "id=" + id,
+   				data: "email=" + email,
    				dataType: 'json',
    				url :'idconfirm',
    				success : function(data){
-   				//		alert(data);
-   					if(data==0){
-   						alert("중복된 ID입니다.");
-   					}else{
-   						alert("사용 가능한 ID입니다.");
+   					if(data == 0){
+   						alert("사용가능한 E-mail 입니다.");
    						$('#confirm_chk').attr('value','yes');
-   	   					}
+   					}else{
+   						alert("중복된 E-mail 입니다.");
+   	   				}
    					return false;
      				}
    			});
@@ -54,10 +55,9 @@
    </content>
 </head>
 <body class="div-bgcolor-gray" onload="doReset();">
-
-<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="POST" role="form" data-parsley-validate  enctype="multipart/form-data">
+<form id="insert_form" name="memberInsert" class="form-horizontal" action="memberInsert" method="POST" role="form" data-parsley-validate="true">
    <div class="contatiner">
-     <span class="text-success text-center"><h1>정보나무 회원가입</h1></span>
+     <span class="text-success text-center"><h1>Info Tree Membership</h1></span>
  	 <br>
  	 <br> 	
       <div class="row">
@@ -68,8 +68,8 @@
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL"
                data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
                <span class="input-group-btn">
-                  <button   id="email" type="button" class="btn btn-info btn-lg" >Confirm</button>
-                  <input type="hidden" id="confirm_chk"   value="no" />
+                  <button id="confirm" name="confirm" type="button" class="btn btn-info btn-lg" >중복검사</button>
+                  <input type="hidden" id="confirm_chk" name="confirm_chk" value="no" />
                </span>
             </div>
              <br>
@@ -77,7 +77,7 @@
                 <div id="validateEmail" style="color:#ff0000"></div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-               <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="ID or Name or NickName"
+               <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="NickName"
                data-parsley-required="true" data-parsley-error-message="please insert your NAME" data-parsley-errors-container="div[id='validatename']" />
             </div>            
             <div id="validatename" style="color:#ff0000"></div>
@@ -108,10 +108,10 @@
          <div class="col-md-4">
 
            <div align="center">
-               <button id="save" type="submit" class="btn btn-info btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+               <button id="save" type="button" class="btn btn-info btn-lg">&nbsp;&nbsp;가입&nbsp;&nbsp;</button>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
-               <button name="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>
+               <button name="cancel"  type="button"  class="btn btn-info btn-lg" onclick="location.href='home'">&nbsp;취소&nbsp;</button>
             </div>
             <div align="right">
 				<br>
