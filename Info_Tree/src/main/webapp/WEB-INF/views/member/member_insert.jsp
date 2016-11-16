@@ -8,54 +8,15 @@
 <title>Join Member Page</title>
       
    <script type="text/javascript">
-   		function doReset(){
-//    				document.insert_form.id.value="";
-//    				document.insert_form.nickname.value="";
-//    				document.insert_form.id.value="";
-//    				document.insert_form.id.value="";
-   		
-   			}
+
    
-   	$(document).ready(function(){
-   		$('#save').click(function(){
-   			if($('#confirm_chk').val()=='no'){
-   				alert("E-mail 중복 체크를 하세요!");
-   				return;
-   			}
-   			$('#insert_form').submit();
-   		});
-   		
-  		
-   		$('#confirm').click(function(){
-   			var id =$('#id').val();
-   			if(id==""){
-   				alert("ID or NAME or NickName를 입력하세요");
-   				return;
-   			}
-   			$.ajax({
-   				type: 'POST',
-   				data: "id=" + id,
-   				dataType: 'json',
-   				url :'idconfirm',
-   				success : function(data){
-   				//		alert(data);
-   					if(data==0){
-   						alert("중복된 ID입니다.");
-   					}else{
-   						alert("사용 가능한 ID입니다.");
-   						$('#confirm_chk').attr('value','yes');
-   	   					}
-   					return false;
-     				}
-   			});
-  		});
-   	});
+  
    </script>
    </content>
 </head>
-<body class="div-bgcolor-gray" onload="doReset();">
+<body class="div-bgcolor-gray">
 
-<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="POST" role="form" data-parsley-validate  enctype="multipart/form-data">
+<form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="post" role="form" data-parsley-validate="ture"  enctype="multipart/form-data">
    <div class="contatiner">
      <span class="text-success text-center"><h1>정보나무 회원가입</h1></span>
  	 <br>
@@ -68,19 +29,20 @@
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL"
                data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
                <span class="input-group-btn">
-                  <button   id="email" type="button" class="btn btn-info btn-lg" >Confirm</button>
+                  <button   id="confirm" type="button" class="btn btn-info btn-lg" >Confirm</button>
                   <input type="hidden" id="confirm_chk"   value="no" />
                </span>
             </div>
+            <div id="validateEmail" style="color:#ff0000"></div>
              <br>
-            <br>       
-                <div id="validateEmail" style="color:#ff0000"></div>
+             <br>
+            
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
                <input id="nickname" name="nickname" class="form-control input-lg" text="text" size="16" placeholder="ID or Name or NickName"
-               data-parsley-required="true" data-parsley-error-message="please insert your NAME" data-parsley-errors-container="div[id='validatename']" />
+               data-parsley-required="true" data-parsley-error-message="please insert your NICKNAME" data-parsley-errors-container="div[id='validatenickname']" />
             </div>            
-            <div id="validatename" style="color:#ff0000"></div>
+            <div id="validatenickname" style="color:#ff0000"></div>
                 
             <br>
             <br>    
@@ -94,11 +56,11 @@
             <br>    
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
-               <input name="repassword" class="form-control input-lg" type="password" id="repassword" size="16" placeholder="REPASSWORD"
+               <input name="repassword" class="form-control input-lg" type="repassword" id="repassword" size="16" placeholder="PASSWORD"
                data-parsley-required="true" data-parsley-error-message="please check Password and RePASSWORD" data-parsley-errors-container="div[id='validateRePassword']" 
                data-parsley-equalto="#password"/>
             </div>
-            <div id="validateRePassword" style="color:#ff0000"></div>
+            <div id="validatePassword" style="color:#ff0000"></div>
         </div>
       </div>
                  <br>
