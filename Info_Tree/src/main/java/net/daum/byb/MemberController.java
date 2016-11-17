@@ -39,7 +39,7 @@ public class MemberController {
 	@Autowired
 	private Member member;
 	
-
+	
 	
 	@RequestMapping(value = "/memberInsertForm", method = RequestMethod.GET)
 	public ModelAndView memberInsertForm(Locale locale, Model model) {
@@ -72,6 +72,8 @@ public class MemberController {
 		
 	}
 	
+	
+
 	
 	@RequestMapping(value = "/idconfirm", method = RequestMethod.POST)
 	@ResponseBody

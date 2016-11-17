@@ -20,6 +20,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	final boolean top=true;
+	final boolean see=false;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -36,6 +37,7 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		ModelAndView mav=new ModelAndView("home");
 		mav.addObject("top",top);
+		mav.addObject("see",see);
 		mav.addObject("result",result);
 		return mav;	
 		

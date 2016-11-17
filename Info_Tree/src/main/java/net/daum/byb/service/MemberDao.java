@@ -6,5 +6,6 @@ public interface MemberDao {
 	
 	public int insertRow( Member member);
 	public int selectCount( String email);
+	public Member selectLogin(Member member);
 
 }
