@@ -21,8 +21,11 @@
 						select count(*) from member where email=#{email}
 				</select>
 				<insert id="insertRow" parameterType="hashMap" >
-						insert into member(email,password,nickname,seq) 
-						values (#{email},#{password},#{nickname},(select coalesce(max(seq)+1,1) from member))
+						insert into member(email,password,nickname,seq,joindate,point,memberlevel) 
+						values (#{email},#{password},#{nickname},(select coalesce(max(seq)+1,1) from member),#{joindate},#{point},#{memberlevel})
 				</insert>
-				
+				<select id="selectLogin" parameterType="hashMap" resultMap="memberMap">
+						select * from member where email=#{email} and password = #{password}
+				</select>
+
 		</mapper>

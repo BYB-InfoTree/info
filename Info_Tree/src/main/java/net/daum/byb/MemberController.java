@@ -53,10 +53,29 @@ public class MemberController {
 	@ResponseBody
 	public ModelAndView memberInsert(@ModelAttribute("member")Member member) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		member.setJoindate(yyyy);
+		member.setPoint(0);
+		member.setMemberlevel("일반회원");
 		int result=dao.insertRow(member);
-		ModelAndView mav=new ModelAndView("member/member_insert");
-		mav.addObject("msg",dao);
+		String msg="";
+		if(result==1){
+			msg="Success Insert your Info!";
+		}else{
+			msg="failed Insert your Info!";
+		}
+		ModelAndView mav=new ModelAndView("member/member_insert_result");
+		mav.addObject("msg",msg);
 		return  mav;
+	}
+	
+	@RequestMapping(value = "/memberInsertResult", method = RequestMethod.GET)
+	public String memberResult(Locale locale, Model model) {
+				
+		return "home";
 	}
 	
 	@RequestMapping(value = "/idconfirm", method = RequestMethod.POST)
