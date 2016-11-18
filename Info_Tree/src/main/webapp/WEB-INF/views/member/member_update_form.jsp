@@ -18,9 +18,9 @@
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL"
-               data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
+               readonly="readonly" data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
                <span class="input-group-btn">
-                  <button   id="confirm" type="button" class="btn btn-info btn-lg" >Confirm</button>
+<!--                   <button   id="confirm" type="button" class="btn btn-info btn-lg" >Confirm</button> -->
                   <input type="hidden" id="confirm_chk"   value="no" />
                </span>
             </div>

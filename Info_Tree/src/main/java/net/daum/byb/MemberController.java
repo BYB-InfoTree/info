@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,12 +106,17 @@ public class MemberController {
 	}
 	
 	
-	
+							
 	@RequestMapping(value="/memberUpdateForm", method = RequestMethod.GET)
-	public ModelAndView memberUpdateForm(@ModelAttribute("member") Member member){
+	public ModelAndView memberUpdateForm(@RequestParam("email")String email){
 		
+		System.out.println("타라제발");
+		
+		
+		System.out.println("세션이메일값~~~~~~ : "+ email);
 		ModelAndView mav = new ModelAndView("member/member_update_form");
-		
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		Member data = dao.selectOne(email);
 		
 		
 		return mav;

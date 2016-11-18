@@ -28,8 +28,11 @@ public class LoginController {
 		System.out.println("password : "+member.getPassword());
 		
 		ModelAndView mav = new ModelAndView("home");
+	
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		
 		Member data = dao.selectLogin(member);
+		
 		
 		if(data == null) {
 			mav.addObject("modal","modal");

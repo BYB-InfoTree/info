@@ -50,6 +50,11 @@
 		
 		</select>
 		
+		<select id="selectOne" parameterType="String" resultMap="memberMap">
+		
+			select * from member where email=#{email}
+		</select>
+		
 	
 	
 	
