@@ -104,5 +104,17 @@ public class MemberController {
 	
 	
 	
+	@RequestMapping(value="/memberUpdateForm", method = RequestMethod.GET)
+	public ModelAndView memberUpdateForm(@ModelAttribute("member") Member member){
+		
+		ModelAndView mav = new ModelAndView("member/member_update_form");
+		
+		
+		
+		return mav;
+		
+	}
+	
+	
 	
 }

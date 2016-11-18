@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+
+
 </head>
 <body>
  
@@ -49,25 +51,28 @@
         	<c:otherwise>
         	
         	
-        	<li class="dropdown">
-		       
-				    <li class="dropdown-toggle"  type="button" data-toggle="dropdown"><a href="#">메뉴</a></li>
-				   
-					    <ul class="dropdown-menu">
-						      <li><a href="#">회원등급 : 정회원</a></li>
-						      <li><a href="#">마일리지 : 100</a></li>
-						      <li><a href="#">정보수정</a></li>
-					    </ul>
-				   
-		
-  			</li>
-       
+    
+		<li>
+			<div class="dropdown" id="mydropdown">
+			    <button class="btn dropdown-toggle" style="background-color: black; margin-top:8px " type="button" data-toggle="dropdown" >
+			    	<span style="color: white;">menu  </span><span class="caret" style="color: white;"></span>
+			    </button>
+			    <ul class="dropdown-menu">
+			        <li><a href="#">회원등급 : 정회원</a></li>
+			        <li><a href="#">마일리지 : 100</a></li>
+			        <li id="aoa"><a href="#">정보수정</a></li>
+			    </ul>
+	  		</div>
+       	</li>
 
   	
         	
         	<li><a href="logout"><span class="glyphicon glyphicon-shopping-cart"></span>logout</a></li>
+        
         	</c:otherwise>
         </c:choose>
+        
+        
       </ul>
     </div>
   </div>

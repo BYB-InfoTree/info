@@ -25,6 +25,8 @@ href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
+		
+		
 		if('${result}'==1) {
 			alert('회원가입을 축하합니다.');	
 		}
@@ -36,6 +38,19 @@ href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
 	    if("${modal}"=="modal"){
 	    	$("#myModal").modal();
 	    }
+	    
+
+	    
+	    $("#mydropdown").on("show.bs.dropdown", function() {
+	    	
+	    	
+	    	$("#aoa").click(function(){
+	 			$(location).attr('href',
+					'http://localhost:8082/byb/memberUpdateForm');
+	    	});
+	    });
+	   
+	    
 	});
 	</script>
 </head>
