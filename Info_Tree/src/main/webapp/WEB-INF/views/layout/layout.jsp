@@ -69,7 +69,7 @@
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" name="password" id="password" placeholder="Enter password">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
             </div>
             <c:if test='${alert}'>
 			<div><span style="color:red"> E-mail과 Password를 정확히 입력해 주세요.</span></div>
