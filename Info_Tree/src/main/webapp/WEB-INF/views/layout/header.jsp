@@ -30,9 +30,9 @@
 				    <span class="caret"></span></div>
 				    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 				      <li role="presentation" class="dropdown-header">Dropdown header 1</li>
-				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">여행</a></li>
+				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">맛집</a></li>
+				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">미용</a></li>
 				      <li role="presentation" class="divider"></li>
 				      <li role="presentation" class="dropdown-header">Dropdown header 2</li>
 				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
@@ -60,7 +60,8 @@
 						    <div class="dropdown-toggle" style="padding: 15px; background-color: black; color: white;" type="button" id="menu1" data-toggle="dropdown">
 						    <i class="fa fa-cog fa-lg" aria-hidden="true"></i>설 정   <span class="caret"></span></div>
 						    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						      <li><a href="#">마일리지=&nbsp;&nbsp; ${sessionepoint} point</a></li>
+						      <li><a href="#">회원등급:&nbsp;&nbsp; ${sessionememberlevel} </a></li>	
+						      <li><a href="#">마일리지:&nbsp;&nbsp; ${sessionepoint} point</a></li>
 						      <li><a href="#">개인정보 변경</a></li>
 						      <li><a href="#">기타</a></li>
 						      <li role="presentation" class="dropdown-header">Dropdown header 2</li>

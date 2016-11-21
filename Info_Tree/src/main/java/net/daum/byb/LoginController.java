@@ -60,6 +60,7 @@ public class LoginController {
 			session.setAttribute("sessionpassword", data.getPassword());
 			session.setAttribute("sessionepoint", data.getPoint());
 			session.setAttribute("sessionemail", data.getEmail());
+			session.setAttribute("sessionememberlevel", data.getMemberlevel());
 
 			return mav;
 		}
