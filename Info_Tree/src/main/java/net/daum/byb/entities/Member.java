@@ -16,7 +16,6 @@ public class Member {
 	private int point;
 	private String phone;
 	private String memberlevel;
-	private String addr1;
 	private int seq;
 	private String joindate;
 	

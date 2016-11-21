@@ -51,7 +51,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberInsert", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView memberInsert(@ModelAttribute("member")Member member) {
+	public ModelAndView memberInsert(Locale locale, Model model) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
@@ -95,6 +95,45 @@ public class MemberController {
 	      }
 	      return find;
 	   }
+	@RequestMapping(value = "/memberUpdateForm", method = RequestMethod.GET)
+	public ModelAndView memberUpdateForm(@RequestParam String email) {
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		member=dao.selectOne(email);
+		System.out.println("==select one ==="+dao.toString());	
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		ModelAndView mav=new ModelAndView("member/member_update");
+		mav.addObject("yyyy",yyyy);
+		mav.addObject("member",member);
+		mav.addObject("top",top);
+		return mav;
+
+	}
+	
+	@RequestMapping(value = "/memberUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView memberUpdate(@ModelAttribute("member")Member member) {
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		member.setJoindate(yyyy);
+		member.setPoint(0);
+		member.setMemberlevel("일반회원");
+		int result=dao.updateRow(member);
+		String msg="";
+		if(result==1){
+			msg="Success Update your Info!";
+		}else{
+			msg="Failed Update your Info!";
+		}
+		ModelAndView mav=new ModelAndView("member/member_update_result");
+		mav.addObject("msg",msg);
+		return  mav;
+	}
 	
 	
 }

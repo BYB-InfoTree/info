@@ -58,9 +58,9 @@ public class LoginController {
 			Map <String,Object> map = new HashMap<String,Object>();
 			session.setAttribute("sessionnickname", data.getNickname());
 			session.setAttribute("sessionpassword", data.getPassword());
-			session.setAttribute("sessionepoint", data.getPoint());
+			session.setAttribute("sessionpoint", data.getPoint());
 			session.setAttribute("sessionemail", data.getEmail());
-			session.setAttribute("sessionememberlevel", data.getMemberlevel());
+			session.setAttribute("sessionmemberlevel", data.getMemberlevel());
 
 			return mav;
 		}

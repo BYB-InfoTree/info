@@ -27,5 +27,8 @@
 				<select id="selectLogin" parameterType="hashMap" resultMap="memberMap">
 						select * from member where email=#{email} and password = #{password}
 				</select>
+				<update id="updateRow" parameterType="hashMap">
+						update member set  password=#{password},nickname=#{nickname} where email=#{email}
+				</update>
 
 		</mapper>
