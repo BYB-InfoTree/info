@@ -13,10 +13,11 @@
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="resources/css/infotree_style.css">
+	<link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
 	
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+  	<script src="resources/js/parsley.min.js"></script>
 	
 	
 	<script>
@@ -24,6 +25,9 @@
 	    $("#login").click(function(){
 	        $("#myModal").modal();
 	    });
+	    if("${modal}" == "modal"){
+	        $("#myModal").modal();
+	       }
 	});
 	</script>
 </head>
@@ -55,6 +59,7 @@
     <div class="modal-dialog">
     
       <!-- Modal content-->
+<form id="login_form" name="login_form" class="form-horizontal" action="logIn" method="POST" role="form" data-parsley-validate="true">
       <div class="modal-content">
         <div class="modal-header" style="padding:35px 50px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -63,21 +68,27 @@
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form">
             <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> E-mail</label>
+              <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
+            
+            <div class="form-group">
+            <c:if test="${see}">
+            	<div class="row" style="text-align: center; color: red;">
+	              <label>E-mail 또는 비밀번호가 다릅니다.</label>
+	            </div>
+           	</c:if>
+           	</div>
+           
               <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <button type="button" class="btn btn-danger btn-default pull-left" data-dismiss="modal" onclick="location.href='home'"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
           <p>Not a member? <a href="#">Sign Up</a></p>
           <p>Forgot <a href="#">Password?</a></p>
         </div>
@@ -85,7 +96,7 @@
       
     </div>
   </div>	
-
+</form>
 </body>
 
 

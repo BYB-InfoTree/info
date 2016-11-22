@@ -72,7 +72,7 @@ public class MemberController {
 	public ModelAndView memberInsert(@ModelAttribute("member") Member member) {
 		MemberDao dao =sqlSesson.getMapper(MemberDao.class);
 		String msg = "";
-		
+		System.out.println(member.getEmail());
 		Date currentdate = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		String joindate=df.format(currentdate);
