@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -96,15 +100,22 @@ public class MemberController {
 	      return find;
 	   }
 	@RequestMapping(value = "/memberUpdateForm", method = RequestMethod.GET)
-	public ModelAndView memberUpdateForm(@RequestParam String email) {
+	public ModelAndView memberUpdateForm(@RequestParam String email, HttpSession session) {
+		ModelAndView mav=new ModelAndView("member/member_update");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		member=dao.selectOne(email);
-		System.out.println("==select one ==="+dao.toString());	
+		
+		Member member=dao.selectOne(email);
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
 		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		String yyyy=df.format(currentdate);
-		ModelAndView mav=new ModelAndView("member/member_update");
+		
+		Map <String,Object> map = new HashMap<String,Object>();
+		session.setAttribute("sessionnickname", member.getNickname());
+		session.setAttribute("sessionpassword", member.getPassword());
+		session.setAttribute("sessionpoint", member.getPoint());
+		session.setAttribute("sessionemail", member.getEmail());
+		session.setAttribute("sessionmemberlevel", member.getMemberlevel());
 		mav.addObject("yyyy",yyyy);
 		mav.addObject("member",member);
 		mav.addObject("top",top);
@@ -134,6 +145,14 @@ public class MemberController {
 		mav.addObject("msg",msg);
 		return  mav;
 	}
+	@RequestMapping(value = "/memberDelete", method = RequestMethod.POST)
+	   @ResponseBody 
+	   public ModelAndView memberDelete(@RequestParam String email) {
+         MemberDao dao =sqlSession.getMapper(MemberDao.class);
+         ModelAndView mav=new ModelAndView("member/member_update_result");
+         dao.deleteRow(email);
+         return  mav;
+	   }
 	
 	
 }

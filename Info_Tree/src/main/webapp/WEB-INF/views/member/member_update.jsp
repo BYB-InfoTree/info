@@ -11,37 +11,38 @@
 
    
    	$(document).ready(function(){
+
    		$('#update').click(function(){
-//    			if($('#confirm_chk').val()=='no'){
-//    				alert("E-mail 중복 체크를 하세요!");
-//    				return;
-//    			}
-    			$('#memberUpdate').submit();
+
+   			if($('#password').val()!='${sessionpassword}'){
+   				alert("현재 PASSWORD를 확인 하세요!");
+   				return;
+   			}
+    			$('#insert_form').submit();
     		});
-//    		$('#confirm').click(function(){
-//    			var email =$('#email').val();
-//    			if(email==""){
-//    				alert("E-mail을 입력하세요");
-//    				return;
-//    			}
-//    			$.ajax({
-//    				type: 'POST',
-//    				data: "email=" + email,
-//    				dataType: 'json',
-//    				url :'idconfirm',
-//    				success : function(data){
-//    					//	alert(data);
-//    					if(data==0){
-//    						alert("사용 가능한  E-mail입니다.");
-//    						$('#confirm_chk').attr('value','yes');
-//    					}else{
-//    						alert("중복된 E-mail입니다.");
-   						
-//    	   					}
-//    					return false;
-//      				}
-//    			});
-//   		});
+ 
+   		$('#delete').click(function() {
+   			if($('#password').val()!='${sessionpassword}'){
+   				alert("현재 PASSWORD를 확인 하세요!");
+   				return;
+   			}
+	        var result = confirm('모든 정보가 지워집니다. 탈퇴하시겠습니까?');
+	        if(result) {
+	        	var email =$('#email').val();
+	        	$.ajax({
+	   				type: 'POST',
+	   				data: "email=" + email,
+	   				dataType: 'json',
+	   				url :'memberDelete',
+	        	});
+	        	alert("모든 정보가 삭제 되었습니다.");
+	            location.replace('home');
+	        } else {
+	        	location.replace('home');
+	        }
+	    });
+   		
+
    	});
    </script>
    </content>
@@ -93,7 +94,7 @@
             <div id="validateOldPassword" style="color:#ff0000"></div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
-               <input name="password" class="form-control input-lg" type="password" id="password" size="16" placeholder="OLD PASSWORD"
+               <input name="password" class="form-control input-lg" type="password" id="password" size="16" placeholder="PRESENT PASSWORD"
                data-parsley-required="true" data-parsley-error-message="please insert your OLD PASSWORD" data-parsley-errors-container="div[id='validateOldPassword']" />
 <!--               <span class="input-group-btn"> -->
 <!--                   <button   id="confirm" name="confirm" type="button" class="btn btn-info btn-lg" >본인 확인</button> -->
@@ -116,11 +117,11 @@
          <div class="col-md-4">
 
            <div align="center">
-               <button id="memberUpdate" type="submit" class="btn btn-info btn-lg">&nbsp;&nbsp;정보 수정&nbsp;&nbsp;</button>
+               <button  id="update" type="button" class="btn btn-info btn-lg">&nbsp;&nbsp;정보 수정&nbsp;&nbsp;</button>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
-               <button id="delete" type="button" class="btn btn-info btn-lg">&nbsp;&nbsp;정보 삭제&nbsp;&nbsp;</button>
+               <button id="delete" type="button"  class="btn btn-info btn-lg">&nbsp;&nbsp;정보 삭제&nbsp;&nbsp;</button>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
