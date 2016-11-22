@@ -9,14 +9,15 @@ import lombok.Data;
 @Data
 @Component
 public class Member {
+	private int seq;
 	private String email;
 	private String password;
-	private String name;	
 	private String nickname;
-	private int point;
-	private String phone;
-	private String memberlevel;
-	private int seq;
 	private String joindate;
+	private int point;
+	private String memberlevel;
+	private String name;
+	private String phone;
+	private String newpassword;
 	
 }

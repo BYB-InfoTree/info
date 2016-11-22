@@ -55,7 +55,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberInsert", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView memberInsert(Locale locale, Model model) {
+	public ModelAndView memberInsert(@ModelAttribute("member")Member member) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
@@ -64,6 +64,7 @@ public class MemberController {
 		member.setJoindate(yyyy);
 		member.setPoint(0);
 		member.setMemberlevel("일반회원");
+
 		int result=dao.insertRow(member);
 		String msg="";
 		if(result==1){
@@ -110,12 +111,6 @@ public class MemberController {
 		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		String yyyy=df.format(currentdate);
 		
-		Map <String,Object> map = new HashMap<String,Object>();
-		session.setAttribute("sessionnickname", member.getNickname());
-		session.setAttribute("sessionpassword", member.getPassword());
-		session.setAttribute("sessionpoint", member.getPoint());
-		session.setAttribute("sessionemail", member.getEmail());
-		session.setAttribute("sessionmemberlevel", member.getMemberlevel());
 		mav.addObject("yyyy",yyyy);
 		mav.addObject("member",member);
 		mav.addObject("top",top);
@@ -125,7 +120,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberUpdate", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView memberUpdate(@ModelAttribute("member")Member member) {
+	public ModelAndView memberUpdate(@ModelAttribute("member")Member member,HttpSession session) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
@@ -134,10 +129,17 @@ public class MemberController {
 		member.setJoindate(yyyy);
 		member.setPoint(0);
 		member.setMemberlevel("일반회원");
+		member.setNewpassword(member.getNewpassword());
 		int result=dao.updateRow(member);
 		String msg="";
 		if(result==1){
 			msg="Success Update your Info!";
+			Map <String,Object> map = new HashMap<String,Object>();
+			session.setAttribute("sessionnickname", member.getNickname());
+			session.setAttribute("sessionpassword", member.getPassword());
+			session.setAttribute("sessionpoint", member.getPoint());
+			session.setAttribute("sessionemail", member.getEmail());
+			session.setAttribute("sessionmemberlevel", member.getMemberlevel());
 		}else{
 			msg="Failed Update your Info!";
 		}
@@ -146,9 +148,10 @@ public class MemberController {
 		return  mav;
 	}
 	@RequestMapping(value = "/memberDelete", method = RequestMethod.POST)
-	   @ResponseBody 
-	   public ModelAndView memberDelete(@RequestParam String email) {
+	@ResponseBody 
+	   public ModelAndView memberDelete(@RequestParam String email,HttpSession session) {
          MemberDao dao =sqlSession.getMapper(MemberDao.class);
+         session.invalidate();
          ModelAndView mav=new ModelAndView("member/member_update_result");
          dao.deleteRow(email);
          return  mav;

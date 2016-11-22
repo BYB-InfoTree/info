@@ -3,16 +3,17 @@
 			 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		<mapper namespace="net.daum.byb.service.MemberDao">
 				<resultMap type="net.daum.byb.entities.Member" id="memberMap">
+						<id property="seq"  column="seq"/>
 						<id property="email"  column="email"/>
 						<id property="password"  column="password"/>
-						<id property="name"  column="name"/>
 						<id property="nickname"  column="nickname"/>
-						<id property="point"  column="point"/>
-						<id property="phone"  column="phone"/>
-						<id property="memberlevel"  column="memberlevel"/>
-						<id property="seq"  column="seq"/>
 						<id property="joindate"  column="joindate"/>
-				
+						<id property="point"  column="point"/>
+						<id property="memberlevel"  column="memberlevel"/>
+						<id property="name"  column="name"/>
+						<id property="phone"  column="phone"/>
+						<id property="newpassword"  column="newpassword"/>
+			
 				</resultMap>
 				<select id="selectOne" parameterType="String" resultMap="memberMap" >
 						select * from member where email=#{email}
@@ -21,8 +22,9 @@
 						select count(*) from member where email=#{email}
 				</select>
 				<insert id="insertRow" parameterType="hashMap" >
-						insert into member(email,password,nickname,seq,joindate,point,memberlevel) 
-						values (#{email},#{password},#{nickname},(select coalesce(max(seq)+1,1) from member),#{joindate},#{point},#{memberlevel})
+						insert into member(seq,email,password,nickname,joindate,point,memberlevel) 
+						values ((select coalesce(max(seq)+1,1) from member),#{email},#{newpassword},#{nickname},#{joindate},
+								#{point},#{memberlevel})
 				</insert>
 				<select id="selectLogin" parameterType="hashMap" resultMap="memberMap">
 						select * from member where email=#{email} and password = #{password}
