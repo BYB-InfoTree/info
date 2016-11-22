@@ -130,13 +130,14 @@ public class MemberController {
 		member.setPoint(0);
 		member.setMemberlevel("일반회원");
 		member.setNewpassword(member.getNewpassword());
+		System.out.println("==ppppp=="+member);
 		int result=dao.updateRow(member);
 		String msg="";
 		if(result==1){
 			msg="Success Update your Info!";
 			Map <String,Object> map = new HashMap<String,Object>();
 			session.setAttribute("sessionnickname", member.getNickname());
-			session.setAttribute("sessionpassword", member.getPassword());
+			session.setAttribute("sessionpassword", member.getNewpassword());
 			session.setAttribute("sessionpoint", member.getPoint());
 			session.setAttribute("sessionemail", member.getEmail());
 			session.setAttribute("sessionmemberlevel", member.getMemberlevel());
