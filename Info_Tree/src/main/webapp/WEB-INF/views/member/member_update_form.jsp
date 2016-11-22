@@ -3,11 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<content tag="local_script">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
 <title>Insert title here</title>
 
-<script src="resources/js/parsley.min.js"></script>
+<content tag="local_script">
+
+<!-- <script src="resources/js/parsley.min.js"></script> -->
 <script type="text/javascript">
 
    $(document).ready(function(){
@@ -22,7 +24,6 @@
 	   $('#goout').click(function(){
 		    var result = confirm("삭제하시겠습니까?");
 		    if(result){
-		    	
 			  	if($('#presentpassword').val() == '${data.getPassword()}') {
 	
 					$('#delete_form').submit();
@@ -30,17 +31,11 @@
 			  	}else{
 			  		alert('현재 비밀번호를 다시 확인해주세요.');
 			  		return;
-			  	}
-		    	
-		    	
+			  	} 	
 		    }else{
 		    	return;
-		    }
-		    
-		    
-		   
+		    }   
 	   });
-	   
 	});
 </script>
 
@@ -48,7 +43,8 @@
 </head>
 <body>
 
-<form id="delete_form" name="delete_form" action="memberDelete">
+
+<form id="delete_form" name="delete_form" class="form-horizontal" action="memberDelete" method="post" role="form" >
 
 
 </form>
@@ -70,13 +66,9 @@
                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL" value="${data.getEmail()}"
                readonly="readonly" data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
-               <span class="input-group-btn">
-                  <input type="hidden" id="confirm_chk"   value="no" />
-               </span>
 <!--                <span class="input-group-btn"> -->
-<%--                   <input type="hidden" id="getpassword"   value="${data.getPassword()}" /> --%>
+<!--                   <input type="hidden" id="confirm_chk"   value="no" /> -->
 <!--                </span> -->
-               
             </div>
             <div id="validateEmail" style="color:#ff0000"></div>
              <br>
@@ -91,14 +83,23 @@
             <br>
             <br>
             
-            <div class="input-group">
-               <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
-               <input  class="form-control input-lg" type="password" id="presentpassword" name="presentpassword" size="16" placeholder="현재 비밀번호"
-               data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatePassword']" />
+            
+    		
+            
+          
+            
+    		 <div class="input-group">
+               <span class="input-group-addon"><i class="fa fa-unlock" aria-hidden="true"></i></span>
+               <input  class="form-control input-lg" type="password" id="presentpassword" name="presentpassword" size="16" placeholder="현재 비밀번호" 
+               data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatepresent']" />
             </div>
-            <div id="validatePassword" style="color:#ff0000"></div> 
+            <div id="validatepresent" style="color:#ff0000"></div> 
             <br>
             <br> 	
+            
+            
+           
+			
                 
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
@@ -136,7 +137,7 @@
 		          <button name="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>
 		          <span>&nbsp;&nbsp;</span>
 		          <span>&nbsp;&nbsp;</span>
-		          <button name="goout" id="goout"  type="button"  class="btn btn-info btn-lg"><a href="memberDelete">&nbsp;탈퇴&nbsp;</a></button>
+		          <button name="goout" id="goout"  type="button"  class="btn btn-info btn-lg">&nbsp;탈퇴&nbsp;</button>
 	          </div>
             
          </div>
