@@ -101,10 +101,10 @@ public class MemberController {
 	      return find;
 	   }
 	@RequestMapping(value = "/memberUpdateForm", method = RequestMethod.GET)
-	public ModelAndView memberUpdateForm(@RequestParam String email, HttpSession session) {
+	public ModelAndView memberUpdateForm( HttpSession session) {
 		ModelAndView mav=new ModelAndView("member/member_update");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		
+		String email= (String) session.getAttribute("sessionemail");
 		Member member=dao.selectOne(email);
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
@@ -130,7 +130,7 @@ public class MemberController {
 		member.setPoint(0);
 		member.setMemberlevel("일반회원");
 		member.setNewpassword(member.getNewpassword());
-		System.out.println("==ppppp=="+member);
+		
 		int result=dao.updateRow(member);
 		String msg="";
 		if(result==1){
