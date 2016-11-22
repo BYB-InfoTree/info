@@ -74,7 +74,8 @@
  	 <br> 	
       <div class="row">
          <div class="col-md-4"><span></span></div>
-         <div class="col-md-4">
+         <div class="col-md-4">	         
+        
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL"

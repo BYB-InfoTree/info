@@ -41,14 +41,13 @@ href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
 	    
 
 	    
-	    $("#mydropdown").on("show.bs.dropdown", function() {
-// 	    	var ao = '${sessionemail}';
+// 	    $("#mydropdown").on("show.bs.dropdown", function() {
 	    	
-	    	$("#aoa").click(function(){
-	 			$(location).attr('href',
-					'http://localhost:8082/byb/memberUpdateForm?email='+'${sessionemail}');
-	    	});
-	    });
+// 	    	$("#aoa").click(function(){
+// 	 			$(location).attr('href',
+// 					'http://localhost:8082/byb/memberUpdateForm?email='+'${sessionemail}');
+// 	    	});
+// 	    });
 	   
 	    
 	});

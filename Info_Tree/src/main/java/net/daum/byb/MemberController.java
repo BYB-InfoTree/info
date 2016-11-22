@@ -45,7 +45,7 @@ public class MemberController {
 	
 	
 	@RequestMapping(value = "/memberInsertForm", method = RequestMethod.GET)
-	public ModelAndView memberInsertForm(Locale locale, Model model) {
+	public ModelAndView memberInsertForm() {
 			
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
@@ -108,20 +108,58 @@ public class MemberController {
 	
 							
 	@RequestMapping(value="/memberUpdateForm", method = RequestMethod.GET)
-	public ModelAndView memberUpdateForm(@RequestParam("email")String email){
-		
-		System.out.println("타라제발");
+	public ModelAndView memberUpdateForm(HttpSession session){
 		
 		
-		System.out.println("세션이메일값~~~~~~ : "+ email);
+		
+		
+		String email= (String) session.getAttribute("sessionemail");
+		System.out.println("이메일찍히나?" + email);
 		ModelAndView mav = new ModelAndView("member/member_update_form");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		Member data = dao.selectOne(email);
+		
+//		mav.addObject("email",data.getEmail());
+		mav.addObject("data", data);
+		
+		
 		
 		
 		return mav;
 		
 	}
+	
+	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
+	public ModelAndView memberUpdate(@ModelAttribute("member")Member member){
+			
+		System.out.println("못타나?");
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		int result = dao.updateData(member);
+		ModelAndView mav = new ModelAndView("home");
+		
+		System.out.println("업데이트 값 숫자 :"+result);
+		return mav;
+		
+	}
+	
+	
+	
+	@RequestMapping(value="/memberDelete", method = RequestMethod.GET)
+	public ModelAndView memberDelete(HttpSession session,HttpServletRequest request){
+//		session.invalidate();
+		String email = (String) session.getAttribute("sessionemail");
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		int result = dao.memberDelete(email);
+		ModelAndView mav = new ModelAndView("home");
+		
+		System.out.println("딜리트 값 숫자 :"+result);
+		
+//		session = request.getSession();
+//		session.invalidate();
+		return mav;
+		
+	}
+	
 	
 	
 	

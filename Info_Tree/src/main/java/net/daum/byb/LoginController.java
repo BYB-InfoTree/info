@@ -42,6 +42,7 @@ public class LoginController {
 		}else{
 			session.setAttribute("sessionemail", data.getEmail());
 			session.setAttribute("sessionnickname", data.getNickname());
+			session.setAttribute("sessionpassword", data.getPassword());
 			
 			return mav;
 		}		

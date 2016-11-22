@@ -60,7 +60,7 @@
 			    <ul class="dropdown-menu">
 			        <li><a href="#">회원등급 : 정회원</a></li>
 			        <li><a href="#">마일리지 : 100</a></li>
-			        <li id="aoa"><a href="#">정보수정</a></li>
+			        <li><a href="memberUpdateForm">정보수정</a></li>
 			    </ul>
 	  		</div>
        	</li>
