@@ -146,8 +146,12 @@ public class MemberController {
 	
 	@RequestMapping(value="/memberDelete", method = RequestMethod.GET)
 	public ModelAndView memberDelete(HttpSession session,HttpServletRequest request){
-//		session.invalidate();
+
 		String email = (String) session.getAttribute("sessionemail");
+		System.out.println("초아초아초아~~~~~~~~~~~~~~");
+		session = request.getSession();
+		session.invalidate();
+		System.out.println("설현설현~~~~~~~~~~~~~~");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		int result = dao.memberDelete(email);
 		ModelAndView mav = new ModelAndView("home");
