@@ -110,31 +110,27 @@ public class MemberController {
 	@RequestMapping(value="/memberUpdateForm", method = RequestMethod.GET)
 	public ModelAndView memberUpdateForm(HttpSession session){
 		
-		
-		
-		
 		String email= (String) session.getAttribute("sessionemail");
-		System.out.println("이메일찍히나?" + email);
 		ModelAndView mav = new ModelAndView("member/member_update_form");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		Member data = dao.selectOne(email);
 		
-//		mav.addObject("email",data.getEmail());
-		mav.addObject("data", data);
-		
-		
-		
-		
+	
+		mav.addObject("data",data);
+
+//		mav.addObject("email", data.getEmail());
+//		mav.addObject("nickname", data.getNickname());
 		return mav;
 		
 	}
 	
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
-	public ModelAndView memberUpdate(@ModelAttribute("member")Member member){
+	public ModelAndView memberUpdate(@ModelAttribute("member")Member member,HttpSession session){
 			
 		System.out.println("못타나?");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		int result = dao.updateData(member);
+		session.setAttribute("sessionnickname", member.getNickname());
 		ModelAndView mav = new ModelAndView("home");
 		
 		System.out.println("업데이트 값 숫자 :"+result);
@@ -144,7 +140,7 @@ public class MemberController {
 	
 	
 	
-	@RequestMapping(value="/memberDelete", method = RequestMethod.GET)
+	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
 	public ModelAndView memberDelete(HttpSession session,HttpServletRequest request){
 
 		String email = (String) session.getAttribute("sessionemail");

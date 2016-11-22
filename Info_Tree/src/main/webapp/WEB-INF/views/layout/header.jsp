@@ -42,7 +42,14 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-       	<li><a href="memberInsertForm" id="join"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+      	<c:if test="${sessionemail==null}">
+       	 <li><a href="memberInsertForm" id="join"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+       	</c:if> 
+       	
+       	<c:if test="${sessionemail!=null}">
+       		<li><a href=""><span class="glyphicon glyphicon-user"></span>${sessionnickname}</a></li>
+       	</c:if>
+      
        	<c:choose>
        		<c:when test="${sessionemail == null }">
        	
