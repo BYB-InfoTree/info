@@ -14,25 +14,38 @@
 
    $(document).ready(function(){
 	   $('#save').click(function(){
-			if($('#presentpassword').val() == '${data.getPassword()}'){
-				
-				if( ($('#nickname').val() == '') &&($('#password').val() == '')&&($('#repassword').val() == '') ){
-					alert("수정할 패스워드 또는 닉네임값중 하나를 입력해주세요!");
+		   
+		   if( $('#nickname').val() ==''){
+			   alert('닉네임을 입력해주세요~!!');
+			   return;
+		   }
+		   if( $('#presentpassword').val() =='') {
+			   
+			   alert("현재 비밀번호값을 입력해주세요~!");
+			   return;
+		   }	   
+		   if( ($('#password').val() ==''&& $('#repassword').val() !='') || ($('#password').val() !='' && $('#repassword').val() =='' ) ){
+			   	alert("1패스워드 확인을 부탁드립니다.");
+			   	return;   
+		   }else if( ($('#password').val() !=''  && $('#repassword').val() !='') && ($('#password').val() ==  $('#repassword').val()) ){
+				if($('#presentpassword').val() == '${data.getPassword()}'){
+						
+						$('#insert_form').submit();		
+				}else{
+					alert("현재 비밀번호를 다시확인하여 주세요.");
 					return;
-				}else if( ($('#nickname').val() != '')&&($('#password').val() == $('#repassword').val())){
-					
-					$('#insert_form').submit();	
-					
-				}else if( ($('#nickname').val() =='')&&($('#password').val() == $('#repassword').val()){
-					
-					
-				}
-				
-				
-			}else{
-				alert("현재 비밀번호를 다시확인하여 주세요.");
-				return;
-			}
+				} 
+		   }else if( ($('#password').val() !=''  && $('#repassword').val() !='') && ($('#password').val() !=  $('#repassword').val()) ){
+			   alert("비밀번호와 새비밀번호값을 확인해주세요~~!!");
+			   return;
+			   
+		   }else if( ($('#password').val() ==''  && $('#repassword').val() =='')  ){
+			   alert("현재비번 새비번 둘다널 닉네임값만 변경");
+				$('#insert_form').submit();	
+		   }		   
+
+		   
+		   
 		});
 	   $('#goout').click(function(){
 		    var result = confirm("삭제하시겠습니까?");

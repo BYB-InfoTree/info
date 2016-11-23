@@ -39,7 +39,9 @@
   		</li>
   		
         <li><a href="#">Stores</a></li>
+        
         <li><a href="memberList">list</a></li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<c:if test="${sessionemail==null}">

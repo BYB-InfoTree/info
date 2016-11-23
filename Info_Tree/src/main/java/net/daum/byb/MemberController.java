@@ -130,11 +130,19 @@ public class MemberController {
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
 	public ModelAndView memberUpdate(@ModelAttribute("member")Member member,HttpSession session){
 			
-		
+		int result = 0;
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		if(member.getPassword().equals(null)||member.getPassword().equals("")){
+			member.setPassword((String) session.getAttribute("sessionpassword"));
+			result = dao.updateData(member);			
+			session.setAttribute("sessionnickname", member.getNickname());
+		}else{
+			
+			result = dao.updateData(member);	
+			session.setAttribute("sessionnickname", member.getNickname());
+		}
 		
-		int result = dao.updateData(member);
-		session.setAttribute("sessionnickname", member.getNickname());
+		
 		ModelAndView mav = new ModelAndView("home");
 		
 		System.out.println("업데이트 값 숫자 :"+result);
