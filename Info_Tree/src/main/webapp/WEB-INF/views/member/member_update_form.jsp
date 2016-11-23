@@ -15,7 +15,20 @@
    $(document).ready(function(){
 	   $('#save').click(function(){
 			if($('#presentpassword').val() == '${data.getPassword()}'){
-				$('#insert_form').submit();
+				
+				if( ($('#nickname').val() == '') &&($('#password').val() == '')&&($('#repassword').val() == '') ){
+					alert("수정할 패스워드 또는 닉네임값중 하나를 입력해주세요!");
+					return;
+				}else if( ($('#nickname').val() != '')&&($('#password').val() == $('#repassword').val())){
+					
+					$('#insert_form').submit();	
+					
+				}else if( ($('#nickname').val() =='')&&($('#password').val() == $('#repassword').val()){
+					
+					
+				}
+				
+				
 			}else{
 				alert("현재 비밀번호를 다시확인하여 주세요.");
 				return;

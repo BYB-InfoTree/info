@@ -48,7 +48,7 @@ public class MemberController {
 	@RequestMapping(value = "/memberInsertForm", method = RequestMethod.GET)
 	public ModelAndView memberInsertForm() {
 			
-		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		
 		Date currentdate=new Date();
 		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		String yyyy=df.format(currentdate);
@@ -64,8 +64,10 @@ public class MemberController {
 		
 		ModelAndView mav = new ModelAndView("home");
 		
-		System.out.println("email:"+member.getEmail());
-		System.out.println("password:"+member.getPassword());
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		member.setJoindate(yyyy);
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		
 		int result = dao.insertRow(member);
@@ -128,8 +130,9 @@ public class MemberController {
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
 	public ModelAndView memberUpdate(@ModelAttribute("member")Member member,HttpSession session){
 			
-		System.out.println("못타나?");
+		
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		
 		int result = dao.updateData(member);
 		session.setAttribute("sessionnickname", member.getNickname());
 		ModelAndView mav = new ModelAndView("home");

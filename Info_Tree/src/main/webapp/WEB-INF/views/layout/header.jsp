@@ -39,36 +39,43 @@
   		</li>
   		
         <li><a href="#">Stores</a></li>
-        <li><a href="memberList">List</a></li>
+        <li><a href="memberList">list</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      
+      	<c:if test="${sessionemail==null}">
+       	 <li><a href="memberInsertForm" id="join"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+       	</c:if> 
        	
        	<c:if test="${sessionemail!=null}">
+       		<li><a href=""><span class="glyphicon glyphicon-user"></span>${sessionnickname}</a></li>
        	</c:if>
       
        	<c:choose>
        		<c:when test="${sessionemail == null }">
        	
-       	 		<li><a href="memberInsertForm" id="join"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
         		<li><a href="#" id="login"><i class="fa fa-sign-in" aria-hidden="true"></i>로그인</a></li>
         	</c:when>
-       		<c:otherwise>
-       			<li><a href="#"><span class="glyphicon glyphicon-user"></span>${sessionnickname}</a></li>
+        	<c:otherwise>
+        	
+        	
     
-				<li>
-					<div class="dropdown" id="mydropdown">
-					    <button class="btn dropdown-toggle" style="background-color: black; margin-top:8px " type="button" data-toggle="dropdown" >
-					    	<span style="color: white;">menu  </span><span class="caret" style="color: white;"></span>
-					    </button>
-					    <ul class="dropdown-menu">
-					        <li><a href="#">회원등급 : ${sessionlevel }</a></li>
-					        <li><a href="#">마일리지 : 100</a></li>
-					        <li><a href="memberUpdateForm">정보수정</a></li>
-					    </ul>
-			  		</div>
-		       	</li>	
-        		<li><a href="logout"><span class="glyphicon glyphicon-shopping-cart"></span>logout</a></li>
+		<li>
+			<div class="dropdown" id="mydropdown">
+			    <button class="btn dropdown-toggle" style="background-color: black; margin-top:8px " type="button" data-toggle="dropdown" >
+			    	<span style="color: white;">menu  </span><span class="caret" style="color: white;"></span>
+			    </button>
+			    <ul class="dropdown-menu">
+			        <li><a href="#">회원등급 : ${sessionlevel}</a></li>
+			        <li><a href="#">마일리지 : 100</a></li>
+			        <li><a href="memberUpdateForm">정보수정</a></li>
+			    </ul>
+	  		</div>
+       	</li>
+
+  	
+        	
+        	<li><a href="logout"><span class="glyphicon glyphicon-shopping-cart"></span>logout</a></li>
+        
         	</c:otherwise>
         </c:choose>
         

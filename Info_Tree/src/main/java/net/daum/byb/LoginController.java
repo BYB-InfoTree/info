@@ -40,6 +40,7 @@ public class LoginController {
 			mav.addObject("see",see);
 			return mav;
 		}else{
+			mav.addObject("top",top);
 			session.setAttribute("sessionemail", data.getEmail());
 			session.setAttribute("sessionnickname", data.getNickname());
 			session.setAttribute("sessionpassword", data.getPassword());

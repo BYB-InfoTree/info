@@ -27,7 +27,8 @@
 				    email,
 				    nickname,
 				    password,
-				    seq
+				    seq,
+				    joindate
 				  
 				)
 				values
@@ -35,7 +36,8 @@
 				 	#{email},
 				    #{nickname},			 	
 				    #{password},
-				    (select coalesce(max(seq)+1,1) from member)
+				    (select coalesce(max(seq)+1,1) from member),
+				    #{joindate}
 				  
 				)
 		</insert>

@@ -9,6 +9,8 @@
       
    <script type="text/javascript">
    $(document).ready(function(){
+	   
+	   alert('${yyyy}');
 		$('#save').click(function(){
 			
 			if($('#confirm_chk').val()=='no'){
@@ -130,7 +132,8 @@
             <div align="right">
 				<br>
 				<br>
-               <kbd name="inputdate">${yyyy}</kbd> 
+               <kbd id="joindatee" >${yyyy}</kbd> 
+               <input type="hidden" id="joindate" name=joindate  value="${yyyy}" />
             </div>
          </div>
        </div>
