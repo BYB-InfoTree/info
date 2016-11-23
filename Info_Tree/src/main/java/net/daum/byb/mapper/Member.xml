@@ -15,9 +15,10 @@
 			<id property="seq"         column="seq"/>
 			<id property="joindate"    column="joindate"/>
 		</resultMap>
-		<insert id="insertRow" parameterType="hashMap"  >
-			insert into member(email,nickname,password,seq)
-						values(#{email},#{nickname},#{password},(select coalesce(max(seq)+1,1) from member))
+		<insert id="insertRow" parameterType="hashMap" >
+				insert into member(seq,email,password,nickname,joindate,point,memberlevel) 
+							values ((select coalesce(max(seq)+1,1) from member),#{email},#{password},
+							#{nickname},#{joindate},#{point},#{memberlevel})
 		</insert>
 		<select id="selectCount" parameterType="String" resultType="int">
 			select count(*) from member where email=#{email}
@@ -29,7 +30,7 @@
 			select * from member where email=#{email}
 		</select>
 		<update id="updateData" parameterType="hashMap" >
-			update member set nickname = #{nickname},password = #{password} where email = #{email}	
+			update member set nickname = #{nickname},password = #{newpassword} where email = #{email}	
 		</update>			
 		<select id="selectAll" parameterType="String" resultMap="memberMap" >
 			select * from member 

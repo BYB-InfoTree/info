@@ -14,7 +14,7 @@
 
    $(document).ready(function(){
 	   $('#save').click(function(){
-			if($('#presentpassword').val() == '${data.getPassword()}'){
+			if($('#password').val() == '${data.getPassword()}'){
 				$('#insert_form').submit();
 			}else{
 				alert("현재 비밀번호를 다시확인하여 주세요.");
@@ -24,7 +24,7 @@
 	   $('#goout').click(function(){
 		    var result = confirm("삭제하시겠습니까?");
 		    if(result){
-			  	if($('#presentpassword').val() == '${data.getPassword()}') {
+			  	if($('#password').val() == '${data.getPassword()}') {
 	
 					$('#delete_form').submit();
 			  		
@@ -80,8 +80,8 @@
           
     		 <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock" aria-hidden="true"></i></span>
-               <input  class="form-control input-lg" type="password" id="presentpassword" name="presentpassword" size="16" placeholder="현재 비밀번호" 
-               data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatepresent']" />
+               <input  class="form-control input-lg" type="password" id="password" name="password" size="16" placeholder="현재 비밀번호" 
+               data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatepassword']" />
             </div>
             <div id="validatepresent" style="color:#ff0000"></div> 
             <br>
@@ -89,20 +89,20 @@
                 
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
-               <input name="password" class="form-control input-lg" type="password" id="password" size="16" placeholder="새 비밀번호"
-               data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatePassword']" />
+               <input name="newpassword" class="form-control input-lg" type="password" id="newpassword" size="16" placeholder="새 비밀번호"
+               data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatenewpassword']" />
             </div>
-            <div id="validatePassword" style="color:#ff0000"></div> 
+            <div id="validatenewpassword" style="color:#ff0000"></div> 
             <br>
             <br> 	
             
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
-               <input name="repassword" class="form-control input-lg" type="password" id="repassword" size="16" placeholder="새 비밀번호 확인"
-               data-parsley-required="true" data-parsley-error-message="please insert your REPASSWORD" data-parsley-errors-container="div[id='validatePassword']" 
-               data-parsley-equalto="#password"/>
+               <input name="newrepassword" class="form-control input-lg" type="password" id="newrepassword" size="16" placeholder="새 비밀번호 확인"
+               data-parsley-required="true" data-parsley-error-message="please insert your REPASSWORD" data-parsley-errors-container="div[id='validatenewrepassword']" 
+               data-parsley-equalto="#newpassword"/>
             </div>
-            <div id="validatePassword" style="color:#ff0000"></div>
+            <div id="validatenewrepassword" style="color:#ff0000"></div>
             <br>
             <br>
             
@@ -125,7 +125,12 @@
 		          <span>&nbsp;&nbsp;</span>
 		          <button name="goout" id="goout"  type="button"  class="btn btn-info btn-lg">&nbsp;탈퇴&nbsp;</button>
 	          </div>
-            
+           <div align="right">
+				<br>
+				<br>
+               <kbd name="inputdate">${yyyy}</kbd> 
+            </div>
+ 
          </div>
        </div>
       	<br>

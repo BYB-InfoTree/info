@@ -3,7 +3,9 @@ package net.daum.byb;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -62,7 +64,6 @@ public class MemberController {
 		member.setJoindate(yyyy);
 		member.setPoint(0);
 		member.setMemberlevel("일반회원");
-
 		int result=dao.insertRow(member);
 		String msg="";
 		if(result==1){
@@ -97,28 +98,50 @@ public class MemberController {
 		
 	}
 							
-	@RequestMapping(value="/memberUpdateForm", method = RequestMethod.GET)
-	public ModelAndView memberUpdateForm(HttpSession session){
-		
-		String email= (String) session.getAttribute("sessionemail");
-		ModelAndView mav = new ModelAndView("member/member_update_form");
+	@RequestMapping(value = "/memberUpdateForm", method = RequestMethod.GET)
+	public ModelAndView memberUpdateForm( HttpSession session) {
+		ModelAndView mav=new ModelAndView("member/member_update_form");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		Member data = dao.selectOne(email);
-		mav.addObject("data",data);
+		String email= (String) session.getAttribute("sessionemail");
+		Member member=dao.selectOne(email);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		mav.addObject("yyyy",yyyy);
+		mav.addObject("data",member);
+		mav.addObject("top",top);
 		return mav;
+
 	}
 	
-	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
-	public ModelAndView memberUpdate(@ModelAttribute("member")Member member,HttpSession session){
+	@RequestMapping(value = "/memberUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView memberUpdate(@ModelAttribute("member")Member member,HttpSession session) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		int result = dao.updateData(member);
-		session.setAttribute("sessionnickname", member.getNickname());
-		session.setAttribute("sessionpassword", member.getPassword());
-		session.setAttribute("sessionpoint", member.getPoint());
-		session.setAttribute("sessionemail", member.getEmail());
-		session.setAttribute("sessionmemberlevel", member.getMemberlevel());
-		ModelAndView mav = new ModelAndView("home");
-		return mav;
+		if(member.getNewpassword().equals("")){
+			member.setNewpassword(member.getPassword());
+		}
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		member.setJoindate(yyyy);
+		member.setPoint(0);
+		member.setMemberlevel("일반회원");
+		member.setNewpassword(member.getNewpassword());
+		Map <String,Object> map = new HashMap<String,Object>();
+
+			dao.updateData(member);
+		
+
+			session.setAttribute("sessionnickname", member.getNickname());
+			session.setAttribute("sessionpassword", member.getNewpassword());
+			session.setAttribute("sessionpoint", member.getPoint());
+			session.setAttribute("sessionemail", member.getEmail());
+			session.setAttribute("sessionmemberlevel", member.getMemberlevel());
+
+		ModelAndView mav=new ModelAndView("home");
+		return  mav;
 	}
 	
 	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)

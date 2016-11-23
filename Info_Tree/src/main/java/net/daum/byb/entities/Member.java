@@ -19,6 +19,6 @@ public class Member {
 	private String memberlevel;
 	private int    seq;
 	private String joindate;
-	
+	private String newpassword;
 	
 }
