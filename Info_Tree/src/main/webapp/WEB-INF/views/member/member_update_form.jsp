@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,12 +8,33 @@
 
 <content tag="local_script">
 
-<!-- <script src="resources/js/parsley.min.js"></script> -->
+<script src="resources/js/parsley.min.js"></script>
 <script type="text/javascript">
 
    $(document).ready(function(){
 	   $('#save').click(function(){
-			if($('#password').val() == '${data.getPassword()}'){
+		   if($('#password').val() == '${data.getPassword()}'){
+			   if($('#newpassword').val()==""){
+				   if($('#newrepassword').val()==""){
+					   $('#newpassword').attr('value','${data.getPassword()}');
+					   $('#insert_form').submit();
+					   return;
+					   }
+				   if($(!('#newrepassword').val()=="")){
+					   alert('새 password를 확인하세요');
+					   return;
+					   }
+				   return;
+			   }else{ 
+				   if($('#newrepassword').val()==""){
+				   alert('새 repassword를 확인하세요');
+				   return;
+				   }else{
+					   $('#insert_form').submit();
+					   return;
+				   }
+				   return;
+				  }
 				$('#insert_form').submit();
 			}else{
 				alert("현재 비밀번호를 다시확인하여 주세요.");
@@ -71,7 +91,7 @@
              
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-               <input id="nickname" name="nickname" class="form-control input-lg" type="text" size="16" placeholder="ID or Name or NickName" value="${data.getNickname()}"
+               <input id="nickname" name="nickname" class="form-control input-lg" type="text" size="16" placeholder="NickName" value="${data.getNickname()}"
                data-parsley-required="true" data-parsley-error-message="please insert your NICKNAME" data-parsley-errors-container="div[id='validatenickname']" />
             </div>            
             <div id="validatenickname" style="color:#ff0000"></div>    
@@ -90,7 +110,7 @@
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
                <input name="newpassword" class="form-control input-lg" type="password" id="newpassword" size="16" placeholder="새 비밀번호"
-               data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatenewpassword']" />
+               data-parsley-required="false" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatenewpassword']" />
             </div>
             <div id="validatenewpassword" style="color:#ff0000"></div> 
             <br>
@@ -99,7 +119,7 @@
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
                <input name="newrepassword" class="form-control input-lg" type="password" id="newrepassword" size="16" placeholder="새 비밀번호 확인"
-               data-parsley-required="true" data-parsley-error-message="please insert your REPASSWORD" data-parsley-errors-container="div[id='validatenewrepassword']" 
+               data-parsley-required="false" data-parsley-error-message="please insert your REPASSWORD" data-parsley-errors-container="div[id='validatenewrepassword']" 
                data-parsley-equalto="#newpassword"/>
             </div>
             <div id="validatenewrepassword" style="color:#ff0000"></div>
