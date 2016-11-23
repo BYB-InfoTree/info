@@ -68,7 +68,7 @@
 <body class="div-bgcolor-gray">
 
 <form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="post" role="form" data-parsley-validate="ture"  >
-   <div class="contatiner">
+   <div class="container">
      <span class="text-success text-center"><h1>정보나무 회원가입</h1></span>
  	 <br>
  	 <br> 	

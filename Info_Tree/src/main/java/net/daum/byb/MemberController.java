@@ -3,6 +3,7 @@ package net.daum.byb;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -137,6 +138,20 @@ public class MemberController {
 		return mav;
 		
 	}
+	
+	@RequestMapping(value="/memberList", method = RequestMethod.GET)
+	public ModelAndView memberList(HttpSession session){
+		
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		ArrayList<Member> members = dao.selectAll();
+		ModelAndView mav = new ModelAndView("member/member_list");
+		System.out.println("카운터리스트 :"+ members.size());
+		mav.addObject("members",members);
+		
+		return mav;
+		
+	}
+	
 	
 	
 	

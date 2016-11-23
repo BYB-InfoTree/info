@@ -36,6 +36,10 @@
 		    	return;
 		    }   
 	   });
+	   
+	   $('#cancel').click(function(){
+					   
+	   });
 	});
 </script>
 
@@ -45,17 +49,10 @@
 
 
 <form id="delete_form" name="delete_form" class="form-horizontal" action="memberDelete" method="post" role="form" >
-
-
 </form>
 
-
-
-
-
-
 <form id="insert_form" name="insert_form" class="form-horizontal" action="memberUpdate" method="post" role="form" data-parsley-validate="ture"  >
-   <div class="contatiner">
+   <div class="container">
      <span class="text-success text-center"><h1>정보나무 정보 수정</h1></span>
  	 <br>
  	 <br> 	

@@ -1,5 +1,7 @@
 package net.daum.byb.service;
 
+import java.util.ArrayList;
+
 import net.daum.byb.entities.Member;
 
 public interface MemberDao {
@@ -10,5 +12,6 @@ public interface MemberDao {
 	public Member selectOne( String email);
 	public int updateData( Member email);
 	public int memberDelete( String email );
+	public ArrayList<Member> selectAll();
 
 }

@@ -40,6 +40,10 @@
 				)
 		</insert>
 		
+		<select id="selectAll" resultMap="memberMap">
+			select * from member
+		</select>
+		
 		<select id="selectCount" parameterType="String" resultType="int">
 			select count(*) from member where email=#{email}
 		</select>
