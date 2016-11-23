@@ -88,7 +88,7 @@ href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form id="insert_form" name="insert_form" class="form-horizontal" action="loging" method="post" role="form" >	
+          <form id="insert_form" name="insert_form" class="form-horizontal" action="login" method="post" role="form" >	
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Email</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"/>

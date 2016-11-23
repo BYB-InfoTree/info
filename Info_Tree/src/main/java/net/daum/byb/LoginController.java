@@ -22,17 +22,11 @@ public class LoginController {
 	@Autowired
 	SqlSession sqlSession;
 	
-	@RequestMapping(value = "/loging", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("member") Member member,HttpSession session) {
-		System.out.println("member"+member.getEmail());
-		System.out.println("password : "+member.getPassword());
-		
 		ModelAndView mav = new ModelAndView("home");
-	
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		
 		Member data = dao.selectLogin(member);
-		
 		
 		if(data == null) {
 			mav.addObject("modal","modal");
@@ -41,23 +35,20 @@ public class LoginController {
 			return mav;
 		}else{
 			session.setAttribute("sessionemail", data.getEmail());
+			session.setAttribute("sessionseq", data.getSeq());
 			session.setAttribute("sessionnickname", data.getNickname());
 			session.setAttribute("sessionpassword", data.getPassword());
-			
+			session.setAttribute("sessionmemberlevel", data.getMemberlevel());
+			session.setAttribute("sessionpoint", data.getPoint());
+			mav.addObject("top",top);
 			return mav;
 		}		
-	
 	}
-	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		// 위에 코드가 세션을 끊어주는거.
-		
 		return "redirect:/home";
-			
 	}
-
 }

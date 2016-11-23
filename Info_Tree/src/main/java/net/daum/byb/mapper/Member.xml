@@ -4,10 +4,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EX"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="net.daum.byb.service.MemberDao">
-		
-		
 		<resultMap type="net.daum.byb.entities.Member" id="memberMap">
-		
 			<id property="email"       column="email"/>
 			<id property="password"    column="password"/>
 			<id property="name"        column="name"/>
@@ -17,59 +14,27 @@
 			<id property="memberlevel" column="memberlevel"/>
 			<id property="seq"         column="seq"/>
 			<id property="joindate"    column="joindate"/>
-		
-		
 		</resultMap>
-		
 		<insert id="insertRow" parameterType="hashMap"  >
-			insert into member
-				(
-				    email,
-				    nickname,
-				    password,
-				    seq
-				  
-				)
-				values
-				(
-				 	#{email},
-				    #{nickname},			 	
-				    #{password},
-				    (select coalesce(max(seq)+1,1) from member)
-				  
-				)
+			insert into member(email,nickname,password,seq)
+						values(#{email},#{nickname},#{password},(select coalesce(max(seq)+1,1) from member))
 		</insert>
-		
 		<select id="selectCount" parameterType="String" resultType="int">
 			select count(*) from member where email=#{email}
 		</select>
-		
 		<select id="selectLogin" parameterType="hashMap" resultMap="memberMap">
 			select * from member where email=#{email} and password=#{password}
-		
-		
 		</select>
-		
 		<select id="selectOne" parameterType="String" resultMap="memberMap">
-		
 			select * from member where email=#{email}
 		</select>
-		
 		<update id="updateData" parameterType="hashMap" >
-			update member
-			set nickname = #{nickname},
-				password = #{password}
-			where email = #{email}	
-			
-			
-		
-		</update>
-		
+			update member set nickname = #{nickname},password = #{password} where email = #{email}	
+		</update>			
+		<select id="selectAll" parameterType="String" resultMap="memberMap" >
+			select * from member 
+		</select>	
 		<delete id="memberDelete" parameterType="String">
-			
 			delete from member where email=#{email}
 		</delete>
-	
-	
-	
 	</mapper>

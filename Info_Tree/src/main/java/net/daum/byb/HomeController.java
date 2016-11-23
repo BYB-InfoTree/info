@@ -27,14 +27,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
+
 		int result = 2;
-		
-		model.addAttribute("serverTime", formattedDate );
 		ModelAndView mav=new ModelAndView("home");
 		mav.addObject("top",top);
 		mav.addObject("see",see);

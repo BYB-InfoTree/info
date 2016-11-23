@@ -1,8 +1,7 @@
 package net.daum.byb;
 
-
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -25,8 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import net.daum.byb.entities.Member;
 import net.daum.byb.service.MemberDao;
 
-
-
 /**
  * Handles requests for the application home page.
  */
@@ -46,8 +43,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberInsertForm", method = RequestMethod.GET)
 	public ModelAndView memberInsertForm() {
-			
-		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
 		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		String yyyy=df.format(currentdate);
@@ -55,42 +50,39 @@ public class MemberController {
 		mav.addObject("yyyy",yyyy);
 		mav.addObject("top",top);
 		return mav;
-
 	}
 	
-	@RequestMapping(value="/memberInsert", method = RequestMethod.POST)
-	public ModelAndView memberInsert(@ModelAttribute("member") Member member){
-		
-		ModelAndView mav = new ModelAndView("home");
-		
-		System.out.println("email:"+member.getEmail());
-		System.out.println("password:"+member.getPassword());
+	@RequestMapping(value = "/memberInsert", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView memberInsert(@ModelAttribute("member")Member member) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		
-		int result = dao.insertRow(member);
-		System.out.println("디비후~~~~~~~~~~");
-		mav.addObject("result",result);
-		
-		return mav;
-		
-	}
-	
-	
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		member.setJoindate(yyyy);
+		member.setPoint(0);
+		member.setMemberlevel("일반회원");
 
+		int result=dao.insertRow(member);
+		String msg="";
+		if(result==1){
+			msg="Success Insert your Info!";
+		}else{
+			msg="failed Insert your Info!";
+		}
+		ModelAndView mav=new ModelAndView("home");
+		mav.addObject("msg",msg);
+		return  mav;
+	}
 	
 	@RequestMapping(value = "/idconfirm", method = RequestMethod.POST)
 	@ResponseBody
 	public int idconfirm(@RequestParam String email ) {
-		
-		
 		int count = 0;
 		int find = 0;
 		try {
 			MemberDao dao = sqlSession.getMapper(MemberDao.class);
-			// dao에 있는 메소드를 갖다 쓰는데 그메소드가 쿼리 xml이랑 연결되있고 db랑 연결되있는 
-			// sqlSession.getMapper(MemberDao.class);를 가져다 사용한다.
 			count =  dao.selectCount(email);
-			
 			
 		} catch (Exception e) {
 			
@@ -104,8 +96,6 @@ public class MemberController {
 		return find;
 		
 	}
-	
-	
 							
 	@RequestMapping(value="/memberUpdateForm", method = RequestMethod.GET)
 	public ModelAndView memberUpdateForm(HttpSession session){
@@ -114,53 +104,58 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("member/member_update_form");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		Member data = dao.selectOne(email);
-		
-	
 		mav.addObject("data",data);
-
-//		mav.addObject("email", data.getEmail());
-//		mav.addObject("nickname", data.getNickname());
 		return mav;
-		
 	}
 	
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
 	public ModelAndView memberUpdate(@ModelAttribute("member")Member member,HttpSession session){
-			
-		System.out.println("못타나?");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		int result = dao.updateData(member);
 		session.setAttribute("sessionnickname", member.getNickname());
+		session.setAttribute("sessionpassword", member.getPassword());
+		session.setAttribute("sessionpoint", member.getPoint());
+		session.setAttribute("sessionemail", member.getEmail());
+		session.setAttribute("sessionmemberlevel", member.getMemberlevel());
 		ModelAndView mav = new ModelAndView("home");
-		
-		System.out.println("업데이트 값 숫자 :"+result);
 		return mav;
-		
 	}
-	
-	
 	
 	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
 	public ModelAndView memberDelete(HttpSession session,HttpServletRequest request){
 
 		String email = (String) session.getAttribute("sessionemail");
-		System.out.println("초아초아초아~~~~~~~~~~~~~~");
 		session = request.getSession();
 		session.invalidate();
-		System.out.println("설현설현~~~~~~~~~~~~~~");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		int result = dao.memberDelete(email);
 		ModelAndView mav = new ModelAndView("home");
-		
-		System.out.println("딜리트 값 숫자 :"+result);
-		
-//		session = request.getSession();
-//		session.invalidate();
+		mav.addObject("top",top);
 		return mav;
-		
 	}
 	
+	@RequestMapping(value="/memberCancel", method = RequestMethod.POST)
+	public ModelAndView memberCancel(HttpSession session,HttpServletRequest request){
+		ModelAndView mav = new ModelAndView("home");
+		mav.addObject("top",top);
+		return mav;
+	}
 	
+	@RequestMapping(value="/memberListForm", method = RequestMethod.GET)
+	public ModelAndView memberListForm(Locale locale, Model model){
+		ModelAndView mav = new ModelAndView("member/member_list");
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		ArrayList<Member> member=dao.selectAll();
+		mav.addObject("members",member);
+		return mav;
+	}
 	
-	
+	@RequestMapping(value = "/memberSelectDelete", method = RequestMethod.GET)
+	public String memberSelectDelete(@RequestParam  String saveids[]) {
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		for (String ids:saveids){
+			dao.memberDelete(ids);
+		}
+		return "redirect:/memberListForm";
+	}
 }

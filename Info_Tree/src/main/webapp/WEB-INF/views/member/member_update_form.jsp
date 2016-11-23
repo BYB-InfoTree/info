@@ -36,19 +36,17 @@
 		    	return;
 		    }   
 	   });
+	   $('#cancel').click(function(){
+		   	$('#cancel_form').submit();
+	   });
 	});
 </script>
 
 </content>
 </head>
 <body>
-
-
-<form id="delete_form" name="delete_form" class="form-horizontal" action="memberDelete" method="post" role="form" >
-
-
-</form>
-
+<form id="delete_form" name="delete_form" class="form-horizontal" action="memberDelete" method="post" role="form" ></form>
+<form id="cancel_form" name="cancel_form" class="form-horizontal" action="memberCancel" method="post" role="form" ></form>
 
 
 
@@ -66,9 +64,6 @@
                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL" value="${data.getEmail()}"
                readonly="readonly" data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
-<!--                <span class="input-group-btn"> -->
-<!--                   <input type="hidden" id="confirm_chk"   value="no" /> -->
-<!--                </span> -->
             </div>
             <div id="validateEmail" style="color:#ff0000"></div>
              <br>
@@ -82,12 +77,7 @@
             <div id="validatenickname" style="color:#ff0000"></div>    
             <br>
             <br>
-            
-            
-    		
-            
           
-            
     		 <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock" aria-hidden="true"></i></span>
                <input  class="form-control input-lg" type="password" id="presentpassword" name="presentpassword" size="16" placeholder="현재 비밀번호" 
@@ -96,10 +86,6 @@
             <div id="validatepresent" style="color:#ff0000"></div> 
             <br>
             <br> 	
-            
-            
-           
-			
                 
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
@@ -134,7 +120,7 @@
 		          <button id="save" type="button" class="btn btn-info btn-lg">&nbsp;&nbsp;수정&nbsp;&nbsp;</button>
 		          <span>&nbsp;&nbsp;</span>
 		          <span>&nbsp;&nbsp;</span>
-		          <button name="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>
+		          <button id="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>
 		          <span>&nbsp;&nbsp;</span>
 		          <span>&nbsp;&nbsp;</span>
 		          <button name="goout" id="goout"  type="button"  class="btn btn-info btn-lg">&nbsp;탈퇴&nbsp;</button>

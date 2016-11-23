@@ -10,7 +10,6 @@
    <script type="text/javascript">
    $(document).ready(function(){
 		$('#save').click(function(){
-			
 			if($('#confirm_chk').val()=='no'){
 				alert("아이디 중복 체크를 하세요~");
 				return;
@@ -18,11 +17,7 @@
 			$('#insert_form').submit();
 			
 		});	
-		
-	
-		
 		$('#confirm').click(function(){
-			
 			var email = $('#email').val();
 			if( email == "") {
 				alert("ID를 입력하세요!");
@@ -33,10 +28,7 @@
 				data : "email="+email,
 				dataType : 'json',
 				url : 'idconfirm',
-				
 				success : function(data) {
-					
-					
 					if(data==0){
 						alert("사용 가능한 Email입니다.");
 						$('#confirm_chk').attr('value','yes');
@@ -46,22 +38,9 @@
 					}
 					return false;
 				}
-				
 			});
-			
-//			alert($('#id').val());
-//			$(location).attr('href',
-//					'http://localhost:8082/sozlo/idconfirm?id='+$('#id').val()+'&'+'password='+$('#password').val());
-
-	
 		});
-		
-
-		
-		
 	});
-   
-  
    </script>
    </content>
 </head>
