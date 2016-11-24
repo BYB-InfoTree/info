@@ -85,7 +85,7 @@ $(document).ready(function() {
 		<tbody>
 			<c:forEach var="member" items="${members}">
 				<tr>
-					<td>${member.email}</td>
+					<td><a href="memberlistupdateform?email=${member.email}">${member.email}</a></td>
 					<td>${member.password}</td>
 					<td>${member.name}</td>
 					<td>${member.nickname}</td>

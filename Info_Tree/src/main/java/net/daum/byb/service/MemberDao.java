@@ -13,5 +13,7 @@ public interface MemberDao {
 	public int updateData( Member email);
 	public int memberDelete( String email );
 	public ArrayList<Member> selectAll();
+	public int deleteRow(String emails);
+	public int memberlistupdate(Member member);
 
 }

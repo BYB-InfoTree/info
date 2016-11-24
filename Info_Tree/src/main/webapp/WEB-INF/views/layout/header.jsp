@@ -39,8 +39,9 @@
   		</li>
   		
         <li><a href="#">Stores</a></li>
-        
+       <c:if test="${sessionlevel=='마스터'}">
         <li><a href="memberList">list</a></li>
+       </c:if>  
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -69,7 +70,7 @@
 			    <ul class="dropdown-menu">
 			        <li><a href="#">회원등급 : ${sessionlevel}</a></li>
 			        <li><a href="#">마일리지 : 100</a></li>
-			        <li><a href="memberUpdateForm">정보수정</a></li>
+			        <li><a href="memberUpdateForm?email=${sessionemail }">정보수정</a></li>
 			    </ul>
 	  		</div>
        	</li>

@@ -4,7 +4,7 @@
 <head>
 <content tag="local_script">
 	 <link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
-	 <script src="resources/js/parsley.min.js"></script>
+<!-- 	 <script src="resources/js/parsley.min.js"></script> -->
 <title>Join Member Page</title>
       
    <script type="text/javascript">
@@ -96,10 +96,10 @@
                <input id="nickname" name="nickname" class="form-control input-lg" type="text" size="16" placeholder="ID or Name or NickName"
                data-parsley-required="true" data-parsley-error-message="please insert your NICKNAME" data-parsley-errors-container="div[id='validatenickname']" />
             </div>            
-            <div id="validatenickname" style="color:#ff0000"></div>
-                
+            <div id="validatenickname" style="color:#ff0000"></div>  
             <br>
             <br>    
+            
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
                <input name="password" class="form-control input-lg" type="password" id="password" size="16" placeholder="PASSWORD"
@@ -108,13 +108,14 @@
             <div id="validatePassword" style="color:#ff0000"></div>
             <br>
             <br>    
+            
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
                <input name="repassword" class="form-control input-lg" type="password" id="repassword" size="16" placeholder="PASSWORD"
-               data-parsley-required="true" data-parsley-error-message="please check Password and RePASSWORD" data-parsley-errors-container="div[id='validateRePassword']" 
+               data-parsley-required="true" data-parsley-error-message="please check Password and RePASSWORD" data-parsley-errors-container="div[id='validateREPassword']" 
                data-parsley-equalto="#password"/>
             </div>
-            <div id="validatePassword" style="color:#ff0000"></div>
+            <div id="validateREPassword" style="color:#ff0000"></div>
         </div>
       </div>
                  <br>

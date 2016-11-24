@@ -14,37 +14,17 @@
 
    $(document).ready(function(){
 	   $('#save').click(function(){
-		   
-		   if( $('#nickname').val() ==''){
-			   alert('닉네임을 입력해주세요~!!');
-			   return;
-		   }
-		   if( $('#presentpassword').val() =='') {
-			   
-			   alert("현재 비밀번호값을 입력해주세요~!");
-			   return;
-		   }	   
-		   if( ($('#password').val() ==''&& $('#repassword').val() !='') || ($('#password').val() !='' && $('#repassword').val() =='' ) ){
-			   	alert("1패스워드 확인을 부탁드립니다.");
-			   	return;   
-		   }else if( ($('#password').val() !=''  && $('#repassword').val() !='') && ($('#password').val() ==  $('#repassword').val()) ){
-				if($('#presentpassword').val() == '${data.getPassword()}'){
-						
-						$('#insert_form').submit();		
-				}else{
-					alert("현재 비밀번호를 다시확인하여 주세요.");
-					return;
-				} 
-		   }else if( ($('#password').val() !=''  && $('#repassword').val() !='') && ($('#password').val() !=  $('#repassword').val()) ){
-			   alert("비밀번호와 새비밀번호값을 확인해주세요~~!!");
-			   return;
-			   
-		   }else if( ($('#password').val() ==''  && $('#repassword').val() =='')  ){
-			   alert("현재비번 새비번 둘다널 닉네임값만 변경");
-				$('#insert_form').submit();	
-		   }		   
-
-		   
+		if(($('#password').val() !=''&& $('#repassword').val()=='') || ($('#password').val() ==''&& $('#repassword').val() !='') ){
+			 alert("돌아가");
+			 return
+		}
+		  
+		if($('#presentpassword').val() == '${data.getPassword()}'){						
+				$('#insert_form').submit();		
+		}else{
+			alert("현재 비밀번호를 다시확인하여 주세요.");
+			return;
+		} 		   
 		   
 		});
 	   $('#goout').click(function(){
@@ -127,7 +107,7 @@
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
                <input name="password" class="form-control input-lg" type="password" id="password" size="16" placeholder="새 비밀번호"
-               data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatePassword']" />
+               data-parsley-required="false" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatePassword']" />
             </div>
             <div id="validatePassword" style="color:#ff0000"></div> 
             <br>
@@ -136,10 +116,10 @@
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
                <input name="repassword" class="form-control input-lg" type="password" id="repassword" size="16" placeholder="새 비밀번호 확인"
-               data-parsley-required="true" data-parsley-error-message="please insert your REPASSWORD" data-parsley-errors-container="div[id='validatePassword']" 
+               data-parsley-required="false" data-parsley-error-message="please insert your REPASSWORD" data-parsley-errors-container="div[id='validateRePassword']" 
                data-parsley-equalto="#password"/>
             </div>
-            <div id="validatePassword" style="color:#ff0000"></div>
+            <div id="validateRePassword" style="color:#ff0000"></div>
             <br>
             <br>
             

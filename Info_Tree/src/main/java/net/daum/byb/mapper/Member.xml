@@ -61,10 +61,27 @@
 			select * from member where email=#{email}
 		</select>
 		
+		<delete id="deleteRow" parameterType="String">
+			
+			delete from member where email=#{email}
+		</delete>
+		
+		
 		<update id="updateData" parameterType="hashMap" >
 			update member
 			set nickname = #{nickname},
 				password = #{password}
+			where email = #{email}	
+		</update>
+		
+		<update id="memberlistupdate" parameterType="hashMap" >
+			update member
+			set nickname    = #{nickname},
+				password    = #{password},
+				name 	    = #{name},
+				point 	    = #{point},
+				phone 	    = #{phone},
+				memberlevel = #{memberlevel}
 			where email = #{email}	
 			
 			

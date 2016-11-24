@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -43,6 +44,21 @@ public class MemberController {
 	@Autowired
 	private Member member;
 	
+	
+	
+	
+	@RequestMapping(value = "/memberSelectedDelete", method = RequestMethod.GET)
+	public String memberSelectedDelete(@RequestParam String saveids[]) {
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		ModelAndView mav = new ModelAndView("member/member_result");
+		
+		for( String emails : saveids){
+			dao.deleteRow(emails);
+		}
+			
+		
+		return "redirect:/memberList";
+	}
 	
 	
 	@RequestMapping(value = "/memberInsertForm", method = RequestMethod.GET)
@@ -110,22 +126,7 @@ public class MemberController {
 	
 	
 							
-	@RequestMapping(value="/memberUpdateForm", method = RequestMethod.GET)
-	public ModelAndView memberUpdateForm(HttpSession session){
-		
-		String email= (String) session.getAttribute("sessionemail");
-		ModelAndView mav = new ModelAndView("member/member_update_form");
-		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		Member data = dao.selectOne(email);
-		
-	
-		mav.addObject("data",data);
 
-//		mav.addObject("email", data.getEmail());
-//		mav.addObject("nickname", data.getNickname());
-		return mav;
-		
-	}
 	
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
 	public ModelAndView memberUpdate(@ModelAttribute("member")Member member,HttpSession session){
@@ -162,6 +163,55 @@ public class MemberController {
 		return mav;
 		
 	}
+	
+	@RequestMapping(value = "/memberUpdateForm", method = RequestMethod.GET)
+	public ModelAndView memberUpdate(@RequestParam String email , HttpServletResponse response,HttpServletRequest request ) throws Exception {
+		MemberDao dao =sqlSession.getMapper(MemberDao.class);
+		System.out.println("이메일값 : "+ email);
+		Member member = dao.selectOne(email);
+//		String path = request.getContextPath();
+
+		
+		
+//		byte[] bytes = member.getPhoto();	
+		ModelAndView mav = new ModelAndView("member/member_update_form");
+		mav.addObject("data",member);
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/memberlistupdateform", method = RequestMethod.GET)
+	public ModelAndView memberlistupdateform(@RequestParam String email , HttpServletResponse response,HttpServletRequest request ) throws Exception {
+		MemberDao dao =sqlSession.getMapper(MemberDao.class);
+		System.out.println("이메일값 : "+ email);
+		Member member = dao.selectOne(email);
+//		String path = request.getContextPath();
+
+		member.getNickname();
+		member.getName();
+		member.getPassword();
+		member.getPoint();
+		member.getMemberlevel();
+//		byte[] bytes = member.getPhoto();	
+		ModelAndView mav = new ModelAndView("member/member_list_update");
+		mav.addObject("data",member);
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/memberlistupdate", method = RequestMethod.POST)
+	public String memberlistupdate(@ModelAttribute Member member , HttpServletResponse response,HttpServletRequest request ) throws Exception {
+		MemberDao dao =sqlSession.getMapper(MemberDao.class);
+		
+		int result = dao.memberlistupdate(member);
+//		String path = request.getContextPath();
+
+		String email= member.getEmail();
+//		byte[] bytes = member.getPhoto();	
+		
+		return "redirect:/memberList?email"+email;
+	}
+	
 	
 	
 	
