@@ -42,9 +42,9 @@ public class BoardController {
 	private Member member;
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public ModelAndView homecome(Locale locale, Model model) {
-		ModelAndView mav=new ModelAndView("board/board");
+	public String board(Locale locale, Model model) {
 		
-		return mav;	
+		return "board/board";	
 	}
+
 }

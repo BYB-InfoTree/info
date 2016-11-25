@@ -30,7 +30,12 @@
 			select * from member where email=#{email}
 		</select>
 		<update id="updateData" parameterType="hashMap" >
-			update member set nickname = #{nickname},password = #{newpassword} where email = #{email}	
+			update member set nickname = #{nickname},password = #{password} where email = #{email}	
+		</update>
+		<update id="updateListData" parameterType="hashMap" >
+			update member set nickname = #{nickname},password = #{password},name=#{name},point=#{point},phone=#{phone},
+								memberlevel=#{memberlevel},seq=#{seq},joindate=#{joindate} 
+			where email = #{email}	
 		</update>			
 		<select id="selectAll" parameterType="String" resultMap="memberMap" >
 			select * from member 

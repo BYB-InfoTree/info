@@ -128,14 +128,13 @@ public class MemberController {
 		member.setJoindate(yyyy);
 		member.setPoint(0);
 		member.setMemberlevel("일반회원");
-		member.setNewpassword(member.getNewpassword());
+		member.setPassword(member.getNewpassword());
 		Map <String,Object> map = new HashMap<String,Object>();
 
 			dao.updateData(member);
-		
 
 			session.setAttribute("sessionnickname", member.getNickname());
-			session.setAttribute("sessionpassword", member.getNewpassword());
+			session.setAttribute("sessionpassword", member.getPassword());
 			session.setAttribute("sessionpoint", member.getPoint());
 			session.setAttribute("sessionemail", member.getEmail());
 			session.setAttribute("sessionmemberlevel", member.getMemberlevel());
@@ -143,6 +142,8 @@ public class MemberController {
 		ModelAndView mav=new ModelAndView("home");
 		return  mav;
 	}
+	
+	
 	
 	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
 	public ModelAndView memberDelete(HttpSession session,HttpServletRequest request){
@@ -172,6 +173,35 @@ public class MemberController {
 		mav.addObject("members",member);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/listUpdateForm", method = RequestMethod.GET)
+	public ModelAndView listUpdateForm(@RequestParam String email) {
+		ModelAndView mav=new ModelAndView("member/list_update_form");
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		Member member=dao.selectOne(email);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		mav.addObject("yyyy",yyyy);
+		mav.addObject("data",member);
+		mav.addObject("top",top);
+		return mav;
+
+	}
+	
+	@RequestMapping(value = "/memberListUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView memberListUpdate(@ModelAttribute("member")Member member,HttpSession session) {
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+			dao.updateListData(member);
+		ModelAndView mav=new ModelAndView("home");
+		return  mav;
+	}
+	
 	
 	@RequestMapping(value = "/memberSelectDelete", method = RequestMethod.GET)
 	public String memberSelectDelete(@RequestParam  String saveids[]) {

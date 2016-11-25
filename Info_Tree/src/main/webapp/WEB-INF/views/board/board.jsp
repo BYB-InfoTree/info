@@ -8,13 +8,9 @@
 <head>
 <content tag="local_script"> 
  <link rel="stylesheet" href="resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-<link rel="stylesheet"   href="resources/js/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-<script src="resources/js/jquery-3.1.1.js"></script>
-<script src="resources/js/jquery-3.1.1.min.js"></script>
-<script src="resources/js/jquery.dataTables.min.js"></script>
-<script src="//code.jquery.com/jquery-1.12.3.js"></script>
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+ <link rel="stylesheet"  href="resources/js/jquery.dataTables.min.css">
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+ <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <title>Insert title here</title>
 <script>
 	$(document).ready(function() {
@@ -57,15 +53,10 @@
 	<table  id="example" class="display" cellspacing="0" width="100%">
 	        <thead>
 	            <tr>
-	    	        <th>SEQ</th>
-	                <th>EMAIL</th>
-	                <th>PASSWORD</th>
-	                <th>NAME</th>
-	                <th>NICKNAME</th>
-	                <th>POINT</th>
-	                <th>PHONE</th>
-	                <th>MEMBERLEVEL</th>
-	                <th>JOINDATE</th>
+	    	        <th>사진</th>
+	                <th>기사내용</th>
+	                <th>기사내용</th>
+	                
 	                <th style="text-align: center !important;" > <input type="checkbox" id="allchk">
 	            </tr>
 	        </thead>
@@ -76,12 +67,7 @@
 		            <td>${member.seq}</td>
 	                <td><a href="memberUpdate?email=${member.email}">${member.email}</a></td>
 	                <td>${member.password}</td>
-	                <td>${member.name}</td>
-	                <td>${member.nickname}</td>
-	                <td>${member.point}</td>
-	                <td>${member.phone}</td>
-	                <td>${member.memberlevel}</td>
-	                <td>${member.joindate}</td>
+	              
 	                <td style="text-align: center !important;"> <input type="checkbox" id="unitchk"  name="unitchk" value="${member.email}"></td>
 	            </tr>
 	           </c:forEach>

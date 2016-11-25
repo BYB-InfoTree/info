@@ -11,6 +11,7 @@ public interface MemberDao {
 	public Member selectLogin(Member member);
 	public Member selectOne( String email);
 	public int updateData( Member email);
+	public int updateListData( Member email);
 	public int memberDelete( String email );
 
 }
