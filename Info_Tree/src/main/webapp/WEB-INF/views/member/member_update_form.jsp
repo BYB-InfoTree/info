@@ -67,7 +67,7 @@
          <div class="col-md-4">
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-               <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL" value="${data.getEmail()}"
+               <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL" value="${data.email}"
                readonly="readonly" data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
 <!--                <span class="input-group-btn"> -->
 <!--                   <input type="hidden" id="confirm_chk"   value="no" /> -->
@@ -79,7 +79,7 @@
              
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-               <input id="nickname" name="nickname" class="form-control input-lg" type="text" size="16" placeholder="ID or Name or NickName" value="${data.getNickname()}"
+               <input id="nickname" name="nickname" class="form-control input-lg" type="text" size="16" placeholder="ID or Name or NickName" value="${data.nickname}"
                data-parsley-required="true" data-parsley-error-message="please insert your NICKNAME" data-parsley-errors-container="div[id='validatenickname']" />
             </div>            
             <div id="validatenickname" style="color:#ff0000"></div>    

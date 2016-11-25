@@ -37,7 +37,7 @@
 			    </ul>
 		  	</div>
   		</li>
-  		
+  		 <li><a href="boardlist">보드리스트</a></li>
         <li><a href="#">Stores</a></li>
        <c:if test="${sessionlevel=='마스터'}">
         <li><a href="memberList">list</a></li>
