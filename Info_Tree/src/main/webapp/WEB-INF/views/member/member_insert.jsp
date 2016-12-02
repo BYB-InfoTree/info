@@ -3,10 +3,9 @@
 <html>
 <head>
 <content tag="local_script">
-	 <link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
-<!-- 	 <script src="resources/js/parsley.min.js"></script> -->
+
 <title>Join Member Page</title>
-      
+       
    <script type="text/javascript">
    $(document).ready(function(){
 	   
@@ -21,6 +20,12 @@
 			
 		});	
 		
+		$('#cancel').click(function(){
+				
+				
+				$('#home_form').submit();
+			
+		});	
 	
 		
 		$('#confirm').click(function(){
@@ -68,6 +73,9 @@
    </content>
 </head>
 <body class="div-bgcolor-gray">
+
+<form id="home_form" name="home_form" class="form-horizontal" action="home" method="get" role="form" >
+</form>
 
 <form id="insert_form" name="insert_form" class="form-horizontal" action="memberInsert" method="post" role="form" data-parsley-validate="ture"  >
    <div class="container">
@@ -128,7 +136,7 @@
                <button id="save" type="button" class="btn btn-info btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                <span>&nbsp;&nbsp;</span>
                <span>&nbsp;&nbsp;</span>
-               <button name="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>
+               <button id="cancel" name="cancel"  type="button"  class="btn btn-info btn-lg">&nbsp;Cancel&nbsp;</button>
             </div>
             <div align="right">
 				<br>
