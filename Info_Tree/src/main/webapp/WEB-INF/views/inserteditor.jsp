@@ -6,8 +6,8 @@
 <content tag="local_script">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+<!-- <script type="text/javascript" src="resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script> -->
 <script type="text/javascript">
 $(function(){
     //전역변수선언
