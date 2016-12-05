@@ -24,6 +24,7 @@
 
 	<excludes>
 		<pattern>/excludes/*</pattern>
+		<pattern>/inserteditor.jsp</pattern>
 	</excludes>
 
 </decorators>

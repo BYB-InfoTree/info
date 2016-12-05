@@ -3,8 +3,7 @@
 <html>
 <head>
 <content tag="local_script">
-<!-- 	 <link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css"> -->
-<!-- 	 <script src="resources/js/parsley.min.js"></script> -->
+
 <title>Join Member Page</title>
       
    <script type="text/javascript">
