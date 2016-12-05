@@ -24,7 +24,7 @@
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 	<script src="resources/js/parsley.min.js"></script>
-	
+	 
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
