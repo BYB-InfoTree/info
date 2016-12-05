@@ -25,6 +25,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="home">Home</a></li>
+        <li class="active"><a href="inserteditor">inserteditor</a></li>
         
         <li>
 	        <div class="dropdown" style="background-color: black;">

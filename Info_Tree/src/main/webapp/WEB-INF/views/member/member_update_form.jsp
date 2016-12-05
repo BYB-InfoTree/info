@@ -9,7 +9,7 @@
 
 <content tag="local_script">
 
-
+<!-- <script src="resources/js/parsley.min.js"></script> -->
 <script type="text/javascript">
 
    $(document).ready(function(){

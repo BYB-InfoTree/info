@@ -14,17 +14,14 @@
 	<link rel="stylesheet" href="resources/css/infotree_style.css">
 	<link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-
 	
-	<script src="resources/js/jquery-3.1.1.js"></script>
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
+	<script src="resources/js/jquery-3.1.1.js"></script>
 	<script src="resources/js/parsley.min.js"></script>
-	
-	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
   	<decorator:getProperty property="page.local_script"/>
 	
-	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 	
 	<script type="text/javascript">
 	$(document).ready(function(){

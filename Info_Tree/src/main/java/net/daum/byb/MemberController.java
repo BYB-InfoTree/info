@@ -236,6 +236,10 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping(value="/inserteditor", method = RequestMethod.GET)
+	public String inserteditor(){
+		return "inserteditor";
+	}
 	
 	
 	
