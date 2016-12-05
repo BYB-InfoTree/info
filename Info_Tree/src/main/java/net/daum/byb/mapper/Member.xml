@@ -5,20 +5,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="net.daum.byb.service.MemberDao">
 		
-		
 		<resultMap type="net.daum.byb.entities.Member" id="memberMap">
-		
-			<id property="email"       column="email"/>
-			<id property="password"    column="password"/>
-			<id property="name"        column="name"/>
-			<id property="nickname"    column="nickname"/>
-			<id property="point"       column="point"/>
-			<id property="phone"       column="phone"/>
-			<id property="memberlevel" column="memberlevel"/>
-			<id property="seq"         column="seq"/>
-			<id property="joindate"    column="joindate"/>
-		
-		
+			<id property="email"       		column="email"/>
+			<id property="password" 		column="password"/>
+			<id property="name"        		column="name"/>
+			<id property="nickname"    		column="nickname"/>
+			<id property="point"       		column="point"/>
+			<id property="phone"      		column="phone"/>
+			<id property="memberlevel" 		column="memberlevel"/>
+			<id property="seq"         		column="seq"/>
+			<id property="joindate"    		column="joindate"/>
+			<id property="newpassword"   	column="newpassword"/>
 		</resultMap>
 		
 		<insert id="insertRow" parameterType="hashMap"  >
@@ -40,34 +37,46 @@
 				)
 		</insert>
 		
+		<select id="selectAll"  resultMap="memberMap">
+			select * from member
+		</select>
+
 		<select id="selectCount" parameterType="String" resultType="int">
 			select count(*) from member where email=#{email}
 		</select>
 		
 		<select id="selectLogin" parameterType="hashMap" resultMap="memberMap">
 			select * from member where email=#{email} and password=#{password}
-		
-		
 		</select>
 		
 		<select id="selectOne" parameterType="String" resultMap="memberMap">
-		
 			select * from member where email=#{email}
 		</select>
 		
 		<update id="updateData" parameterType="hashMap" >
 			update member
 			set nickname = #{nickname},
-				password = #{password}
+				password = #{newpassword}
 			where email = #{email}	
-			
-			
+		</update>
 		
+		<update id="memberUpdate" parameterType="hashMap" >
+			update member
+			set nickname = #{nickname},
+				password = #{password},
+				name = #{name},
+				memberlevel = #{memberlevel},
+				point = #{point}
+			where email = #{email}	
 		</update>
 		
 		<delete id="memberDelete" parameterType="String">
 			
 			delete from member where email=#{email}
+		</delete>
+		
+		<delete id="delete_Row" parameterType="String">
+			delete from member where seq=#{seq}
 		</delete>
 	
 	

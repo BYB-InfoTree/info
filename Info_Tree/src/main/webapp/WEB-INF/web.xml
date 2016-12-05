@@ -59,6 +59,7 @@
   
   <filter-mapping>
     <filter-name>sitemesh</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/travelListForm</url-pattern>
   </filter-mapping>
 </web-app>

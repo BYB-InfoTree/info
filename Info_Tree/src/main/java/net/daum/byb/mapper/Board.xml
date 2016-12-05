@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="net.daum.byb.service.BoardDao">
+	
+		<resultMap type="net.daum.byb.entities.Board" id="BoardMap">
+			<id property="b_seq" column="b_seq"/>
+			<id property="b_id" column="b_id"/>
+			<id property="b_name" column="b_name"/>
+			<id property="b_password" column="b_password"/>
+			<id property="b_email" column="b_email"/>
+			<id property="b_title" column="b_title"/>
+			<id property="b_content" column="b_content"/>
+			<id property="b_date" column="b_date"/>
+			<id property="b_ip" column="b_ip"/>
+			<id property="b_ref" column="b_ref"/>
+			<id property="b_step" column="b_step"/>
+			<id property="b_hit" column="b_hit"/>
+			<id property="b_level" column="b_level"/>
+		</resultMap>
+	
+		<select id="selectCount" parameterType="hashMap" resultType="int">
+			select count(*) from board where ${selectbox} like '%'||#{find}||'%'
+		</select>
+		
+		<select id="selectOne" parameterType="int" resultMap="BoardMap">
+			select * from board where b_seq=#{b_seq}
+		</select>
+		
+		<select id="selectCountAll" parameterType="hashMap" resultType="int">
+			select count(*) from board 
+		</select>
+		
+		<select id="selectPageList"  resultMap="BoardMap">
+			select * from (select rownum numrow,A.*
+			from (select * from board where
+			${selectbox} like '%'||#{find}||'%'
+			order by b_ref desc,b_step asc) A) 
+			where numrow > #{startrow} and
+			numrow <![CDATA[<= ]]>#{endrow}
+		</select>
+		
+		<select id="selectAll"  resultMap="BoardMap">
+			select * from board order by b_ref desc, b_step asc
+		</select>
+		
+		<insert id="insert_Row" parameterType="hashMap">
+        INSERT INTO board
+    (
+        b_seq,
+        b_id,
+        b_name,
+        b_email,
+        b_title,
+        b_content,
+        b_date,
+        b_ip,
+        b_ref,
+        b_step,
+        b_hit,
+        b_level,
+        b_attach
+    )
+    VALUES
+    (
+      (select coalesce(max(b_seq)+1,1) from board),
+        #{b_id},     
+        #{b_name}, 
+        #{b_email},
+        #{b_title},
+        #{b_content},
+        #{b_date},
+        #{b_ip},
+        (select coalesce(max(b_seq)+1,1) from board),
+        #{b_step},
+        #{b_hit},
+        #{b_level},    
+        #{b_attach}
+    )
+      </insert>
+		
+		<update id="update_Row" parameterType="hashMap">
+			update board set b_title=#{b_title},b_content=#{b_content},b_ip=#{b_ip},b_date=#{b_date}
+			where b_seq=#{b_seq}
+		</update>
+		
+		<delete id="delete_Row" parameterType="int">
+			delete from board where b_seq=#{b_seq}
+		</delete>
+		
+		<update id="update_Hit" parameterType="int">
+			update board set b_hit=b_hit + 1
+			where b_seq=#{b_seq}
+		</update>
+		
+			<insert id="insert_Reply" parameterType="hashMap">
+        INSERT INTO board
+    (
+        b_seq,
+        b_id,
+        b_name,
+        b_email,
+        b_title,
+        b_content,
+        b_date,
+        b_ip,
+        b_ref,
+        b_step,
+        b_hit,
+        b_level
+    )
+    VALUES
+    (
+      (select coalesce(max(b_seq)+1,1) from board),
+        #{b_id},     
+        #{b_name}, 
+        #{b_email},
+        #{b_title},
+        #{b_content},
+        #{b_date},
+        #{b_ip},
+        #{b_ref},
+        1,
+        #{b_hit},
+        #{b_level} 
+    )
+      </insert>
+      
+	</mapper>

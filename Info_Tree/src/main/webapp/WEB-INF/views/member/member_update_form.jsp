@@ -9,18 +9,37 @@
 
 <content tag="local_script">
 
-<!-- <script src="resources/js/parsley.min.js"></script> -->
 <script type="text/javascript">
 
    $(document).ready(function(){
+	   
 	   $('#save').click(function(){
-			if($('#presentpassword').val() == '${data.getPassword()}'){
-				$('#insert_form').submit();
-			}else{
-				alert("현재 비밀번호를 다시확인하여 주세요.");
-				return;
-			}
+		   if($('#nickname').val() == ""){
+			   alert("닉네임을 입력해 주세요.");
+			   return;
+		   }
+		   
+		   if($('#password').val() == ""){
+			   alert("현재 비밀번호를 입력해 주세요.");
+			   return;
+		   }
+		   
+		   if($('#password').val() != "" && ($('#newpassword').val() == "" && $('#repassword').val() == "")){
+			   if($('#password').val() == '${data.getPassword()}'){
+				   	alert("정보가 변경되었습니다");
+			   		$('#update_form').submit();
+			   }else{
+				  	alert('현재 비밀번호가 일치하지 않습니다.');
+				  	return;
+			   }
+		   }
+		   
+		   if($('#newpassword').val() !=  $('#repassword').val()){
+			   alert("비밀번호가 일치하지 않습니다.");
+			   return;
+		   }
 		});
+	   
 	   $('#goout').click(function(){
 		    var result = confirm("삭제하시겠습니까?");
 		    if(result){
@@ -54,7 +73,7 @@
 
 
 
-<form id="insert_form" name="insert_form" class="form-horizontal" action="memberUpdate" method="post" role="form" data-parsley-validate="ture"  >
+<form id="update_form" name="update_form" class="form-horizontal" action="memberUpdate" method="post" role="form" data-parsley-validate="ture"  >
    <div class="contatiner">
      <span class="text-success text-center"><h1>정보나무 정보 수정</h1></span>
  	 <br>
@@ -66,9 +85,6 @@
                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                <input id="email" name="email" class="form-control input-lg" type="email" text="text" size="16" placeholder="E-MAIL" value="${data.getEmail()}"
                readonly="readonly" data-parsley-required="true" data-parsley-error-message="please insert your E-MAIL" data-parsley-errors-container="div[id='validateEmail']" />
-<!--                <span class="input-group-btn"> -->
-<!--                   <input type="hidden" id="confirm_chk"   value="no" /> -->
-<!--                </span> -->
             </div>
             <div id="validateEmail" style="color:#ff0000"></div>
              <br>
@@ -90,7 +106,7 @@
             
     		 <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock" aria-hidden="true"></i></span>
-               <input  class="form-control input-lg" type="password" id="presentpassword" name="presentpassword" size="16" placeholder="현재 비밀번호" 
+               <input  class="form-control input-lg" type="password" id="password" name="password" size="16" placeholder="현재 비밀번호" 
                data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatepresent']" />
             </div>
             <div id="validatepresent" style="color:#ff0000"></div> 
@@ -103,7 +119,7 @@
                 
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-unlock-alt" ></i></span>
-               <input name="password" class="form-control input-lg" type="password" id="password" size="16" placeholder="새 비밀번호"
+               <input name="newpassword" class="form-control input-lg" type="password" id="newpassword" size="16" placeholder="새 비밀번호"
                data-parsley-required="true" data-parsley-error-message="please insert your PASSWORD" data-parsley-errors-container="div[id='validatePassword']" />
             </div>
             <div id="validatePassword" style="color:#ff0000"></div> 

@@ -12,6 +12,7 @@ public class Member {
 	
 	private String email;
 	private String password;
+	private String newpassword;
 	private String name;
 	private String nickname;
 	private int    point;
@@ -19,6 +20,4 @@ public class Member {
 	private String memberlevel;
 	private int    seq;
 	private String joindate;
-	
-	
 }

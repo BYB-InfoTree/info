@@ -19,21 +19,20 @@ public class LoginController {
 	
 	final boolean top=true;
 	final boolean see=true;
+	
 	@Autowired
 	SqlSession sqlSession;
 	
 	@RequestMapping(value = "/loging", method = RequestMethod.POST)
-	public ModelAndView login(@ModelAttribute("member") Member member,HttpSession session) {
-		System.out.println("member"+member.getEmail());
-		System.out.println("password : "+member.getPassword());
-		
+	public ModelAndView login(@ModelAttribute("member") Member member, HttpSession session) {
 		ModelAndView mav = new ModelAndView("home");
-	
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		
+		System.out.println(member.getEmail());
+		System.out.println(member.getPassword());
+		
 		Member data = dao.selectLogin(member);
-		
-		
+		System.out.println("db��");
 		if(data == null) {
 			mav.addObject("modal","modal");
 			mav.addObject("top",top);
@@ -43,18 +42,17 @@ public class LoginController {
 			session.setAttribute("sessionemail", data.getEmail());
 			session.setAttribute("sessionnickname", data.getNickname());
 			session.setAttribute("sessionpassword", data.getPassword());
-			
+			session.setAttribute("sessionpoint", data.getPoint());
+			session.setAttribute("sessionmemberlevel", data.getMemberlevel());
+			mav.addObject("top",top);
 			return mav;
 		}		
-	
 	}
-	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		// 위에 코드가 세션을 끊어주는거.
 		
 		return "redirect:/home";
 			

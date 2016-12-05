@@ -1,4 +1,4 @@
-package net.daum.byb.entities;
+package net.daum.byb.dbtest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ public class DBpoolConnectTestMain {
 
 			while(rs.next()){	
 
-				System.out.println("ì´ê²Œ ëœ¨ë©´ë˜~"+ rs.getInt(1));
+				System.out.println("µ¥ÀÌÅÍ ¼ö : "+ rs.getInt(1));
 			}
 		}catch (Exception e){
 //			if( rs.next()) {
