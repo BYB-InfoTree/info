@@ -3,21 +3,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<content tag="local_script">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 
 <script type="text/javascript">
 $(function(){
-    //전역변수
-    var obj = [];               
-    //스마트에디터 프레임생성
+    //전역변수선언
+    var editor_object = [];
+     
     nhn.husky.EZCreator.createInIFrame({
-        oAppRef: obj,
-        elPlaceHolder: "editor",
+        oAppRef: editor_object,
+        elPlaceHolder: "smarteditor",
         sSkinURI: "resources/smarteditor/SmartEditor2Skin.html", 
         htParams : {
             // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -28,22 +28,28 @@ $(function(){
             bUseModeChanger : true, 
         }
     });
-    //전송버튼
+     
+    //전송버튼 클릭이벤트
     $("#savebutton").click(function(){
         //id가 smarteditor인 textarea에 에디터에서 대입
-        obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+         
+        // 이부분에 에디터 validation 검증
+         
         //폼 submit
         $("#frm").submit();
     })
 })
 </script>
+</content>
 </head>
-
 <body>
-		  <form action="/submit" method="post" id="frm">
-		    <textarea name="editor" id="editor" rows="10" cols="100" style="width:766px; height:412px;"></textarea>
-		    <input type="button" id="savebutton" value="서버전송" />
-		</form>
-</body>
 
+<form action="/send.jsp" method="post" id="frm">
+    <textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea>
+    <input type="button" id="savebutton" value="서버전송" />
+</form>
+
+
+</body>
 </html>

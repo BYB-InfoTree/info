@@ -1,55 +1,99 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<content tag="local_script">
+<content tag ="local_script">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+   
+<script src="resources/js/jquery-3.1.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
 <script type="text/javascript">
-$(function(){
-    //전역변수선언
-    var editor_object = [];
-     
-    nhn.husky.EZCreator.createInIFrame({
-        oAppRef: editor_object,
-        elPlaceHolder: "smarteditor",
-        sSkinURI: "resources/smarteditor/SmartEditor2Skin.html", 
-        htParams : {
-            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseToolbar : true,             
-            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseVerticalResizer : true,     
-            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseModeChanger : true, 
-        }
-    });
-     
-    //전송버튼 클릭이벤트
-    $("#savebutton").click(function(){
-        //id가 smarteditor인 textarea에 에디터에서 대입
-        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
-         
-        // 이부분에 에디터 validation 검증
-         
-        //폼 submit
-        $("#frm").submit();
-    })
-})
+	$(document).ready(function() {
+	    $('#example').DataTable();
+	    
+		$('#allchk').click(function(){
+			if($(this).is(':checked')){
+				$("input[name=unitchk]").prop("checked", true);
+			}else{
+				$("input[name=unitchk]").prop("checked", false);
+			}
+		});
+		
+		$('#example_filter').append("<button id='selectdel' type='button' style='margin-left: 350px;'>선택삭제</button>");
+		
+		$('#selectdel').click(function(){
+			var checked = $("input[name=unitchk]:checked").length;
+			var saveids = new Array();
+			if(checked == 0){
+				alert("삭제할 항목을 선택해주세요!");
+				return;
+			} else {
+				var returnValue = confirm("삭제하시겠습까?");
+				
+				if(returnValue) {
+				$('#unitchk:checked').each(function(index){
+					saveids[index] = $(this).val();
+				});
+				
+				var url ="memberSelectDelete?saveids="+saveids;
+				$(location).attr('href',url);
+				
+				} else {
+					return;
+				}
+				
+			}
+		});
+		
+	});
 </script>
 </content>
 </head>
-<body>
 
-<form action="/send.jsp" method="post" id="frm">
-    <textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea>
-    <input type="button" id="savebutton" value="서버전송" />
-</form>
-
-
+<body style="margin-top: 20px">
+<div class="container">
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>b-seq</th>
+                <th>b-id</th>
+                <th>b_name</th>
+                <th>b_password</th>
+                <th>b_email</th>
+                <th>b_title</th>
+                <th>b_content</th>
+                <th>b_date</th>
+                <th style="text-align:center !important;"><input type="checkbox" id="allchk" name="allchk"></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        	<c:forEach var="boards" items="${boards}" >
+	            <tr>
+	                <td>${boards.b_seq}</td>
+	                <td>${boards.b_id}</td>
+	                <td>${boards.b_name}</td>
+	                <td>${boards.b_password}</td>
+	                <td>${boards.b_email}</td>
+	                <td>${boards.b_title}</td>
+	                <td>${boards.b_content}</td>
+	                <td>${boards.b_date}</td>
+	                <td style="text-align: center !important;"><input type="checkbox" name="unitchk" id="unitchk" value="${member.seq}"></td>
+	            </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    </div>
+    
+    <span class="col-md-offset-2 col-md-2">
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <button  type="button" onclick="location.href='travel_input_form'" class="btn btn-info resultButton"> 글쓰기</button>
+            </span>
 </body>
 </html>

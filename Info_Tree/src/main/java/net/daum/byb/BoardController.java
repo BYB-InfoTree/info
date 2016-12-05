@@ -37,7 +37,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/travel_input_form", method = RequestMethod.POST)
+	@RequestMapping(value = "/travel_input_form", method = RequestMethod.GET)
 	public String travel_input_form() {
 		return "board/travel_list_input";	
 	}
