@@ -216,6 +216,7 @@ public class MemberController {
 	
 	
 	
+	
 	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
 	public ModelAndView memberDelete(HttpSession session,HttpServletRequest request){
 
