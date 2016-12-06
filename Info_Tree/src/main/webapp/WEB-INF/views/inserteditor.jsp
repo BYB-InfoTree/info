@@ -4,52 +4,55 @@
 <html>
 <head>
 <content tag="local_script">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-
-
-<script type="text/javascript">
-$(function(){
-    //전역변수선언
-    var editor_object = [];
-     
-    nhn.husky.EZCreator.createInIFrame({
-        oAppRef: editor_object,
-        elPlaceHolder: "smarteditor",
-        sSkinURI: "resources/smarteditor/SmartEditor2Skin.html", 
-        htParams : {
-            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseToolbar : true,             
-            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseVerticalResizer : true,     
-            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseModeChanger : true, 
-        }
-    });
-     
-    //전송버튼 클릭이벤트
-    $("#savebutton").click(function(){
-        //id가 smarteditor인 textarea에 에디터에서 대입
-        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
-         
-        // 이부분에 에디터 validation 검증
-         
-        //폼 submit
-        $("#frm").submit();
-    })
-})
-</script>
-</content>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	 <script src="resources/js/jquery-3.1.1.min.js"></script>
+	 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script>
+	 <script type="text/javascript">
+// 		window.onload=function() {
+		
+// 			CKEDITOR.replace('aoa');
+			
+// 			CKEDITOR.replace('aoa',{uiColor:'#FFFFFF'});
+			
+// 			CKEDITOR.replace('aoa',{
+// 				skin:'v2'
+// 			})
+// 		};
+		
+		
+		
+		$(document).ready(function(){
+			$('#hoho').click(function(){
+				var data = CKEDITOR.instances.aoa.getData();
+				alert(data);
+			});	
+		});
+		
+	</script>
+</content>	
 </head>
 <body>
+<div class="container">
+     
+      <div class="row">
+         <div class="col-md-1"><span></span></div>
+         <div class="col-md-10" style="height: 600px; border: solid; color: blue;">	   
 
-<form action="/send.jsp" method="post" id="frm">
-    <textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea>
-    <input type="button" id="savebutton" value="서버전송" />
-</form>
-
-
+<!-- <textarea name="inputArticleContents"  id="aoa" class="ckeditor" rows="20" cols="50"></textarea> -->
+		 	<textarea name="aoa" id="aoa" rows="20" cols="50" style="height: 600px"></textarea>
+		 	
+		 <script type="text/javascript">
+		
+		 CKEDITOR.replace( 'aoa' );
+		 CKEDITOR.replace('aoa',{uiColor:'#7FFFD4'});
+		</script>
+		 	
+		 	
+		</div>
+		<button  id='hoho' name="hoho" type="button" class="btn btn-info btn-lg">클릭</button>
+<!-- 		  = CkEDITOR.instances.aoa.getData(); -->
+	 </div>
+</div>	 		
 </body>
 </html>
