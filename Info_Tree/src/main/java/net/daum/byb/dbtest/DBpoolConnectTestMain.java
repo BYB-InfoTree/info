@@ -22,7 +22,7 @@ public class DBpoolConnectTestMain {
 
 			while(rs.next()){	
 
-				System.out.println("데이터 수 : "+ rs.getInt(1));
+				System.out.println("Test Value : "+ rs.getInt(1));
 			}
 		}catch (Exception e){
 //			if( rs.next()) {

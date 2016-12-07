@@ -39,8 +39,8 @@ public class HomeController {
 		return mav;	
 		
 	}
-	@RequestMapping(value = "/onsmHome", method = RequestMethod.GET)
-	public ModelAndView onsmHome(Locale locale, Model model) {
+	@RequestMapping(value = "/Home", method = RequestMethod.GET)
+	public ModelAndView resetHome(Locale locale, Model model) {
 		ModelAndView mav=new ModelAndView("home");
 		mav.addObject("top",top);
 		return mav;	

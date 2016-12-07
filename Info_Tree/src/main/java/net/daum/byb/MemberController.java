@@ -46,7 +46,7 @@ public class MemberController {
 	
 	
 	
-	@RequestMapping(value = "/onsm/memberInsertForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberInsertForm", method = RequestMethod.GET)
 	public ModelAndView memberInsertForm() {
 			
 		Date currentdate=new Date();

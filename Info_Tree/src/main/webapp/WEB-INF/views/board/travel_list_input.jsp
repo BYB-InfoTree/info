@@ -6,50 +6,47 @@
 <content tag="local_script">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-
+<script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
 $(function(){
-    //전역변수선언
-    var editor_object = [];
+    
+    CKEDITOR.replace( 'contents', {//해당 이름으로 된 textarea에 에디터를 적용
+        width:'100%',
+        height:'400px',
+        filebrowserImageUploadUrl: 'file_upload' //여기 경로로 파일을 전달하여 업로드 시킨다.
+    });
      
-    nhn.husky.EZCreator.createInIFrame({
-        oAppRef: editor_object,
-        elPlaceHolder: "smarteditor",
-        sSkinURI: "resources/smarteditor/SmartEditor2Skin.html", 
-        htParams : {
-            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseToolbar : true,             
-            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseVerticalResizer : true,     
-            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseModeChanger : true, 
+     
+    CKEDITOR.on('dialogDefinition', function( ev ){
+        var dialogName = ev.data.name;
+        var dialogDefinition = ev.data.definition;
+      
+        switch (dialogName) {
+            case 'image': //Image Properties dialog
+                //dialogDefinition.removeContents('info');
+                dialogDefinition.removeContents('Link');
+                dialogDefinition.removeContents('advanced');
+                break;
         }
     });
      
-    //전송버튼 클릭이벤트
-    $("#savebutton").click(function(){
-        //id가 smarteditor인 textarea에 에디터에서 대입
-        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
-         
-        // 이부분에 에디터 validation 검증
-         
-        //폼 submit
-        $("#frm").submit();
-    })
-})
+});
 </script>
 </content>
 </head>
 <body>
-
-<form action="/send.jsp" method="post" id="frm">
-    <textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea>
-    <input type="button" id="savebutton" value="서버전송" />
-</form>
-
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10 col-md-offset-1">
+			    <textarea name="contents" id="contents" rows="10" cols="100" style="height:300px;"></textarea>
+		</div>
+		<div class="col-md-offset-5 col-md-2" style="margin-top: 30px;">
+			    <botton class="btn btn-info btn-lg" type="button" id="savebutton" value="서버전송" >입 력</botton>
+		</div> 
+		<div class="col-md-2" style="margin-top: 30px;">
+			    <botton class="btn btn-info btn-lg" type="button" id="savebutton" value="서버전송" >취 소 </botton>
+		</div>  
+	</div>
 
 </body>
 </html>

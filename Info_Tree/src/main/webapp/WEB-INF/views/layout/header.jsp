@@ -22,7 +22,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="onsmHome">Home</a></li>
+        <li class="active"><a href="Home">Home</a></li>
         
         <li>
 	        <div class="dropdown" style="background-color: black;">
@@ -41,7 +41,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<c:if test="${sessionemail==null}">
-       	 <li><a href="onsm/memberInsertForm" id="join"><span class="fa fa-address-card-o fa-lg"></span>&nbsp;&nbsp;회원가입</a></li>
+       	 <li><a href="memberInsertForm" id="join"><span class="fa fa-address-card-o fa-lg"></span>&nbsp;&nbsp;회원가입</a></li>
        	</c:if> 
        	
       

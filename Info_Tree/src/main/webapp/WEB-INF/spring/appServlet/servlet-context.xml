@@ -24,9 +24,9 @@
 	<beans:bean name="dataSource"
 	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<beans:property name="username" value="byk"/>
-		<beans:property name="password" value="123"/>
+		<beans:property name="url" value="jdbc:oracle:thin:@58.224.18.160:1521:xe"/>
+		<beans:property name="username" value="byb"/>
+		<beans:property name="password" value="161111"/>
 	</beans:bean>
 	
 	<beans:bean id="sqlSessionFactoryBean"
@@ -41,7 +41,7 @@
 		</beans:constructor-arg>
 	</beans:bean>
 	
-	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 
 	

@@ -20,7 +20,7 @@
   	<script src="resources/js/parsley.min.js"></script>
 	
 	
-	<script>
+<script type="text/javascript">
 	$(document).ready(function(){
 	    $("#login").click(function(){
 	        $("#myModal").modal();
@@ -29,7 +29,7 @@
 	        $("#myModal").modal();
 	       }
 	});
-	</script>
+</script>
 </head>
 
 <body>
@@ -46,7 +46,7 @@
 		<div class="row">
 			<decorator:body />
 		</div>
-		<div class="row">
+		<div class="row" style="margin-top: 50px;">
 			<page:applyDecorator name="footer"/>
 		</div>
 	</div>		
