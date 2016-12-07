@@ -8,51 +8,55 @@
 	<title>Insert title here</title>
 	 <script src="resources/js/jquery-3.1.1.min.js"></script>
 	 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script>
-	 <script type="text/javascript">
-// 		window.onload=function() {
-		
-// 			CKEDITOR.replace('aoa');
-			
-// 			CKEDITOR.replace('aoa',{uiColor:'#FFFFFF'});
-			
-// 			CKEDITOR.replace('aoa',{
-// 				skin:'v2'
-// 			})
-// 		};
+	
 		
 		
 		
-		$(document).ready(function(){
-			$('#hoho').click(function(){
-				var data = CKEDITOR.instances.aoa.getData();
-				alert(data);
-			});	
-		});
-		
-	</script>
+	
 </content>	
 </head>
 <body>
 <div class="container">
-     
-      <div class="row">
-         <div class="col-md-1"><span></span></div>
-         <div class="col-md-10" style="height: 600px; border: solid; color: blue;">	   
-
-<!-- <textarea name="inputArticleContents"  id="aoa" class="ckeditor" rows="20" cols="50"></textarea> -->
-		 	<textarea name="aoa" id="aoa" rows="20" cols="50" style="height: 600px"></textarea>
-		 	
-		 <script type="text/javascript">
-		
-		 CKEDITOR.replace( 'aoa' );
-		 CKEDITOR.replace('aoa',{uiColor:'#7FFFD4'});
+	<form class="form-horizontal" role="form" id="editorForm" method="post" action="/">
+	    <div class="form-group">
+	        <div class="form-group">
+	            <div class="col-lg-12">
+	                <textarea name="ckeditor" id="ckeditor"></textarea>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <div class="col-lg-12" align="right">
+	                <button type="submit" class="btn btn-default">저장</button>
+	            </div>
+	        </div>
+	    </div>
+	</form>     
+   	
+	   	<script>
+	    $(function(){
+	         
+	        CKEDITOR.replace( 'ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
+	            width:'100%',
+	            height:'400px',
+	            filebrowserImageUploadUrl: 'community/imageUpload' //여기 경로로 파일을 전달하여 업로드 시킨다.
+	        });
+	         
+	         
+	        CKEDITOR.on('dialogDefinition', function( ev ){
+	            var dialogName = ev.data.name;
+	            var dialogDefinition = ev.data.definition;
+	          
+	            switch (dialogName) {
+	                case 'image': //Image Properties dialog
+	                    //dialogDefinition.removeContents('info');
+	                 
+	                    break;
+	            }
+	        });
+	         
+	    });
 		</script>
-		 	
-		 	
-		</div>
-		<button  id='hoho' name="hoho" type="button" class="btn btn-info btn-lg">클릭</button>
-<!-- 		  = CkEDITOR.instances.aoa.getData(); -->
-	 </div>
+
 </div>	 		
 </body>
 </html>

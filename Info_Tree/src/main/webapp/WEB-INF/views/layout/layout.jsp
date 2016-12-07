@@ -19,9 +19,9 @@
   	<decorator:getProperty property="page.local_script"/>
 	
 	
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="resources/js/jquery-3.1.1.js"></script>
+<!-- 	<script src="resources/js/jquery-3.1.1.js"></script> -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 	<script src="resources/js/parsley.min.js"></script>
 	 
@@ -36,6 +36,7 @@
 		}
 		
 	    $("#login").click(function(){
+	    	
 	        $("#myModal").modal();
 	    });
 	    

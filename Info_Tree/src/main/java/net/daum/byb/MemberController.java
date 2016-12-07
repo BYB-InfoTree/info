@@ -2,6 +2,11 @@ package net.daum.byb;
 
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.daum.byb.entities.Member;
@@ -241,6 +247,73 @@ public class MemberController {
 	public String inserteditor(){
 		return "inserteditor";
 	}
+	
+	
+	/**
+     * 이미지 업로드
+     * @param request
+     * @param response
+     * @param upload
+     */
+    @RequestMapping(value = "/community/imageUpload", method = RequestMethod.POST)
+    public void communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
+ 
+    	System.out.println("사진 업로드 천천히");
+        OutputStream out = null;
+        PrintWriter printWriter = null;
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+ 
+        try{
+ 
+            String fileName = upload.getOriginalFilename();
+            System.out.println("resources/image/" +fileName);
+            byte[] bytes = upload.getBytes();
+            String uploadPath = "C:/Users/IT/Desktop/new/info/Info_Tree/src/main/webapp/resources/image/" +fileName;//저장경로
+            System.out.println("111");
+ 
+            out = new FileOutputStream(new File(uploadPath));
+            out.write(bytes);
+            String callback = request.getParameter("CKEditorFuncNum");
+            System.out.println("=========================================");
+            System.out.println("CKEditorFuncNum값  :"+callback);
+            System.out.println("222");
+ 
+            printWriter = response.getWriter();
+            String fileUrl =  "resources/image/"+fileName;//url경로
+            
+            System.out.println("333");
+ 
+            printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
+                    + callback
+                    + ",'"
+                    + fileUrl
+                    + "','이미지를 업로드 하였습니다.'"
+                    + ")</script>");
+            System.out.println("4444");
+            printWriter.flush();
+            System.out.println("55555");
+        }catch(IOException e){
+        	
+            e.printStackTrace();
+        } finally {
+        	System.out.println("파니얼");
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (printWriter != null) {
+                    printWriter.close();
+                }
+            } catch (IOException e) {
+            	
+                e.printStackTrace();
+            }
+        }
+ 
+        return;
+    }
+
 	
 	
 	
