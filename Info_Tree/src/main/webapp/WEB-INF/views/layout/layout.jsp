@@ -6,7 +6,6 @@
 <html>
 <head> 
 
-
 <title>Bootstrap Example</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,11 +15,9 @@
 	
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+	<script src="resources/ckeditor/ckeditor.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		
-		
 		
 		if('${result}'==1) {
 			alert('회원가입을 축하합니다.');	
@@ -33,20 +30,10 @@
 	    if("${modal}"=="modal"){
 	    	$("#myModal").modal();
 	    }
-	    
-
-	    
-// 	    $("#mydropdown").on("show.bs.dropdown", function() {
-	    	
-// 	    	$("#aoa").click(function(){
-// 	 			$(location).attr('href',
-// 					'http://localhost:8082/byb/memberUpdateForm?email='+'${sessionemail}');
-// 	    	});
-// 	    });
-	   
-	    
 	});
 	</script>
+	<decorator:getProperty property="page.local_script"/>
+	
 </head>
 
 <body>
@@ -67,11 +54,6 @@
 			<page:applyDecorator name="footer"/>
 		</div>
 	</div>		
-	
-	<decorator:getProperty property="page.local_script"/>
-	
-	
-
 	<!--- Modal --->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -118,12 +100,8 @@
       
     </div>
   </div>
-	
 
 </body>
-
-
-
 
 </html>
 

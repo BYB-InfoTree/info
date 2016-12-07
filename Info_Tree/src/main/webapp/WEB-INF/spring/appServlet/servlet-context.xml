@@ -41,6 +41,8 @@
 		</beans:constructor-arg>
 	</beans:bean>
 	
+	<!-- MultipartResolver Bean -->
+<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></beans:bean>
 	
 
 

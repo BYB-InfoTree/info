@@ -22,7 +22,7 @@ public class DBpoolConnectTestMain {
 
 			while(rs.next()){	
 
-				System.out.println("이게 뜨면되~"+ rs.getInt(1));
+				System.out.println("DB Test Count  =="+ rs.getInt(1));
 			}
 		}catch (Exception e){
 //			if( rs.next()) {

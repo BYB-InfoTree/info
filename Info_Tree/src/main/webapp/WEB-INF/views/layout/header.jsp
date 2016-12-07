@@ -34,7 +34,7 @@
 			    </ul>
 		  	</div>
   		</li>
-        <li><a href="board"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;게시판</a></li>
+        <li><a href="boardListForm"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;게시판</a></li>
       </ul>
 		<ul class="nav navbar-nav navbar-right">
 		  	<c:if test="${sessionseq == 1 ||sessionseq == 2}">
