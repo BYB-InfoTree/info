@@ -68,19 +68,18 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/boardInsert", method = RequestMethod.POST)
-	public ModelAndView boardinsert(@RequestParam MultipartFile file, HttpSession session,@ModelAttribute("board") Board board,HttpServletRequest request) {
-		System.out.println("====board====");
+	public ModelAndView boardinsert(@ModelAttribute("board") Board board) {
+		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		String b_ip=request.getRemoteAddr();
 		
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
 		String b_date=simple.format(currentdate);
-		board.setB_ip(b_ip);
+		
 		board.setB_date(b_date);
-
 		String msg="";
 		int result=dao.insertRow(board);
+		
 		if(result ==1){
 				msg="Successfully, Inserted TEXT!";
 		}else{
@@ -89,6 +88,12 @@ public class BoardController {
 		ModelAndView mav=new ModelAndView("board/board_result");
 		mav.addObject("msg",msg);
 		return  mav;
+	}
+
+	public void sleep(int time){
+	    try {
+	      Thread.sleep(time);
+	    } catch (InterruptedException e) { }
 	}
 	
 
@@ -109,6 +114,7 @@ public class BoardController {
 	         printWriter = response.getWriter();
 	         String fileUrl = "resources/fileupload/" + fileName;//url경로
 	         printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+callback+ ",'"+fileUrl+ "','이미지를 업로드 하였습니다.'"+ ")</script>");
+	         this.sleep(3000);
 	         printWriter.flush();
       
 	      }catch(IOException e){

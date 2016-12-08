@@ -70,7 +70,7 @@
 	        		<c:forEach var="board" items="${boards}">
 	            <tr>
 		            <td>${board.b_seq}</td>
-	                <td><a href="listUpdateForm?email=${board.b_email}">${member.email}</a></td>
+	                <td><a href="listUpdateForm?email=${board.b_email}">${board.b_email}</a></td>
 	                <td>${board.b_title}</td>
 	                <td>${board.b_content}</td>
 	                <td>${board.b_date}</td>

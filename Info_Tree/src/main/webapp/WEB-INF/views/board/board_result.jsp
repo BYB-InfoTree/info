@@ -49,7 +49,7 @@
 </content>
 <body class="div-bgcolor-gray">
 	
-<form action="boardList" method="GET">
+<form action="boardListForm" method="GET">
    <div class="container">
       <div class="row" style="text-align: center;">
          <div class="col-md-offset-4 col-md-4 con-new resultPage" style="border-style: solid; border-color: black; background-color: #6799FF">Result Page</div>

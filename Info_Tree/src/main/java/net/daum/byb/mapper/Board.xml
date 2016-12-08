@@ -37,11 +37,11 @@
 				</select>
 				
 				<insert id="insertRow" parameterType="hashMap" >
-						insert into board (b_seq,b_id,b_name,b_email,b_title,b_content,b_date,b_ip,b_ref,b_step,b_hit,b_level,b_attach) 
-						values ((select coalesce(max(b_seq)+1,1)from board),#{b_id},#{b_name},#{b_email},#{b_title},#{b_content},#{b_date},#{b_ip},(select coalesce(max(b_ref)+1,1)from board),#{b_step},#{b_hit},#{b_level},#{b_attach})
+						insert into board (b_seq,b_email,b_title,b_content,b_date,b_ref,b_step,b_hit,b_level) 
+						values ((select coalesce(max(b_seq)+1,1)from board),#{b_email},#{b_title},#{b_content},#{b_date},(select coalesce(max(b_ref)+1,1)from board),#{b_step},#{b_hit},#{b_level})
 				</insert>
 				<insert id="insertReply" parameterType="hashMap"> 
-						insert into board (b_seq,b_id,b_name,b_email, b_title,b_content,b_date,b_ip,b_ref,b_step,b_hit,b_level) 
+						insert into board (b_seq,b_id,b_name,b_email, b_title,b_content,b_date,b_ref,b_step,b_hit,b_level) 
 						values ( (select coalesce(max(b_seq)+1,1) from board), #{b_id},#{b_name},#{b_email},#{b_title}, #{b_content},#{b_date},#{b_ip}, #{b_ref},1,#{b_hit},#{b_level} ) 
 				</insert>
 				<update id="updateRow" parameterType="hashMap" >
