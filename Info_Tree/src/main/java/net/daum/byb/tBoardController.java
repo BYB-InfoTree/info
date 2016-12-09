@@ -41,10 +41,10 @@ import net.daum.byb.service.MemberDao;
  * Handles requests for the application home page.
  */
 @Controller
-public class BoardController {
+public class tBoardController {
 	
 	final boolean top=false;
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(tBoardController.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -52,23 +52,23 @@ public class BoardController {
 	@Autowired
 	private Member member;
 	
-	@RequestMapping(value = "/boardListForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/tboardListForm", method = RequestMethod.GET)
 	public ModelAndView board(Locale locale, Model model) {
-		ModelAndView mav = new ModelAndView("board/board_list");
+		ModelAndView mav = new ModelAndView("tboard/tboard_list");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		ArrayList<Board> board=dao.selectAll();
 		mav.addObject("boards",board);
 		return mav;
 	}
 	
-	@RequestMapping(value = "/boardInsertForm", method = RequestMethod.GET)
+	@RequestMapping(value = "t/boardInsertForm", method = RequestMethod.GET)
 	public String boardInsertForm(){
 		
-		return  "board/board_insert";
+		return  "tboard/tboard_insert";
 	}
 	
-	@RequestMapping(value = "/boardInsert", method = RequestMethod.POST)
-	public ModelAndView boardinsert(@ModelAttribute("board") Board board) {
+	@RequestMapping(value = "/tboardInsert", method = RequestMethod.POST)
+	public ModelAndView boardinsert(@ModelAttribute("tboard") Board board) {
 		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		
