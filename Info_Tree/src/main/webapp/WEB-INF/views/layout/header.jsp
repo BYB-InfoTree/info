@@ -28,7 +28,7 @@
 			    <div class="dropdown-toggle" style="padding: 15px; background-color: #191919; color: white;" type="button" data-toggle="dropdown">contents
 			    <span class="caret"></span></div>
 			    <ul class="dropdown-menu">
-				      <li><a href="#">여행</a></li>
+				      <li><a href="tBoardListForm">여행</a></li>
 				      <li><a href="#">맛집</a></li>
 				      <li><a href="#">미용</a></li>
 			    </ul>

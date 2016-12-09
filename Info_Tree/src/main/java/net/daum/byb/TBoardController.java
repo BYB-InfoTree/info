@@ -33,18 +33,20 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.daum.byb.entities.Board;
-import net.daum.byb.service.BoardDao;
 import net.daum.byb.entities.Member;
+import net.daum.byb.entities.Tboard;
+import net.daum.byb.service.BoardDao;
 import net.daum.byb.service.MemberDao;
+import net.daum.byb.service.TBoardDao;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class BoardController {
+public class TBoardController {
 	
 	final boolean top=false;
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TBoardController.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -52,43 +54,44 @@ public class BoardController {
 	@Autowired
 	private Member member;
 	
-	@RequestMapping(value = "/boardListForm", method = RequestMethod.GET)
-	public ModelAndView board(Locale locale, Model model) {
-		ModelAndView mav = new ModelAndView("board/board_list");
-		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		ArrayList<Board> board=dao.selectAll();
-		mav.addObject("boards",board);
+	@RequestMapping(value = "/tBoardListForm", method = RequestMethod.GET)
+	public ModelAndView tBoardListForm(Locale locale, Model model) {
+		ModelAndView mav = new ModelAndView("tboard/tboard_list");
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		ArrayList<Tboard> tboard=dao.selectAll();
+		mav.addObject("tboards",tboard);
 		return mav;
 	}
 	
-	@RequestMapping(value = "/boardInsertForm", method = RequestMethod.GET)
-	public String boardInsertForm(){
+	@RequestMapping(value = "/tBoardInsertForm", method = RequestMethod.GET)
+	public String tBoardInsertForm(){
 		
-		return  "board/board_insert";
+		return  "tboard/tboard_insert";
 	}
 	
-	@RequestMapping(value = "/boardInsert", method = RequestMethod.POST)
-	public ModelAndView boardinsert(@ModelAttribute("board") Board board) {
+	@RequestMapping(value = "/tBoardInsert", method = RequestMethod.POST)
+	public ModelAndView boardinsert(@ModelAttribute("tboard") Tboard tboard) {
 		
-		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
 		
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
 		String b_date=simple.format(currentdate);
 		
-		board.setB_date(b_date);
+		tboard.setT_date(b_date);
 		String msg="";
-		int result=dao.insertRow(board);
+		int result=dao.insertRow(tboard);
 		
 		if(result ==1){
-				msg="Successfully, Inserted TEXT!";
+				msg="Successfully, Inserted TBoard !";
 		}else{
-			msg="Failed  your Board TEXT!";
+			msg="Failed  your TBoard TEXT!";
 		}
-		ModelAndView mav=new ModelAndView("board/board_result");
+		ModelAndView mav=new ModelAndView("tboard/tboard_result");
 		mav.addObject("msg",msg);
 		return  mav;
 	}
+	
 
 	public void sleep(int time){
 	    try {
@@ -96,8 +99,8 @@ public class BoardController {
 	    } catch (InterruptedException e) { }
 	}
 	
-
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/tupload", method = RequestMethod.POST)
 	   public void communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
 	      OutputStream out = null;
 	      PrintWriter printWriter = null;
@@ -120,7 +123,8 @@ public class BoardController {
 	         printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+callback+ ",'"+fileUrl+ "','이미지를 업로드 하였습니다.'"+ ")</script>");
 	         this.sleep(3000);
 	         printWriter.flush();
-      
+	         this.sleep(3000);
+   
 	      }catch(IOException e){
 	         e.printStackTrace();
 	      } finally {
@@ -137,6 +141,7 @@ public class BoardController {
 	      }
 	      return ;
 	   }
+
 
 
 }
