@@ -56,7 +56,6 @@
 	    	        <th>B_SEQ</th>
 	                <th>B_EMAIL</th>
 	                <th>B_TITLE</th>
-	                <th>B_CONTENT</th>
 	                <th>B_DATE</th>
 	                <th>B_LEVEL</th>
 	                <th>B_HIT</th>
@@ -69,10 +68,9 @@
 	        <tbody>
 	        		<c:forEach var="board" items="${boards}">
 	            <tr>
-		            <td>${board.b_seq}</td>
-	                <td><a href="listUpdateForm?email=${board.b_email}">${board.b_email}</a></td>
-	                <td>${board.b_title}</td>
-	                <td>${board.b_content}</td>
+		            <td><a href="BoardDetail?b_seq=${board.b_seq}">${board.b_seq}</td>
+	                <td><a href="BoardDetail?b_seq=${board.b_seq}">${board.b_email}</a></td>
+	                <td><a href="BoardDetail?b_seq=${board.b_seq}">${board.b_title}</td>
 	                <td>${board.b_date}</td>
 	                <td>${board.b_level}</td>
 	                <td>${board.b_hit}</td>

@@ -35,7 +35,9 @@ import org.springframework.web.servlet.ModelAndView;
 import net.daum.byb.entities.Board;
 import net.daum.byb.service.BoardDao;
 import net.daum.byb.entities.Member;
+import net.daum.byb.entities.Tboard;
 import net.daum.byb.service.MemberDao;
+import net.daum.byb.service.TBoardDao;
 
 /**
  * Handles requests for the application home page.
@@ -137,6 +139,19 @@ public class BoardController {
 	      }
 	      return ;
 	   }
+	@RequestMapping(value = "/BoardDetail", method = RequestMethod.GET)
+	public ModelAndView BoardDetail(@RequestParam int b_seq) {
+		ModelAndView mav=new ModelAndView("board/board_detail");
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		Board boards=dao.selectOne(b_seq);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		mav.addObject("yyyy",yyyy);
+		mav.addObject("board",boards);
+		mav.addObject("top",top);
+		return mav;
 
+	}
 
 }
