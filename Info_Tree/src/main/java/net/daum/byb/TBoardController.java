@@ -114,16 +114,17 @@ public class TBoardController {
 	      try{
 	         String fileName = date+upload.getOriginalFilename();
 	         byte[] bytes = upload.getBytes();
-	         String uploadPath = "C:/Users/grace/git/info/Info_Tree/src/main/webapp/resources/fileupload/" + fileName;//저장경로
+	         String uploadPath = "C:/Users/grace/git/info/Info_Tree/src/main/webapp/resources/tfileupload/" + fileName;//저장경로
 	         out = new FileOutputStream(new File(uploadPath));
 	         out.write(bytes);
+	         this.sleep(3000);
 	         String callback = request.getParameter("CKEditorFuncNum");
 	         printWriter = response.getWriter();
-	         String fileUrl = "resources/fileupload/" + fileName;//url경로
+	         String fileUrl = "resources/tfileupload/" + fileName;//url경로
 	         printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+callback+ ",'"+fileUrl+ "','이미지를 업로드 하였습니다.'"+ ")</script>");
 	         this.sleep(3000);
 	         printWriter.flush();
-	         this.sleep(3000);
+	         
    
 	      }catch(IOException e){
 	         e.printStackTrace();
@@ -141,6 +142,21 @@ public class TBoardController {
 	      }
 	      return ;
 	   }
+	
+	@RequestMapping(value = "/tBoardDetail", method = RequestMethod.GET)
+	public ModelAndView listUpdateForm(@RequestParam int t_seq) {
+		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		Tboard tboards=dao.selectOne(t_seq);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		mav.addObject("yyyy",yyyy);
+		mav.addObject("tboard",tboards);
+		mav.addObject("top",top);
+		return mav;
+
+	}
 
 
 

@@ -44,45 +44,31 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 <body>
 
 	<form class="form-horizontal" action="boardUpdate" method="get" role="form" data-parsley-validate="true">
-				<span class="text-success text-center"><h1>Member Board Detail</h1></span>
+				<span class="text-success text-center"><h1>Travel Board Detail</h1></span>
 			     <p class="text-success text-center">이것은 연습을 하기위한 페이지 입니다.</p>
 			
 				<br>
 				<div class="container">
 				  <form class="form-horizontal">
+				    				    
 				    <div class="form-group">
-				      <label class="col-sm-2 control-label">아이디</label>
-				      <div class="col-sm-8">
-				      	<input type="hidden" name="b_seq" value="${board.b_seq}">
-				        <input class="form-control" id="b_id" name="b_id" text" value="${board.b_id}">
-				      </div>
-				    </div>
-				    
-				    <div class="form-group">
-				      <label class="col-sm-2 control-label">이 름</label>
-				      <div class="col-sm-8">
-				        <input class="form-control" id="b_name"  name="b_name" value="${board.b_name}" type="text" >
-				      </div>
-				    </div>
-				    
-				    <div class="form-group">
-				      <label class="col-sm-2 control-label">E-mail</label>
-				      <div class="col-sm-8">
-				        <input class="form-control" id="b_email" type="text" name="b_email"  value="${board.b_email}" >
+				      <label class="col-sm-2 control-label">제   목</label>
+				      <div class="col-sm-8" style="text-align:center">
+				        <input class="form-control" style="text-align:center" id="b_email" type="text" name="b_email"  value="${tboard.t_title}" >
 				      </div>
 				    </div>
 				    
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label">제 목</label>
-				      <div class="col-sm-8">
-				        <input class="form-control" id="b_title" type="text"  name="b_title"  value="${board.b_title}" autofocus>
+				      <div class="col-sm-8" style="text-align:center">
+				        ${tboard.t_title}
 				      </div>
 				    </div>
 				    
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label">내  용</label>
-				      <div class="col-sm-8">
-				        <textarea class="form-control" rows="5" id="b_content" name="b_content"  >${board.b_content}</textarea>
+				      <div class="col-sm-8" style="text-align:center">
+				        ${tboard.t_content}
 				      </div>
 				    </div>
 	
@@ -91,15 +77,16 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
   				    <div class="row col-sm-12 " style="text-align:center" >
 					<div class="checkbox">
 			     		<button id="save" type="submit" class="btn btn-default">Update</button>
-			   			<button type="button"  onclick="location.href='boardDeleteYN?b_seq=${board.b_seq}'"  class="btn btn-default">Delete</button>
-			   			<button type="button"  onclick="location.href='boardReply?b_seq=${board.b_seq}'"  class="btn btn-default">답    글</button>
+			   			<button type="button"  onclick="location.href='boardDeleteYN?t_seq=${tboard.t_seq}'"  class="btn btn-default">Delete</button>
+			   			<button type="button"  onclick="location.href='boardReply?t_seq=${tboard.t_seq}'"  class="btn btn-default">답    글</button>
+			   			<button type="button"  onclick="location.href='tBoardListForm?t_seq=${toard.t_seq}'"  class="btn btn-default">목   록</button>
 					</div>
 					</div>
  		  	 </c:if>	
  		  	 
  	 				 <div class="row col-sm-12 " style="text-align:center" >
 					<div class="checkbox">
-			     	   			<button type="button"  onclick="location.href='boardReply?b_seq=${board.b_seq}'"  class="btn btn-default">답    글</button>
+			     	   	<button type="button"  onclick="location.href='boardReply?b_seq=${board.b_seq}'"  class="btn btn-default">답    글</button>
 			   			<button type="button" class="btn btn-default">CANCEL</button>
 					</div>
 					</div>	

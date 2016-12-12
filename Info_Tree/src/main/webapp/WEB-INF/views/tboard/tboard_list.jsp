@@ -14,34 +14,9 @@
 <title>Travel Board</title>
 <script>
 	$(document).ready(function() {
-		$('#allchk').click(function(){
-           if($(this).is(':checked')){
-	            $("input[name=unitchk]").prop("checked", true);
-	         }else{
-	            $("input[name=unitchk]").prop("checked", false);
-	         }
-	      });
+		
 		   $('#example').DataTable();
-		   $('#example_filter').append("<button id='selectdel' type='button'  style='margin-left: 350px;'>선택삭제</button>");
-		   $('#selectdel').click(function(){
-			   var checked =$("input[name=unitchk]:checked").length;
-			   var saveids=new Array();
-			   if(checked==0){
-				   alert("삭제할 항목을 체크 하세요!");
-				   return;
-			   }else{
-				   var returnValue=confirm("삭제 하시겠습니까?");
-			   if(returnValue){
-				   $('#unitchk:checked').each(function(index){
-					   saveids[index]=$(this).val();
-		   });   
-     			var url="memberSelectDelete?saveids="+saveids;
-					$(location).attr('href',url);
-			   }else{
-				   return;
-			   }
-		   }
-		   });
+	
 	 });
 			
 </script>
@@ -56,33 +31,30 @@
 	    	        <th>T_SEQ</th>
 	                <th>T_EMAIL</th>
 	                <th>T_TITLE</th>
-	                <th>T_CONTENT</th>
 	                <th>T_DATE</th>
 	                <th>T_LEVEL</th>
 	                <th>T_HIT</th>
 	                <th>T_ATTACH</th>
-	          
-	                <th style="text-align: center !important;" > <input type="checkbox" id="allchk">
 	            </tr>
 	        </thead>
 	       
 	        <tbody>
 	        		<c:forEach var="tboard" items="${tboards}">
 	            <tr>
-		            <td>${board.t_Tseq}</td>
-	                <td><a href="listUpdateForm?email=${tboard.t_email}">${tboard.t_email}</a></td>
-	                <td>${tboard.t_title}</td>
-	                <td>${tboard.t_content}</td>
+		            
+	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboard.t_seq}</a></td>
+	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboard.t_title}</td>
+	                <td>${tboard.t_email}</td>
 	                <td>${tboard.t_date}</td>
 	                <td>${tboard.t_level}</td>
 	                <td>${tboard.t_hit}</td>
 	                <td>${tboard.t_attach}</td>
-	         
-	                <td style="text-align: center !important;"> <input type="checkbox" id="unitchk"  name="unitchk" value="${member.email}"></td>
+
 	            </tr>
 	           </c:forEach>
 	        </tbody>
 	    </table>
+	    <br>
 <%-- 	   <c:if test="${!(sessionemail == null)}"> --%>
 	    <span class="col-md-offset-8 col-md-2">
 					<button  type="button" onclick="location.href='tBoardInsertForm'" class="btn btn-info resultButton"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</button>

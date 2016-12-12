@@ -10,4 +10,5 @@ public interface TBoardDao {
 	
 	public ArrayList<Tboard> selectAll();
 	public int insertRow( Tboard tboard);
+	public Tboard selectOne( int t_seq);
 }

@@ -26,4 +26,7 @@
 						insert into tboard (t_seq,t_email,t_title,t_content,t_date,t_ref,t_step,t_hit,t_level) 
 						values ((select coalesce(max(t_seq)+1,1)from tboard),#{t_email},#{t_title},#{t_content},#{t_date},(select coalesce(max(t_ref)+1,1)from tboard),#{t_step},#{t_hit},#{t_level})
 				</insert>
+				<select id="selectOne" parameterType="int" resultMap="tboardMap" >
+						select * from tboard where t_seq=#{t_seq}
+				</select>
 		</mapper>
