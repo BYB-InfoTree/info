@@ -84,7 +84,6 @@
       		</div>
     </div>
 </form>
-
 	
 </script>
         </div>

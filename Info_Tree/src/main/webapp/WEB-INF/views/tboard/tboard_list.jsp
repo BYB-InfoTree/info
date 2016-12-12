@@ -55,11 +55,11 @@
 	        </tbody>
 	    </table>
 	    <br>
-<%-- 	   <c:if test="${!(sessionemail == null)}"> --%>
+	   <c:if test="${!(sessionemail == null)}">
 	    <span class="col-md-offset-8 col-md-2">
 					<button  type="button" onclick="location.href='tBoardInsertForm'" class="btn btn-info resultButton"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</button>
 		</span>
-<%-- 	  	</c:if> --%>
+	  	</c:if>
 	</div>
 </body>
 </html>
