@@ -43,7 +43,7 @@
 	            <tr>
 		            
 	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboard.t_seq}</a></td>
-	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboard.t_title}</td>
+	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboard.t_title}</a></td>
 	                <td>${tboard.t_email}</td>
 	                <td>${tboard.t_date}</td>
 	                <td>${tboard.t_level}</td>
