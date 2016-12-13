@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-
+<%
+    String ctx = request.getContextPath();    //콘텍스트명 얻어오기.
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,11 +15,11 @@
 	
 	<script type="text/javascript">
   	 $(document).ready(function(){
-			$('#save').click(function(){
+			$('#update').click(function(){
 					$('#editorForm').submit();
 				});	
 	
-			CKEDITOR.replace( 'b_content', {//해당 이름으로 된 textarea에 에디터를 적용
+			CKEDITOR.replace( 't_content', {//해당 이름으로 된 textarea에 에디터를 적용
 	   	 	 	  width:'100%',
 	     		  height:'400px',
 		       filebrowserBrowseUrl:'file_upload',
@@ -41,15 +42,15 @@
  </head>
  
 <body>
-<div class="container">
-	 <form class="form-horizontal" role="form" id="editorForm" name="editorForm" method="post" action="boardInsert" enctype="multipart/form-data">
+ 	<div class="container">
+	 <form class="form-horizontal" role="form" id="editorForm" name="editorForm" method="post" action="tboardUpdatefinish" enctype="multipart/form-data">
    		<div class="row" >
 			<div class="col-md-3"></div>
 			<div class="col-md-1" style="border-top-style:solid; border-top-color:#ffffff;">
 				<div align="right"><label for="email">이메일</label></div>
 			</div>
 			<div class="col-md-5" style="border-top-style:solid; border-top-color:#ffffff;">
-				<input id="b_email" name="b_email" type="text" value="${sessionemail}" class="form-control" size="30" autocomplete="off" readonly="readonly"/>
+				<input id="t_email" name="t_email" type="text" value="${sessionemail}" class="form-control" size="30" autocomplete="off" readonly="readonly"/>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -61,7 +62,8 @@
 				<div align="right"><label for="subject">제&nbsp;&nbsp;&nbsp;&nbsp;목</label></div>
 			</div>
 			<div class="col-md-5" style="border-top-style:solid; border-top-color:#ffffff;">
-				<input id="b_title" name="b_title" type="text" class="form-control" size="50" autocomplete="off" autofocus/>
+				<input id="t_title" name="t_title" type="text" class="form-control" size="50" value="${data.t_title }"/>
+				<input id="t_seq" name="t_seq" type="hidden" class="form-control" size="50" value="${data.t_seq}"/>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -69,21 +71,17 @@
 		<br>
   
     
-    
+     <div id="ckfinder1"></div>
 			
-	    <div class="form-group">
-		        <div class="form-group">
-		            
+			    <div class="form-group">
+			        <div class="form-group">
 			            <div class="col-lg-12">
-			           
-			                <textarea name="b_content" id="b_content" >${data.b_content}</textarea>
-			                
+			                <textarea name="t_content" id="t_content" >${data.t_content}</textarea>
 			            </div>
-		            
-		        </div>
+			        </div>
 			        <div class="form-group">
 	            <div class="col-lg-12" align="right">
-	                <button id="save" type="button" class="btn btn-default">저장</button>
+	                <button id="update" type="button" class="btn btn-default">수정완료</button>
 	            </div>
       		</div>
 	    </div>
@@ -94,5 +92,5 @@
 
       
  
-</body>
+    </body>
 </html>

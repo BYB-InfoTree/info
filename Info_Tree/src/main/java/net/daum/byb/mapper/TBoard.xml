@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+			 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="net.daum.byb.service.TBoardDao">
+		<resultMap type="net.daum.byb.entities.TBoard" id="tboardMap">
+						<id property="t_seq"           column="t_seq"/>
+						<id property="t_id"             column="t_id"/>
+						<id property="t_name"        column="t_name"/>
+						<id property="t_password"  column="t_password"/>
+						<id property="t_email"        column="t_email"/>
+						<id property="t_title"          column="t_title"/>
+						<id property="t_content"     column="t_content"/>
+						<id property="t_date"         column="t_date"/>
+						<id property="t_ip"             column="t_ip"/>
+						<id property="t_ref"           column="t_ref"/>
+						<id property="t_step"         column="t_step"/>
+						<id property="t_hit"         column="t_hit"/>
+						<id property="t_level"       column="t_level"/>
+						<id property="t_attach"		column="t_attach"/>
+						<id property="t_recommend"		column="t_recommend"/>
+		</resultMap>
+	
+	<select id="selectAll" resultMap="tboardMap">
+	
+	select * from tboard
+	
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultMap="tboardMap">
+		select * from tboard where t_seq=#{t_seq}
+	</select>
+	
+	<insert id="insertRow" parameterType="hashMap">
+		insert into tboard (t_seq,t_email,t_title,t_content,t_date)
+		values((select coalesce(max(t_seq)+1,1) from tboard),#{t_email},#{t_title},#{t_content},#{t_date})	
+	
+	
+	</insert>
+	
+	<update id="updateRow" parameterType="hashMap">
+	
+		update tboard set t_title=#{t_title},t_content=#{t_content}
+					  where t_seq=#{t_seq}	
+					  
+	</update>
+	
+	
+	
+	
+	</mapper>			 

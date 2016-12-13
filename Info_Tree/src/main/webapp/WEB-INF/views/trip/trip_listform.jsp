@@ -1,6 +1,6 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +11,10 @@
 
 <script src="resources/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <script>
 	$(document).ready(function() {
 		$('#allchk').click(function(){
@@ -47,47 +50,52 @@
 </script>
 </content>
 </head>
-
 <body>
+
+
 <div class="container">
-	<table  id="example" class="display" cellspacing="0" width="100%">
-	        <thead>
-	            <tr>
-	    	        <th>B_SEQ</th>
-	                <th>B_EMAIL</th>
-	                <th>B_TITLE</th>
-	                <th>B_DATE</th>
-	                <th>B_LEVEL</th>
-	                <th>B_HIT</th>
-	                <th>B_ATTACH</th>
-	          
-	                <th style="text-align: center !important;" > <input type="checkbox" id="allchk">
-	            </tr>
-	        </thead>
-	       
-	        <tbody>
-        		<c:forEach var="board" items="${boards}">
-		            <tr>
-			            <td>${board.b_seq}</td>
-		                <td><a href="listUpdateForm?email=${board.b_email}">${board.b_email}</a></td>
-		                <td><a href="boardDetail?b_seq=${board.b_seq}">${board.b_title}</a></td>
-		                <td>${board.b_date}</td>
-		                <td>${board.b_level}</td>
-		                <td>${board.b_hit}</td>
-		                <td>${board.b_attach}</td>
-		         
-		                <td style="text-align: center !important;"> <input type="checkbox" id="unitchk"  name="unitchk" value="${member.email}"></td>
-		            </tr>
-	            </c:forEach>
-	        </tbody>
-	    </table>
+	<table id="example" class="display" callspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>글번호</th>
+				<th>글제목</th>
+				<th>날짜</th>
+				<th>조회수</th>
+				<th>추천수</th>
+				<th style="text-align: center !important;" > <input type="checkbox" id="allchk">
+				
+			</tr>		
+		</thead>
+		<tbody>
+			<c:forEach var="tboard" items="${lists}">
+				<tr>
+					<td>${tboard.t_seq }</td>
+					<td><a href="t_boardDetail?t_seq=${tboard.t_seq}">${tboard.t_title }</a></td>
+					<td>${tboard.t_date }</td>
+					<td>${tboard.t_hit }</td>
+					<td>${tboard.t_recommend}</td>
+					
+					<td style="text-align: center !important;"> <input type="checkbox" id="unitchk"  name="unitchk" value=""></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	
+	 <span class="col-md-offset-8 col-md-2">
+	 
+	 	<c:if test="${!(sessionemail == null)}">	
+			<button  type="button" onclick="location.href='TBoardInsertForm'" class="btn btn-info resultButton"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</button>
+		</c:if>		
+	</span>
 
-	    <span class="col-md-offset-8 col-md-2">
-	    		<c:if test="${sessionemail != null}">
-					<button  type="button" onclick="location.href='boardInsertForm'" class="btn btn-info resultButton"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</button>
-				</c:if>	
-		</span>
 
-	</div>
+
+
+
+
+
+
+</div>
+
 </body>
 </html>

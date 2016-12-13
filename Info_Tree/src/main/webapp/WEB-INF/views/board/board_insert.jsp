@@ -42,8 +42,8 @@
  </head>
  
 <body>
+ 	<div class="container">
 	 <form class="form-horizontal" role="form" id="editorForm" name="editorForm" method="post" action="boardInsert" enctype="multipart/form-data">
-   		<div class="container">
    		<div class="row" >
 			<div class="col-md-3"></div>
 			<div class="col-md-1" style="border-top-style:solid; border-top-color:#ffffff;">
@@ -83,12 +83,13 @@
 	                <button id="save" type="button" class="btn btn-default">저장</button>
 	            </div>
       		</div>
-    </div>
-</form>
+	    </div>
+	</form>
+</div>
 
 	
-</script>
-        </div>
+
+      
  
     </body>
 </html>

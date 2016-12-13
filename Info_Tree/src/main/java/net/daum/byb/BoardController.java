@@ -67,6 +67,20 @@ public class BoardController {
 		return  "board/board_insert";
 	}
 	
+	
+	@RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
+	public ModelAndView boardDetail(@RequestParam("b_seq") int b_seq){
+		
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		Board data = dao.selectOne(b_seq);
+		ModelAndView mav = new ModelAndView("board/board_detail");
+//		String aoa = data.getB_content();
+	
+		mav.addObject("data",data);
+		
+		return  mav;
+	}
+	
 	@RequestMapping(value = "/boardInsert", method = RequestMethod.POST)
 	public ModelAndView boardinsert(@ModelAttribute("board") Board board) {
 		
@@ -99,15 +113,24 @@ public class BoardController {
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	   public void communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
+			System.out.println("업로드 메소드 언제타니???~~~~~~~");
 	      OutputStream out = null;
 	      PrintWriter printWriter = null;
 	      response.setCharacterEncoding("utf-8");
 	      response.setContentType("text/html;charset=utf-8");
 	      
 	      try{
-	         String fileName = upload.getOriginalFilename();
+	    	  
+	    	 SimpleDateFormat simple = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.KOREA);
+			 Date currentdate=new Date();
+			 String data=simple.format(currentdate);
+			
+	    	  
+	    	  
+	         String fileName = data+upload.getOriginalFilename();
+//	         fileName
 	         byte[] bytes = upload.getBytes();
-	         String uploadPath = "C:/Users/grace/git/info/Info_Tree/src/main/webapp/resources/fileupload/" + fileName;//저장경로
+	         String uploadPath = "C:/Users/IT/Desktop/new/info/Info_Tree/src/main/webapp/resources/fileupload/" + fileName;//저장경로
 	         out = new FileOutputStream(new File(uploadPath));
 	         out.write(bytes);
 	         String callback = request.getParameter("CKEditorFuncNum");
