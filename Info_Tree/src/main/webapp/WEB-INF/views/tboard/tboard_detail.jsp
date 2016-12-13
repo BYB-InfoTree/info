@@ -49,7 +49,7 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 			
 				<br>
 				<div class="container">
-				  <form class="form-horizontal">
+			
 				    				    
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label">제   목</label>
@@ -73,12 +73,11 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 				    </div>
 	
 	
-            <c:if  test="${sessionid == 'admin' || sessionid == board.b_id}">
+            <c:if  test="${sessionid == 'master' || sessionemail == board.b_email}">
   				    <div class="row col-sm-12 " style="text-align:center" >
 					<div class="checkbox">
 			     		<button id="save" type="submit" class="btn btn-default">Update</button>
 			   			<button type="button"  onclick="location.href='boardDeleteYN?t_seq=${tboard.t_seq}'"  class="btn btn-default">Delete</button>
-			   			<button type="button"  onclick="location.href='boardReply?t_seq=${tboard.t_seq}'"  class="btn btn-default">답    글</button>
 			   			<button type="button"  onclick="location.href='tBoardListForm?t_seq=${toard.t_seq}'"  class="btn btn-default">목   록</button>
 					</div>
 					</div>

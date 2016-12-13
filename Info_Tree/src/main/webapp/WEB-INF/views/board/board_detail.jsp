@@ -6,28 +6,23 @@
 <content tag="local_script">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
-<title>Insert title here</title>
+<title>Board Detail</title>
 
 <link rel="stylesheet"
 href="resources/bootstrap-3.3.7-dist/fonts/Font-Awesome-master/css/font-awesome.css">
 
-<link rel="stylesheet"
-href="resources/font-awesome-4.6.3/css/font-awesome.css">
+<link rel="stylesheet" href="resources/font-awesome-4.6.3/css/font-awesome.css">
  <link rel="stylesheet"
    href="resources/bootstrap-3.3.7-dist/css/member.css">
-<link rel="stylesheet"
-href="resources/bootstrap-3.3.7-dist/css/board.css">
+<link rel="stylesheet" href="resources/bootstrap-3.3.7-dist/css/board.css">
 
-<link rel="stylesheet"
-href="resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 
-<link rel="stylesheet"
-href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 
 
 <script src="resources/js/parsley.min.js"></script>
-<script src="resources/js/jquery-3.1.1.js"></script>
-<script src="resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 	/* Some custom styles to beautify this example */
 	.demo-content{
@@ -49,8 +44,7 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 			
 				<br>
 				<div class="container">
-				  <form class="form-horizontal">
-				    				    
+			    				    
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label">제   목</label>
 				      <div class="col-sm-8" style="text-align:center">
@@ -59,9 +53,9 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 				    </div>
 				    
 				    <div class="form-group">
-				      <label class="col-sm-2 control-label">제 목</label>
+				      <label class="col-sm-2 control-label">b_seq</label>
 				      <div class="col-sm-8" style="text-align:center">
-				        ${board.b_title}
+				        ${board.b_seq}
 				      </div>
 				    </div>
 				    
@@ -73,25 +67,16 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 				    </div>
 	
 	
-            <c:if  test="${sessionmemberlevel == 'master' || sessionid == board.b_id}">
+            <c:if  test="${sessionmemberlevel == 'master' || sessionemail == board.b_email}">
   				    <div class="row col-sm-12 " style="text-align:center" >
 					<div class="checkbox">
-			     		<button id="save" type="submit" class="btn btn-default">Update</button>
-			   			<button type="button"  onclick="location.href='boardDeleteYN?t_seq=${tboard.b_seq}'"  class="btn btn-default">Delete</button>
-			   			<button type="button"  onclick="location.href='boardReply?t_seq=${tboard.b_seq}'"  class="btn btn-default">답    글</button>
+			     		<button  type="button" onclick="location.href='boardUpdateForm?b_seq=${board.b_seq}'"  class="btn btn-default">Update</button>
+			   			<button type="button"  onclick="location.href='boardDeleteYN?b_seq=${board.b_seq}'"  class="btn btn-default">Delete</button>
+
+ 		  	 </c:if>	
+	 		     	   	<button type="button"  onclick="location.href='boardReply?b_seq=${board.b_seq}'"  class="btn btn-default">답    글</button>
 			   			<button type="button"  onclick="location.href='boardListForm'"  class="btn btn-default">목   록</button>
 					</div>
-					</div>
- 		  	 </c:if>	
- 		  	 
- 	 				 <div class="row col-sm-12 " style="text-align:center" >
-					<div class="checkbox">
-			     	   	<button type="button"  onclick="location.href='boardReply?b_seq=${board.b_seq}'"  class="btn btn-default">답    글</button>
-			   			<button type="button" class="btn btn-default">CANCEL</button>
-					</div>
-					</div>	
- 				
- 
 					</div>	
 			 </form>
 			</div>

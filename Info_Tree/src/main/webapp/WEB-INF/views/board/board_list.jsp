@@ -14,34 +14,38 @@
 <title>Insert title here</title>
 <script>
 	$(document).ready(function() {
-		$('#allchk').click(function(){
-           if($(this).is(':checked')){
-	            $("input[name=unitchk]").prop("checked", true);
-	         }else{
-	            $("input[name=unitchk]").prop("checked", false);
-	         }
-	      });
-		   $('#example').DataTable();
-		   $('#example_filter').append("<button id='selectdel' type='button'  style='margin-left: 350px;'>선택삭제</button>");
-		   $('#selectdel').click(function(){
-			   var checked =$("input[name=unitchk]:checked").length;
-			   var saveids=new Array();
-			   if(checked==0){
-				   alert("삭제할 항목을 체크 하세요!");
-				   return;
-			   }else{
-				   var returnValue=confirm("삭제 하시겠습니까?");
-			   if(returnValue){
-				   $('#unitchk:checked').each(function(index){
-					   saveids[index]=$(this).val();
-		   });   
-     			var url="memberSelectDelete?saveids="+saveids;
-					$(location).attr('href',url);
-			   }else{
-				   return;
+		if("${sessionmemberlevel}"=='master'){
+			$('#allchk').click(function(){
+	           if($(this).is(':checked')){
+		            $("input[name=unitchk]").prop("checked", true);
+		         }else{
+		            $("input[name=unitchk]").prop("checked", false);
+		         }
+		      });
+			   $('#example').DataTable();
+				   $('#example_filter').append("<button id='selectdel' type='button'  style='margin-left: 350px;'>선택삭제</button>"); 
+			   $('#selectdel').click(function(){
+				   var checked =$("input[name=unitchk]:checked").length;
+				   var saveids=new Array();
+				   if(checked==0){
+					   alert("삭제할 항목을 체크 하세요!");
+					   return;
+				   }else{
+					   var returnValue=confirm("삭제 하시겠습니까?");
+				   if(returnValue){
+					   $('#unitchk:checked').each(function(index){
+						   saveids[index]=$(this).val();
+			   });   
+	     			var url="boardSelectDelete?saveids="+saveids;
+						$(location).attr('href',url);
+				   }else{
+					   return;
+				   }
 			   }
-		   }
-		   });
+			   });
+		}else{
+			$('#example').DataTable();
+		}
 	 });
 			
 </script>
@@ -60,8 +64,9 @@
 	                <th>B_LEVEL</th>
 	                <th>B_HIT</th>
 	                <th>B_ATTACH</th>
-	          
+	         <c:if test="${sessionmemberlevel == 'master'}"> 
 	                <th style="text-align: center !important;" > <input type="checkbox" id="allchk">
+	         </c:if>       
 	            </tr>
 	        </thead>
 	       
@@ -75,8 +80,9 @@
 	                <td>${board.b_level}</td>
 	                <td>${board.b_hit}</td>
 	                <td>${board.b_attach}</td>
-	         
-	                <td style="text-align: center !important;"> <input type="checkbox" id="unitchk"  name="unitchk" value="${member.email}"></td>
+	         <c:if test="${sessionmemberlevel == 'master'}">
+	                <td style="text-align: center !important;"> <input type="checkbox" id="unitchk"  name="unitchk" value="${board.b_seq}"></td>
+	         </c:if>
 	            </tr>
 	           </c:forEach>
 	        </tbody>

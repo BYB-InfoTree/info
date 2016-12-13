@@ -18,6 +18,12 @@
 						<id property="b_level"       column="b_level"/>
 						<id property="b_attach"		column="b_attach"/>
 				</resultMap>
+				<update id="updateRow" parameterType="hashMap" >
+						update board set 
+							 b_title=#{b_title},b_content=#{b_content}
+							 	where b_seq=#{b_seq}
+				</update>
+				
 				<select id="selectAll" resultMap="boardMap" >
 						select * from board order by b_ref desc, b_step asc
 				</select>
@@ -44,10 +50,7 @@
 						insert into board (b_seq,b_id,b_name,b_email, b_title,b_content,b_date,b_ref,b_step,b_hit,b_level) 
 						values ( (select coalesce(max(b_seq)+1,1) from board), #{b_id},#{b_name},#{b_email},#{b_title}, #{b_content},#{b_date},#{b_ip}, #{b_ref},1,#{b_hit},#{b_level} ) 
 				</insert>
-				<update id="updateRow" parameterType="hashMap" >
-						update board set  b_name=#{b_name},b_email=#{b_email}, b_title=#{b_title},b_content=#{b_content}	where b_seq=#{b_seq}
-				</update>
-					<update id="updateHit" parameterType="int" >
+				<update id="updateHit" parameterType="int" >
 						update board set  b_hit=b_hit +1 where b_seq=#{b_seq}
 				</update>
 				<delete id="deleteRow" parameterType="hashMap"  >

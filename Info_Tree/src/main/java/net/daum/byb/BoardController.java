@@ -63,6 +63,50 @@ public class BoardController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/boardUpdateForm", method = RequestMethod.GET)
+	public ModelAndView memberUpdateForm(@RequestParam int b_seq) {
+		ModelAndView mav=new ModelAndView("board/board_update");
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		Board board =dao.selectOne(b_seq);
+		
+
+//		Date currentdate=new Date();
+//		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+//		String yyyy=df.format(currentdate);
+//		mav.addObject("yyyy",yyyy);
+		mav.addObject("data",board);
+		
+		
+		mav.addObject("top",top);
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/boardUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView boardUpdate(@ModelAttribute("board") Board board) {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+
+		board.setB_date(yyyy);
+	
+		int result=	dao.updateRow(board);
+
+		String msg="";
+		if(result ==1){
+			msg="Successfully, Inserted TEXT!";
+		}else{
+		msg="Failed  your Board TEXT!";
+		}
+		ModelAndView mav=new ModelAndView("board/board_detail");
+		mav.addObject("msg",msg);
+		return  mav;
+	}
+	
 	@RequestMapping(value = "/boardInsertForm", method = RequestMethod.GET)
 	public String boardInsertForm(){
 		
@@ -73,11 +117,9 @@ public class BoardController {
 	public ModelAndView boardinsert(@ModelAttribute("board") Board board) {
 		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
 		String b_date=simple.format(currentdate);
-		
 		board.setB_date(b_date);
 		String msg="";
 		int result=dao.insertRow(board);
@@ -152,6 +194,15 @@ public class BoardController {
 		mav.addObject("top",top);
 		return mav;
 
+	}
+	
+	@RequestMapping(value = "/boardSelectDelete", method = RequestMethod.GET)
+	public String boardSelectDelete(@RequestParam  int saveids[]) {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		for (int ids:saveids){
+			dao.deleteRow(ids);
+		}
+		return "redirect:/boardListForm";
 	}
 
 }
