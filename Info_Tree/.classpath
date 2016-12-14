@@ -34,18 +34,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/util/lombok.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/CKFinder-2.6.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/CKFinderPlugin-FileEditor-2.6.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/CKFinderPlugin-ImageResize-2.6.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/CKFinderPlugin-Watermark-2.6.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/commons-fileupload-1.2.2.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/commons-io-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/gson-2.5.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/jboss-logging-3.1.4.GA.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/jboss-vfs-3.2.11.Final.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/mail-1.4.1.jar"/>
-	<classpathentry kind="lib" path="C:/util/ckfind/thumbnailator-0.4.8.jar"/>
 	<classpathentry kind="lib" path="C:/util/ckeditor/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="lib" path="C:/util/ckeditor/commons-fileupload-1.2.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>

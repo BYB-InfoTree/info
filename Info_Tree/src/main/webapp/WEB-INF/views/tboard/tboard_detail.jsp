@@ -61,7 +61,8 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label">제 목</label>
 				      <div class="col-sm-8" style="text-align:center">
-				        ${tboard.t_title}
+				      <input class="form-control" style="text-align:center" id="b_email" type="text" name="b_email"  value="${tboard.t_title}" >
+				        
 				      </div>
 				    </div>
 				    
@@ -73,24 +74,16 @@ href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 				    </div>
 	
 	
-            <c:if  test="${sessionid == 'master' || sessionemail == board.b_email}">
+           <c:if  test="${sessionmemberlevel == 'master' || sessionemail == board.b_email}">
   				    <div class="row col-sm-12 " style="text-align:center" >
 					<div class="checkbox">
-			     		<button id="save" type="submit" class="btn btn-default">Update</button>
-			   			<button type="button"  onclick="location.href='boardDeleteYN?t_seq=${tboard.t_seq}'"  class="btn btn-default">Delete</button>
-			   			<button type="button"  onclick="location.href='tBoardListForm?t_seq=${toard.t_seq}'"  class="btn btn-default">목   록</button>
-					</div>
-					</div>
+			     		<button  type="button" onclick="location.href='tBoardUpdateForm?b_seq=${tboard.t_seq}'"  class="btn btn-default">Update</button>
+			   			<button type="button"  onclick="location.href='tBoardDeleteYN?b_seq=${tboard.t_seq}'"  class="btn btn-default">Delete</button>
+
  		  	 </c:if>	
- 		  	 
- 	 				 <div class="row col-sm-12 " style="text-align:center" >
-					<div class="checkbox">
-			     	   	<button type="button"  onclick="location.href='boardReply?b_seq=${board.b_seq}'"  class="btn btn-default">답    글</button>
-			   			<button type="button" class="btn btn-default">CANCEL</button>
+	 		     	   	<button type="button"  onclick="location.href='boardReply?b_seq=${board.b_seq}'"  class="btn btn-default">답    글</button>
+			   			<button type="button"  onclick="location.href='boardListForm'"  class="btn btn-default">목   록</button>
 					</div>
-					</div>	
- 				
- 
 					</div>	
 			 </form>
 			</div>

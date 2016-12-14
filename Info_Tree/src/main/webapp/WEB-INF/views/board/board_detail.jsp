@@ -53,20 +53,18 @@ href="resources/bootstrap-3.3.7-dist/fonts/Font-Awesome-master/css/font-awesome.
 				    </div>
 				    
 				    <div class="form-group">
-				      <label class="col-sm-2 control-label">b_seq</label>
 				      <div class="col-sm-8" style="text-align:center">
-				        ${board.b_seq}
+				       <input class="form-control" style="text-align:center" id="b_email" type="hidden" name="b_email"  value="${board.b_seq}" >
+			    
 				      </div>
 				    </div>
 				    
 				    <div class="form-group">
-				      <label class="col-sm-2 control-label">내  용</label>
-				      <div class="col-sm-8" style="text-align:center">
+				      <div class="col-sm-12" style="text-align:center">
 				        ${board.b_content}
 				      </div>
 				    </div>
-	
-	
+
             <c:if  test="${sessionmemberlevel == 'master' || sessionemail == board.b_email}">
   				    <div class="row col-sm-12 " style="text-align:center" >
 					<div class="checkbox">
