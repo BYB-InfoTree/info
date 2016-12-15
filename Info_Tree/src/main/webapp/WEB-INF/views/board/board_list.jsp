@@ -57,13 +57,12 @@
 	<table  id="example" class="display" cellspacing="0" width="100%">
 	        <thead>
 	            <tr>
-	    	        <th>B_SEQ</th>
-	                <th>B_EMAIL</th>
-	                <th>B_TITLE</th>
-	                <th>B_DATE</th>
-	                <th>B_LEVEL</th>
-	                <th>B_HIT</th>
-	                <th>B_ATTACH</th>
+	    	        <th>NUMBER</th>
+	                <th>EMAIL</th>
+	                <th>TITLE</th>
+	                <th>DATE</th>
+	                 <th>HIT</th>
+	
 	         <c:if test="${sessionmemberlevel == 'master'}"> 
 	                <th style="text-align: center !important;" > <input type="checkbox" id="allchk">
 	         </c:if>       
@@ -77,10 +76,8 @@
 	                <td><a href="BoardDetail?b_seq=${board.b_seq}">${board.b_email}</a></td>
 	                <td><a href="BoardDetail?b_seq=${board.b_seq}">${board.b_title}</td>
 	                <td>${board.b_date}</td>
-	                <td>${board.b_level}</td>
 	                <td>${board.b_hit}</td>
-	                <td>${board.b_attach}</td>
-	         <c:if test="${sessionmemberlevel == 'master'}">
+	              <c:if test="${sessionmemberlevel == 'master'}">
 	                <td style="text-align: center !important;"> <input type="checkbox" id="unitchk"  name="unitchk" value="${board.b_seq}"></td>
 	         </c:if>
 	            </tr>
