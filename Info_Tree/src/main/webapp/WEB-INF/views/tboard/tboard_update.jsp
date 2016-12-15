@@ -9,17 +9,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>A Simple Page with CKEditor</title>
 	<script src="resources/ckeditor/ckeditor.js"></script>
-	<script src="resources/ckfinder/ckfinder.js"></script>
-	
-<!-- 	<script src="resources/js/jquery-3.1.1.js"></script> -->
-	
+	<script type="text/javascript" src="resources/ckeditor/adapters/jquery.js"></script>
+
 	<script type="text/javascript">
   	 $(document).ready(function(){
 			$('#save').click(function(){
 					$('#editorForm').submit();
 				});	
 	
-			CKEDITOR.replace( 'b_content', {//해당 이름으로 된 textarea에 에디터를 적용
+			CKEDITOR.replace( 't_content', {//해당 이름으로 된 textarea에 에디터를 적용
 	   	 	 	  width:'100%',
 	     		  height:'400px',
 		       filebrowserBrowseUrl:'file_upload',
@@ -43,23 +41,23 @@
  
 <body>
  <div class="container">
-	 <form class="form-horizontal" role="form" id="editorForm" name="editorForm" method="post" action="boardUpdate" enctype="multipart/form-data">
-   		<div class="row" >
-			<div class="col-md-3"></div>
-			<div class="col-md-1" style="border-top-style:solid; border-top-color:#ffffff;">
-				<div align="right"><label for="email">이메일</label></div>
-			</div>
-			<div class="col-md-5" style="border-top-style:solid; border-top-color:#ffffff;">
-				<input id="b_email" name="b_email" type="text" value="${sessionemail}" class="form-control" size="30" autocomplete="off" readonly="readonly"/>
-			</div>
-			<div class="col-md-3"></div>
-		</div>
-		<br>	
-		<br>	
+	 <form class="form-horizontal" role="form" id="editorForm" name="editorForm" method="post" action="tBoardUpdate" enctype="multipart/form-data">
+<!--    		<div class="row" > -->
+<!-- 			<div class="col-md-3"></div> -->
+<!-- 			<div class="col-md-1" style="border-top-style:solid; border-top-color:#ffffff;"> -->
+<!-- 				<div align="right"><label for="email">이메일</label></div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-5" style="border-top-style:solid; border-top-color:#ffffff;"> -->
+<%-- 				<input id="t_email" name="t_email" type="text" value="${sessionemail}" class="form-control" size="30" autocomplete="off" readonly="readonly"/> --%>
+<!-- 			</div> -->
+<!-- 			<div class="col-md-3"></div> -->
+<!-- 		</div> -->
+<!-- 		<br>	 -->
+<!-- 		<br>	 -->
 				    <div class="form-group">
-				      <label class="col-sm-2 control-label">b_seq</label>
+				      <label class="col-sm-2 control-label">t_seq</label>
 				      <div class="col-sm-8" style="text-align:center">
-				      <input id="b_seq" name="b_seq" type="text" class="form-control" size="50"  value="${data.getB_seq()}"/>
+				      <input id="t_seq" name="t_seq" type="text" class="form-control" size="50"  value="${data.getT_seq()}"/>
 				        
 				      </div>
    		<div class="row" >
@@ -68,7 +66,7 @@
 				<div align="right"><label for="subject">제&nbsp;&nbsp;&nbsp;&nbsp;목</label></div>
 			</div>
 			<div class="col-md-5" style="border-top-style:solid; border-top-color:#ffffff;">
-				<input id="b_title" name="b_title" type="text" class="form-control" size="50"  value="${data.getB_title()}"/>
+				<input id="t_title" name="t_title" type="text" class="form-control" size="50"  value="${data.getT_title()}"/>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -81,12 +79,12 @@
 			    <div class="form-group">
 			        <div class="form-group">
 			            <div class="col-lg-12">
-			                <textarea name="b_content" id="b_content" value="b_content" >${data.getB_content()}</textarea>
+			                <textarea name="t_content" id="t_content"  >${data.getT_content()}</textarea>
 			            </div>
 			        </div>
 			        <div class="form-group">
 				 <div class="col-lg-6" align="left">
-	            	<button  type="button" onclick="location.href='boardListForm'" class="btn btn-info resultButton">취 소</button>
+	            	<button  type="button" onclick="location.href='tBoardListForm'" class="btn btn-info resultButton">취 소</button>
 			 </div>
 	            <div class="col-lg-6" align="right">
 	                <button id="save" type="button" class="btn btn-info resultButton"><i class="fa fa-pencil" aria-hidden="true"></i>저 장(업데이트)</button>

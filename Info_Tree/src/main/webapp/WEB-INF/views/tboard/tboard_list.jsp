@@ -14,9 +14,38 @@
 <title>Travel Board</title>
 <script>
 	$(document).ready(function() {
-		
-		   $('#example').DataTable();
-	
+		if("${sessionmemberlevel}"=='master'){
+			$('#allchk').click(function(){
+	           if($(this).is(':checked')){
+		            $("input[name=unitchk]").prop("checked", true);
+		         }else{
+		            $("input[name=unitchk]").prop("checked", false);
+		         }
+		      });
+			   $('#example').DataTable();
+				   $('#example_filter').append("<button id='selectdel' type='button'  style='margin-left: 350px;'>선택삭제</button>"); 
+			   $('#selectdel').click(function(){
+				   var checked =$("input[name=unitchk]:checked").length;
+				   var saveids=new Array();
+				   if(checked==0){
+					   alert("삭제할 항목을 체크 하세요!");
+					   return;
+				   }else{
+					   var returnValue=confirm("삭제 하시겠습니까?");
+				   if(returnValue){
+					   $('#unitchk:checked').each(function(index){
+						   saveids[index]=$(this).val();
+			   });   
+	     			var url="tBoardSelectDelete?saveids="+saveids;
+						$(location).attr('href',url);
+				   }else{
+					   return;
+				   }
+			   }
+			   });
+		}else{
+			$('#example').DataTable();
+		}
 	 });
 			
 </script>
@@ -29,12 +58,15 @@
 	        <thead>
 	            <tr>
 	    	        <th>T_SEQ</th>
-	                <th>T_EMAIL</th>
 	                <th>T_TITLE</th>
+	                <th>T_EMAIL</th>
 	                <th>T_DATE</th>
 	                <th>T_LEVEL</th>
 	                <th>T_HIT</th>
 	                <th>T_ATTACH</th>
+	         <c:if test="${sessionmemberlevel == 'master'}"> 
+	                <th style="text-align: center !important;" > <input type="checkbox" id="allchk">
+	         </c:if>   
 	            </tr>
 	        </thead>
 	       
@@ -49,6 +81,9 @@
 	                <td>${tboard.t_level}</td>
 	                <td>${tboard.t_hit}</td>
 	                <td>${tboard.t_attach}</td>
+   	         <c:if test="${sessionmemberlevel == 'master'}">
+	                <td style="text-align: center !important;"> <input type="checkbox" id="unitchk"  name="unitchk" value="${tboard.t_seq}"></td>
+	         </c:if>
 
 	            </tr>
 	           </c:forEach>

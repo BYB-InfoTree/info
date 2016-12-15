@@ -19,6 +19,11 @@
 						<id property="t_recommend"       column="t_recommend"/>
 						<id property="t_attach"		column="t_attach"/>
 				</resultMap>
+				<update id="updateRow" parameterType="hashMap" >
+						update tboard set 
+							 t_title=#{t_title},t_content=#{t_content}
+							 	where t_seq=#{t_seq}
+				</update>
 				<select id="selectAll" resultMap="tboardMap" >
 						select * from tboard order by t_ref desc
 				</select>
@@ -29,4 +34,8 @@
 				<select id="selectOne" parameterType="int" resultMap="tboardMap" >
 						select * from tboard where t_seq=#{t_seq}
 				</select>
+				<delete id="deleteRow" parameterType="hashMap"  >
+						delete from tboard  where t_seq=#{t_seq}
+				</delete>
+				
 		</mapper>

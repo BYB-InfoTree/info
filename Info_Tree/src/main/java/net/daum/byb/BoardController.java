@@ -161,9 +161,10 @@ public class BoardController {
 	         String callback = request.getParameter("CKEditorFuncNum");
 	         printWriter = response.getWriter();
 	         String fileUrl = "resources/fileupload/" + fileName;//url경로
+	         this.sleep(5000);
 	         printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+callback+ ",'"+fileUrl+ "','이미지를 업로드 하였습니다.'"+ ")</script>");
-	         this.sleep(3000);
-	         printWriter.flush();
+	        
+ 	         printWriter.flush();
       
 	      }catch(IOException e){
 	         e.printStackTrace();
@@ -195,6 +196,17 @@ public class BoardController {
 		return mav;
 
 	}
+	@RequestMapping(value="/boardDelete", method = RequestMethod.POST)
+	public ModelAndView boardDelete(HttpSession session,HttpServletRequest request,@RequestParam int b_seq){
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		dao.deleteRow(b_seq);
+		ArrayList<Board> board=dao.selectAll();
+		ModelAndView mav = new ModelAndView("board/board_list");
+		mav.addObject("boards",board);
+		mav.addObject("top",top);
+		return mav;
+	}
+	
 	
 	@RequestMapping(value = "/boardSelectDelete", method = RequestMethod.GET)
 	public String boardSelectDelete(@RequestParam  int saveids[]) {

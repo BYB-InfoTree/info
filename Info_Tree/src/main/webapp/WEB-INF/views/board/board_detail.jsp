@@ -8,19 +8,6 @@
  
 <title>Board Detail</title>
 
-<link rel="stylesheet"
-href="resources/bootstrap-3.3.7-dist/fonts/Font-Awesome-master/css/font-awesome.css">
-
-<link rel="stylesheet" href="resources/font-awesome-4.6.3/css/font-awesome.css">
- <link rel="stylesheet"
-   href="resources/bootstrap-3.3.7-dist/css/member.css">
-<link rel="stylesheet" href="resources/bootstrap-3.3.7-dist/css/board.css">
-
-<link rel="stylesheet" href="resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
-
-
 <script src="resources/js/parsley.min.js"></script>
 
 <style type="text/css">
@@ -32,13 +19,28 @@ href="resources/bootstrap-3.3.7-dist/fonts/Font-Awesome-master/css/font-awesome.
 		background: #ff0000;
 	}
 </style>	
+		<script>
+		$(document).ready(function(){
+		   $('#delete').click(function(){
+			    var result = confirm("삭제하시겠습니까?");
+			    if(result){
+			    		alert('확인을 누르면 삭제됩니다.');			    		
+						$('#boardDelete').submit();
+			    }else{
+			    	return;
+			    } 
+		   });
+		 }); 
+		</script>
 
 </content>
 </head>
 
 <body>
-
-	<form class="form-horizontal" action="boardUpdate" method="get" role="form" data-parsley-validate="true">
+<form id="boardDelete" name="boardDelete" class="form-horizontal" action="boardDelete" method="post" role="form" >
+   <input class="form-control" style="text-align:center" id="b_seq" type="hidden" name="b_seq"  value="${board.b_seq}" >
+</form>
+	<form class="form-horizontal" action="boardUpdate" method="post" role="form" data-parsley-validate="true">
 				<span class="text-success text-center"><h1>Board Detail</h1></span>
 			     <p class="text-success text-center">이것은 연습을 하기위한 페이지 입니다.</p>
 			
@@ -48,16 +50,14 @@ href="resources/bootstrap-3.3.7-dist/fonts/Font-Awesome-master/css/font-awesome.
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label">제   목</label>
 				      <div class="col-sm-8" style="text-align:center">
-				        <input class="form-control" style="text-align:center" id="b_email" type="text" name="b_email"  value="${board.b_title}" >
+				        <input class="form-control" style="text-align:center" id="b_title" type="text" name="b_title"  value="${board.b_title}" >
 				      </div>
 				    </div>
 				    
-				    <div class="form-group">
-				      <div class="col-sm-8" style="text-align:center">
-				       <input class="form-control" style="text-align:center" id="b_email" type="hidden" name="b_email"  value="${board.b_seq}" >
-			    
-				      </div>
-				    </div>
+				   
+				       <input class="form-control" style="text-align:center" id="b_seq" type="hidden" name="b_seq"  value="${board.b_seq}" >
+			
+				 </div>
 				    
 				    <div class="form-group">
 				      <div class="col-sm-12" style="text-align:center">
@@ -65,13 +65,14 @@ href="resources/bootstrap-3.3.7-dist/fonts/Font-Awesome-master/css/font-awesome.
 				      </div>
 				    </div>
 
-            <c:if  test="${sessionmemberlevel == 'master' || sessionemail == board.b_email}">
+          
   				    <div class="row col-sm-12 " style="text-align:center" >
 					<div class="checkbox">
+					  <c:if  test="${sessionmemberlevel == 'master' || sessionemail == board.b_email}">
 			     		<button  type="button" onclick="location.href='boardUpdateForm?b_seq=${board.b_seq}'"  class="btn btn-default">Update</button>
-			   			<button type="button"  onclick="location.href='boardDeleteYN?b_seq=${board.b_seq}'"  class="btn btn-default">Delete</button>
+			   			<button  id="delete" type="button" onclick="myFunction()" class="btn btn-default">Delete</button>
 
- 		  	 </c:if>	
+ 		 		 	 </c:if>	
 	 		     	   	<button type="button"  onclick="location.href='boardReply?b_seq=${board.b_seq}'"  class="btn btn-default">답    글</button>
 			   			<button type="button"  onclick="location.href='boardListForm'"  class="btn btn-default">목   록</button>
 					</div>

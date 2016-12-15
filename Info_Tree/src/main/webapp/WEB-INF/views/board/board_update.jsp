@@ -9,9 +9,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>A Simple Page with CKEditor</title>
 	<script src="resources/ckeditor/ckeditor.js"></script>
-	<script src="resources/ckfinder/ckfinder.js"></script>
-	
-<!-- 	<script src="resources/js/jquery-3.1.1.js"></script> -->
+	<script type="text/javascript" src="resources/ckeditor/adapters/jquery.js"></script>
 	
 	<script type="text/javascript">
   	 $(document).ready(function(){
@@ -22,7 +20,7 @@
 			CKEDITOR.replace( 'b_content', {//해당 이름으로 된 textarea에 에디터를 적용
 	   	 	 	  width:'100%',
 	     		  height:'400px',
-		       filebrowserBrowseUrl:'file_upload',
+
 		       filebrowserImageUploadUrl: 'upload'
 		   });
 
@@ -56,12 +54,7 @@
 		</div>
 		<br>	
 		<br>	
-				    <div class="form-group">
-				      <label class="col-sm-2 control-label">b_seq</label>
-				      <div class="col-sm-8" style="text-align:center">
-				      <input id="b_seq" name="b_seq" type="text" class="form-control" size="50"  value="${data.getB_seq()}"/>
-				        
-				      </div>
+				      <input id="b_seq" name="b_seq" type="hidden" class="form-control" size="50"  value="${data.getB_seq()}"/>
    		<div class="row" >
 			<div class="col-md-3"></div>
 			<div class="col-md-1" style="border-top-style:solid; border-top-color:#ffffff;">

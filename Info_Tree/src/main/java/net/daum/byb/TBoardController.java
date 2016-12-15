@@ -63,6 +63,55 @@ public class TBoardController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/tBoardUpdateForm", method = RequestMethod.GET)
+	public ModelAndView memberUpdateForm(@RequestParam int t_seq) {
+		ModelAndView mav=new ModelAndView("tboard/tboard_update");
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		Tboard tboard =dao.selectOne(t_seq);
+		
+
+//		Date currentdate=new Date();
+//		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+//		String yyyy=df.format(currentdate);
+//		mav.addObject("yyyy",yyyy);
+		mav.addObject("data",tboard);
+		
+		
+		mav.addObject("top",top);
+		return mav;
+
+	}
+	
+	@RequestMapping(value = "/tBoardUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView boardUpdate(@ModelAttribute("tboard") Tboard tboard) {
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+
+		tboard.setT_date(yyyy);
+		int result=	dao.updateRow(tboard);
+
+		String msg="";
+		if(result ==1){
+			msg="Successfully, Inserted TEXT!";
+		}else{
+		msg="Failed  your Board TEXT!";
+		}
+		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
+		mav.addObject("msg",msg);
+		return  mav;
+	}
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/tBoardInsertForm", method = RequestMethod.GET)
 	public String tBoardInsertForm(){
 		
@@ -156,6 +205,25 @@ public class TBoardController {
 		mav.addObject("top",top);
 		return mav;
 
+	}
+	@RequestMapping(value="/tBoardDelete", method = RequestMethod.POST)
+	public ModelAndView tBoardDelete(HttpSession session,HttpServletRequest request,@RequestParam int t_seq){
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		dao.deleteRow(t_seq);
+		ArrayList<Tboard> tboard=dao.selectAll();
+		ModelAndView mav = new ModelAndView("tboard/tboard_list");
+		mav.addObject("tboards",tboard);
+		mav.addObject("top",top);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/tBoardSelectDelete", method = RequestMethod.GET)
+	public String tBoardSelectDelete(@RequestParam  int saveids[]) {
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		for (int ids:saveids){
+			dao.deleteRow(ids);
+		}
+		return "redirect:/tBoardListForm";
 	}
 
 }

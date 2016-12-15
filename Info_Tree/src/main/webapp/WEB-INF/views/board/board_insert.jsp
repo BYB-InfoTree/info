@@ -9,10 +9,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>A Simple Page with CKEditor</title>
 	<script src="resources/ckeditor/ckeditor.js"></script>
-	<script src="resources/ckfinder/ckfinder.js"></script>
-	
-<!-- 	<script src="resources/js/jquery-3.1.1.js"></script> -->
-	
+		<script type="text/javascript" src="resources/ckeditor/adapters/jquery.js"></script>
+
 	<script type="text/javascript">
   	 $(document).ready(function(){
 			$('#save').click(function(){
@@ -22,7 +20,6 @@
 			CKEDITOR.replace( 'b_content', {//해당 이름으로 된 textarea에 에디터를 적용
 	   	 	 	  width:'100%',
 	     		  height:'400px',
-		       filebrowserBrowseUrl:'file_upload',
 		       filebrowserImageUploadUrl: 'upload'
 		   });
 
