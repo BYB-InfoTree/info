@@ -70,10 +70,10 @@ public class TBoardController {
 		Tboard tboard =dao.selectOne(t_seq);
 		
 
-//		Date currentdate=new Date();
-//		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-//		String yyyy=df.format(currentdate);
-//		mav.addObject("yyyy",yyyy);
+		Date currentdate=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		String yyyy=df.format(currentdate);
+		mav.addObject("yyyy",yyyy);
 		mav.addObject("data",tboard);
 		
 		
@@ -126,9 +126,9 @@ public class TBoardController {
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
 		String t_date=simple.format(currentdate);
-		
 		tboard.setT_date(t_date);
 		String msg="";
+		System.out.println("===="+tboard);
 		int result=dao.insertRow(tboard);
 		
 		if(result ==1){

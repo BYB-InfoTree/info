@@ -9,10 +9,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Travel Board with CKEditor</title>
 	<script src="resources/ckeditor/ckeditor.js"></script>
-	<script src="resources/ckfinder/ckfinder.js"></script>
-	
-<!-- 	<script src="resources/js/jquery-3.1.1.js"></script> -->
-	
+		<script type="text/javascript" src="resources/ckeditor/adapters/jquery.js"></script>
+
 	<script type="text/javascript">
   	 $(document).ready(function(){
 			$('#save').click(function(){
@@ -51,6 +49,7 @@
 			</div>
 			<div class="col-md-5" style="border-top-style:solid; border-top-color:#ffffff;">
 				<input id="t_email" name="t_email" type="text" value="${sessionemail}" class="form-control" size="30" autocomplete="off" readonly="readonly"/>
+				<input id="t_nickname" name="t_nickname" type="hidden" value="${sessionnickname}" class="form-control" size="30" autocomplete="off" readonly="readonly"/>
 			</div>
 			<div class="col-md-3"></div>
 		</div>

@@ -48,8 +48,9 @@
 			</div>
 			<div class="col-md-5" style="border-top-style:solid; border-top-color:#ffffff;">
 				<input id="b_email" name="b_email" type="text" value="${sessionemail}" class="form-control" size="30" autocomplete="off" readonly="readonly"/>
+				<input id="b_name" name="b_name" type="hidden" value="${sessionnickname}" class="form-control" size="30" autocomplete="off" readonly="readonly"/>
 			</div>
-			<div class="col-md-3"></div>
+
 		</div>
 		<br>	
 		<br>	

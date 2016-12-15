@@ -63,7 +63,10 @@
     
    <div class="container" style="margin-top: 30px;">
       <div class="row" style="text-align: right;">
-         <c:if test="${sessionmemberlevel == 'master' || sessionemail == tboard.t_email}"><a href="tBoardUpdateForm?t_seq=${tboard.t_seq}">수정</a> &nbsp;&nbsp;&nbsp;<a onclick="del()" >삭제</a></c:if> &nbsp;&nbsp;&nbsp;<a href="tBoardListForm">목록</a> &nbsp;&nbsp;&nbsp;작성일자 : ${tboard.t_date}
+         <c:if test="${sessionmemberlevel == 'master' || sessionemail == tboard.t_email}">
+         <a href="tBoardUpdateForm?t_seq=${tboard.t_seq}">수정</a> &nbsp;&nbsp;&nbsp;
+         <a onclick="del()" >삭제</a></c:if> &nbsp;&nbsp;&nbsp;
+         <a href="tBoardListForm">목록</a> &nbsp;&nbsp;&nbsp;작성일자 : ${tboard.t_date}
       </div>
       <div class="row" style="border-style: solid; border-color: #BDBDBD; border-width: 2px;">
          <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; ">${tboard.t_content}</div>

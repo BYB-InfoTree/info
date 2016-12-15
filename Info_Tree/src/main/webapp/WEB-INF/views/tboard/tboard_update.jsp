@@ -42,24 +42,8 @@
 <body>
  <div class="container">
 	 <form class="form-horizontal" role="form" id="editorForm" name="editorForm" method="post" action="tBoardUpdate" enctype="multipart/form-data">
-<!--    		<div class="row" > -->
-<!-- 			<div class="col-md-3"></div> -->
-<!-- 			<div class="col-md-1" style="border-top-style:solid; border-top-color:#ffffff;"> -->
-<!-- 				<div align="right"><label for="email">이메일</label></div> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-md-5" style="border-top-style:solid; border-top-color:#ffffff;"> -->
-<%-- 				<input id="t_email" name="t_email" type="text" value="${sessionemail}" class="form-control" size="30" autocomplete="off" readonly="readonly"/> --%>
-<!-- 			</div> -->
-<!-- 			<div class="col-md-3"></div> -->
-<!-- 		</div> -->
-<!-- 		<br>	 -->
-<!-- 		<br>	 -->
-				    <div class="form-group">
-				      <label class="col-sm-2 control-label">t_seq</label>
-				      <div class="col-sm-8" style="text-align:center">
-				      <input id="t_seq" name="t_seq" type="text" class="form-control" size="50"  value="${data.getT_seq()}"/>
-				        
-				      </div>
+				      <input id="t_seq" name="t_seq" type="hidden" class="form-control" size="50"  value="${data.getT_seq()}"/>
+				      <input id="t_nickname" name="t_nickname" type="hidden" class="form-control" size="50"  value="${data.getT_nickname()}"/>
    		<div class="row" >
 			<div class="col-md-3"></div>
 			<div class="col-md-1" style="border-top-style:solid; border-top-color:#ffffff;">
@@ -72,7 +56,6 @@
 		</div>
 		<br>
 		<br>
-  
     
      <div id="ckfinder1"></div>
 			
