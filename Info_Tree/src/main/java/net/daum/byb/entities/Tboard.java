@@ -12,7 +12,7 @@ public class Tboard {
 	private int t_seq;
 	private String t_id;
 	private String t_password;
-	private String t_name;	
+	private String t_nickname;	
 	
 	private String t_email;
 	private String t_title;

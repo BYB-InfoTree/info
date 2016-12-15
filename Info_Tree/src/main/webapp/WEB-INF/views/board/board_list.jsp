@@ -54,6 +54,7 @@
 
 <body>
 <div class="container">
+	<div class="col-md-12">
 	<table  id="example" class="display" cellspacing="0" width="100%">
 	        <thead>
 	            <tr>
@@ -89,6 +90,7 @@
 					<button  type="button" onclick="location.href='boardInsertForm'" class="btn btn-info resultButton"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</button>
 		</span>
 	  	</c:if>
+	</div>
 	</div>
 </body>
 </html>

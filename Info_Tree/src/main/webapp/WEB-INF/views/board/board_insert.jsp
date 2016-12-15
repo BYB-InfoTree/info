@@ -68,7 +68,6 @@
   
     
      <div id="ckfinder1"></div>
-			
 			    <div class="form-group">
 			        <div class="form-group">
 			            <div class="col-lg-12">
@@ -81,7 +80,6 @@
 			 </div>
 	            <div class="col-lg-6" align="right">
 	                <button id="save" type="button" class="btn btn-info resultButton"><i class="fa fa-pencil" aria-hidden="true"></i>저 장</button>
-	                
 	            </div>
       		</div>
     </div>

@@ -125,9 +125,9 @@ public class TBoardController {
 		
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
-		String b_date=simple.format(currentdate);
+		String t_date=simple.format(currentdate);
 		
-		tboard.setT_date(b_date);
+		tboard.setT_date(t_date);
 		String msg="";
 		int result=dao.insertRow(tboard);
 		
@@ -197,10 +197,6 @@ public class TBoardController {
 		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
 		Tboard tboards=dao.selectOne(t_seq);
-		Date currentdate=new Date();
-		SimpleDateFormat df=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-		String yyyy=df.format(currentdate);
-		mav.addObject("yyyy",yyyy);
 		mav.addObject("tboard",tboards);
 		mav.addObject("top",top);
 		return mav;

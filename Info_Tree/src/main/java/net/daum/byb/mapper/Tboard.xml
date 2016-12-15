@@ -5,7 +5,7 @@
 				<resultMap type="net.daum.byb.entities.Tboard" id="tboardMap">
 						<id property="t_seq"           column="t_seq"/>
 						<id property="t_id"             column="t_id"/>
-						<id property="t_name"        column="t_name"/>
+						<id property="t_nickname"        column="t_nickname"/>
 						<id property="t_password"  column="t_password"/>
 						<id property="t_email"        column="t_email"/>
 						<id property="t_title"          column="t_title"/>
