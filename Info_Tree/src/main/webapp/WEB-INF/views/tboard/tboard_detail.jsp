@@ -81,12 +81,14 @@
       
             <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
                <div class="col-md-10">
-                  <textarea name="coment" id="coment" style="width: 1000px; height: 80px; resize: none;"></textarea>
+                <textarea class="form-control" rows="5" id="comment" style=" resize: none;"></textarea>
+<!--                   <textarea name="coment" id="coment" style="width: 1000px; height: 80px; resize: none;"></textarea> -->
                </div>
                <div class="col-md-2">
                   <button  type="button" onclick="#" class="btn btn" style="height: 80px; width: 100px; font-size: 20px;">입력</button>
                </div>
             </div>
+
       </div>
     </div>
 </form>
