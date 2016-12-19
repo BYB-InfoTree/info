@@ -24,8 +24,13 @@
 	<script>
 		$(document).ready(function() {
 			$('#insertref').click(function(){
-				$('#insertRef').submit();
-			return;
+				if($('#t_comment').val()==""){
+					alert('댓글을 입력하세요. Insert Comment. ');
+					return;
+				 }else{
+					$('#insertRef').submit();
+					return;
+				 }
 		  	});		
 		});		
 		function del(){
@@ -88,10 +93,9 @@
 	        <thead>
 	            <tr>
 	    	        <th>NUMBER</th>
-	                <th>TITLE</th>
-	                <th>EMAIL</th>
+	                <th>COMMENT</th>
 	                <th>DATE</th>
-	                <th>TREF</th>
+	               
 
 	            </tr>
 	        </thead>
@@ -100,11 +104,10 @@
 	        		<c:forEach var="tboardref" items="${tboardref}">
 	            <tr>
 		            
-	                <td><a href="tBoardDetail?t_seq=${tboardref.t_seq}">${tboardref.t_seq}</a></td>
-	                <td><a href="tBoardDetail?t_seq=${tboardref.t_comment}">${tboardref.t_comment}</a></td>
-	                <td>${tboardref.t_email}</td>
+	                <td>${tboardref.t_r_seq}</td>
+	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboardref.t_comment}</a></td>
 	                <td>${tboardref.t_date}</td>
-	                <td>${tboardref.t_ref}</td>
+	                
 
 	            </tr>
 	           </c:forEach>
