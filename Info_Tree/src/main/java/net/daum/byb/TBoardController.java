@@ -191,14 +191,16 @@ public class TBoardController {
 	   }
 	
 	@RequestMapping(value = "/tBoardDetail", method = RequestMethod.GET)
-	public ModelAndView listUpdateForm(@RequestParam int t_seq) {
+	public ModelAndView tBoardDetail(@RequestParam int t_seq) {
 		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
 		Tboard tboards=dao.selectOne(t_seq);
+		Tboard tboardreflist=dao.selectOne(t_seq);
 		int t_ref=t_seq;	
 		ArrayList<Tboard> tboardref=dao.selectRef(t_ref);
 		mav.addObject("tboard",tboards);
 		mav.addObject("tboardref",tboardref);
+		mav.addObject("tboardreflist",tboardreflist);
 		mav.addObject("top",top);
 		return mav;
 
@@ -224,12 +226,15 @@ public class TBoardController {
 	}
 	
 	@RequestMapping(value = "/insertRef", method = RequestMethod.POST)
-	public ModelAndView insertRef(@ModelAttribute("tboard") Tboard tboard,@RequestParam int t_seq) {
+	public ModelAndView insertRef(@ModelAttribute("tboard") Tboard tboard, @RequestParam int t_seq) {
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
 		String t_date=simple.format(currentdate);
 		tboard.setT_date(t_date);
+		
+		String t_comment = "[댓글]"+tboard.getT_comment();
+		tboard.setT_comment(t_comment);
 		dao.insertRef(tboard);
 		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
 		ArrayList<Tboard> tboardref=dao.selectRef(t_seq);
@@ -238,4 +243,22 @@ public class TBoardController {
 		mav.addObject("tboard",tboards);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/tBoardDetailList", method = RequestMethod.GET)
+	public ModelAndView tBoardDetailList(@RequestParam int t_r_seq) {
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
+		Tboard tboardrefone=dao.selectRefOne(t_r_seq);
+		int t_seq=tboardrefone.getT_ref();
+		Tboard tboards=dao.selectOne(t_seq);
+		int t_ref=t_seq;	
+		ArrayList<Tboard> tboardreflist=dao.selectRef(t_ref);
+		Tboard tboard=dao.selectOne(t_seq);
+		mav.addObject("tboardrefone",tboardrefone);
+		mav.addObject("tboard",tboards);
+		mav.addObject("tboardref",tboardreflist);
+
+		return mav;
+	}
+	
 }

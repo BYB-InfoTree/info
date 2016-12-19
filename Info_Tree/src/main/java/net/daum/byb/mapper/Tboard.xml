@@ -29,7 +29,7 @@
 							 	where t_seq=#{t_seq}
 				</update>
 				<select id="selectAll" resultMap="tboardMap" >
-						select * from tboard  where t_ref=0  order by t_ref desc
+						select * from tboard where t_ref=0 order by t_ref desc
 				</select>
 				<insert id="insertRow" parameterType="hashMap" >
 						insert into tboard (t_seq,t_email,t_nickname,t_title,t_content,t_date,t_ref,t_step,t_hit,t_level) 
@@ -47,5 +47,8 @@
 				</insert>
 				<select id="selectRef" resultMap="tboardMap" >
 						select * from tboard where t_ref=#{t_ref} order by t_r_seq DESC 
+				</select>
+				<select id="selectRefOne" resultMap="tboardMap" >
+						select * from tboard where t_r_seq=#{t_r_seq}
 				</select>
 		</mapper>

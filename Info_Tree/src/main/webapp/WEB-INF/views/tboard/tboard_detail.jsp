@@ -25,7 +25,7 @@
 		$(document).ready(function() {
 			$('#insertref').click(function(){
 				if($('#t_comment').val()==""){
-					alert('댓글을 입력하세요. Insert Comment. ');
+					alert('댓글을 입력하세요. Insert Comment.');
 					return;
 				 }else{
 					$('#insertRef').submit();
@@ -43,7 +43,7 @@
 					    } 
 				  
 		}
-		
+
 		$(document).ready(function() {
 			$('#example').DataTable();
 			return;
@@ -56,6 +56,7 @@
 </head>
  
 <body>
+
 <form id="tBoardDelete" name="tBoardDelete" class="form-horizontal" action="tBoardDelete" method="post" role="form" >
    <input class="form-control" style="text-align:center" id="t_seq" type="hidden" name="t_seq"  value="${tboard.t_seq}" >
 </form>
@@ -105,18 +106,17 @@
 	            <tr>
 		            
 	                <td>${tboardref.t_r_seq}</td>
-	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboardref.t_comment}</a></td>
+	                <td><a href="tBoardDetailList?t_r_seq=${tboardref.t_r_seq}">${tboardref.t_comment}</a></td>
 	                <td>${tboardref.t_date}</td>
-	                
 
 	            </tr>
 	           </c:forEach>
 	        </tbody>
 	    </table>
 	</div>
+	
 </form>     
-    
-    
+
 <form id="insertRef"  class="form-horizontal" action="insertRef" method="post" role="form" >
      <input class="form-control" style="text-align:center" id="t_seq" type="hidden" name="t_seq"  value="${tboard.t_seq}" >
      
@@ -125,8 +125,10 @@
             <div class="col-md-12" style="border-bottom-style: solid; border-color: #BDBDBD; text-align: left;">
                   댓글수(${tboard.t_ref})         
             </div>
-      
+            <input  type="text" class="form-control" text="text" value=" ${tboardrefone.t_comment}" readonly="readonly"/>
+
             <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
+
                <div class="col-md-10">
                 <textarea class="form-control" rows="5" id="t_comment" name="t_comment" style=" resize: none;"></textarea>
              </div>
