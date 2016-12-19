@@ -9,9 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
 <title>Travel Detail</title>
-
+<link rel="stylesheet"   href="resources/js/jquery.dataTables.min.css">
 <script src="resources/js/parsley.min.js"></script>
-
+<script src="resources/js/jquery.dataTables.min.js"></script>
 <style type="text/css">
  	/* Some custom styles to beautify this example */ 
  	.demo-content{ 
@@ -21,7 +21,13 @@
  		background: #ff0000; 
  	} 
 </style>
-		<script>
+	<script>
+		$(document).ready(function() {
+			$('#insertref').click(function(){
+				$('#insertRef').submit();
+			return;
+		  	});		
+		});		
 		function del(){
 			    var result = confirm("삭제하시겠습니까?");
 					    if(result){
@@ -33,9 +39,13 @@
 				  
 		}
 		
-		
-		
-		</script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+			return;
+	
+		 });
+
+	</script>
 
 </content>  
 </head>
@@ -73,6 +83,40 @@
       </div>   
     </div>
     
+    <div class="container">
+	<table  id="example" class="display" cellspacing="0" width="100%">
+	        <thead>
+	            <tr>
+	    	        <th>NUMBER</th>
+	                <th>TITLE</th>
+	                <th>EMAIL</th>
+	                <th>DATE</th>
+	                <th>TREF</th>
+
+	            </tr>
+	        </thead>
+	       
+	        <tbody>
+	        		<c:forEach var="tboardref" items="${tboardref}">
+	            <tr>
+		            
+	                <td><a href="tBoardDetail?t_seq=${tboardref.t_seq}">${tboardref.t_seq}</a></td>
+	                <td><a href="tBoardDetail?t_seq=${tboardref.t_comment}">${tboardref.t_comment}</a></td>
+	                <td>${tboardref.t_email}</td>
+	                <td>${tboardref.t_date}</td>
+	                <td>${tboardref.t_ref}</td>
+
+	            </tr>
+	           </c:forEach>
+	        </tbody>
+	    </table>
+	</div>
+</form>     
+    
+    
+<form id="insertRef"  class="form-horizontal" action="insertRef" method="post" role="form" >
+     <input class="form-control" style="text-align:center" id="t_seq" type="hidden" name="t_seq"  value="${tboard.t_seq}" >
+     
     <div class="container" style="margin-top: 30px; border-style: solid; border-color: #BDBDBD; border-width: 2px;">
       <div class="row" style="text-align: right; padding: 5px;">
             <div class="col-md-12" style="border-bottom-style: solid; border-color: #BDBDBD; text-align: left;">
@@ -81,16 +125,15 @@
       
             <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
                <div class="col-md-10">
-                <textarea class="form-control" rows="5" id="comment" style=" resize: none;"></textarea>
-<!--                   <textarea name="coment" id="coment" style="width: 1000px; height: 80px; resize: none;"></textarea> -->
-               </div>
-               <div class="col-md-2">
-                  <button  type="button" onclick="#" class="btn btn" style="height: 80px; width: 100px; font-size: 20px;">입력</button>
-               </div>
-            </div>
-
+                <textarea class="form-control" rows="5" id="t_comment" name="t_comment" style=" resize: none;"></textarea>
+             </div>
+			<div class="col-md-2">
+ 				<button  id="insertref" type="button"  class="btn btn-info resultButton" style="height: 80px; width: 100px; font-size: 20px;">입력</button>
+      		</div>
       </div>
     </div>
+     
 </form>
+
 </body>
 </html>

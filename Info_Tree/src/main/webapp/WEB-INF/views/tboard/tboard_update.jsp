@@ -21,7 +21,7 @@
 	   	 	 	  width:'100%',
 	     		  height:'400px',
 		       filebrowserBrowseUrl:'file_upload',
-		       filebrowserImageUploadUrl: 'upload'
+		       filebrowserImageUploadUrl: 'tupload'
 		   });
 
 		   CKEDITOR.on( 'dialogDefinition', function( ev ) {

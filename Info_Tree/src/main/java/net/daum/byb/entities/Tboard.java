@@ -25,5 +25,9 @@ public class Tboard {
 	private int t_level;
 	private int t_recommend;
 	private String t_attach;
+	private int t_r_seq;
+	private int t_r_ref;
+	private int t_r_r_seq;
+	private String t_comment;
 
 }

@@ -18,6 +18,10 @@
 						<id property="t_level"       column="t_level"/>
 						<id property="t_recommend"       column="t_recommend"/>
 						<id property="t_attach"		column="t_attach"/>
+						<id property="t_seq"		column="t_seq"/>
+						<id property="t_r_ref"		column="t_r_ref"/>
+						<id property="t_r_r_seq"		column="t_r_r_seq"/>
+						<id property="t_comment"		column="t_comment"/>
 				</resultMap>
 				<update id="updateRow" parameterType="hashMap" >
 						update tboard set 
@@ -29,7 +33,7 @@
 				</select>
 				<insert id="insertRow" parameterType="hashMap" >
 						insert into tboard (t_seq,t_email,t_nickname,t_title,t_content,t_date,t_ref,t_step,t_hit,t_level) 
-						values ((select coalesce(max(t_seq)+1,1)from tboard),#{t_email},#{t_nickname},#{t_title},#{t_content},#{t_date},(select coalesce(max(t_ref)+1,1)from tboard),#{t_step},#{t_hit},#{t_level})
+						values ((select coalesce(max(t_seq)+1,1)from tboard),#{t_email},#{t_nickname},#{t_title},#{t_content},#{t_date},0,#{t_step},#{t_hit},#{t_level})
 				</insert>
 				<select id="selectOne" parameterType="int" resultMap="tboardMap" >
 						select * from tboard where t_seq=#{t_seq}
@@ -37,5 +41,11 @@
 				<delete id="deleteRow" parameterType="hashMap"  >
 						delete from tboard  where t_seq=#{t_seq}
 				</delete>
-				
+				<insert id="insertRef" parameterType="hashMap" >
+						insert into tboard (t_seq,t_comment,t_date,t_ref,t_r_seq) 
+						values ((select coalesce(max(t_seq)+1,1)from tboard),#{t_comment},#{t_date},#{t_seq},(select coalesce(max(t_r_seq)+1,1)from tboard))
+				</insert>
+				<select id="selectRef" resultMap="tboardMap" >
+						select * from tboard where t_ref=#{t_ref} order by t_ref desc 
+				</select>
 		</mapper>

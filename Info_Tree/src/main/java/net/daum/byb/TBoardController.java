@@ -119,7 +119,7 @@ public class TBoardController {
 	}
 	
 	@RequestMapping(value = "/tBoardInsert", method = RequestMethod.POST)
-	public ModelAndView boardinsert(@ModelAttribute("tboard") Tboard tboard) {
+	public ModelAndView tboardinsert(@ModelAttribute("tboard") Tboard tboard) {
 		
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
 		
@@ -128,9 +128,7 @@ public class TBoardController {
 		String t_date=simple.format(currentdate);
 		tboard.setT_date(t_date);
 		String msg="";
-		System.out.println("===="+tboard);
 		int result=dao.insertRow(tboard);
-		
 		if(result ==1){
 				msg="Successfully, Inserted TBoard !";
 		}else{
@@ -197,7 +195,10 @@ public class TBoardController {
 		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
 		Tboard tboards=dao.selectOne(t_seq);
+		int t_ref=t_seq;	
+		ArrayList<Tboard> tboardref=dao.selectRef(t_ref);
 		mav.addObject("tboard",tboards);
+		mav.addObject("tboardref",tboardref);
 		mav.addObject("top",top);
 		return mav;
 
@@ -221,5 +222,20 @@ public class TBoardController {
 		}
 		return "redirect:/tBoardListForm";
 	}
-
+	
+	@RequestMapping(value = "/insertRef", method = RequestMethod.POST)
+	public ModelAndView insertRef(@ModelAttribute("tboard") Tboard tboard,@RequestParam int t_seq) {
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		String t_date=simple.format(currentdate);
+		tboard.setT_date(t_date);
+		dao.insertRef(tboard);
+		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
+		ArrayList<Tboard> tboardref=dao.selectRef(t_seq);
+		Tboard tboards=dao.selectOne(t_seq);
+		mav.addObject("tboardref",tboardref);
+		mav.addObject("tboard",tboards);
+		return mav;
+	}
 }
