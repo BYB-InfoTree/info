@@ -260,5 +260,34 @@ public class TBoardController {
 
 		return mav;
 	}
+	@RequestMapping(value="/tBoardRefDelete", method = RequestMethod.POST)
+	public ModelAndView tBoardRefDelete(HttpSession session,HttpServletRequest request,@RequestParam int t_r_seq){
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		System.out.println("===trseq==="+t_r_seq);
+		dao.deleteRefRow(t_r_seq);
+		ArrayList<Tboard> tboard=dao.selectAll();
+		ModelAndView mav = new ModelAndView("tboard/tboard_detail");
+		mav.addObject("tboards",tboard);
+		mav.addObject("top",top);
+		return mav;
+	}
 	
+	@RequestMapping(value = "/tBoardRefUpdateForm", method = RequestMethod.POST)
+	public ModelAndView tBoardRefUpdateForm(@ModelAttribute("tboard") Tboard tboard, @RequestParam int t_r_seq) {
+		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate=new Date();
+		String t_date=simple.format(currentdate);
+		tboard.setT_date(t_date);
+		
+		String t_comment = "[댓글]"+tboard.getT_comment();
+		tboard.setT_comment(t_comment);
+//		dao.updateRefRow(tboard);
+		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
+		ArrayList<Tboard> tboardref=dao.selectRef(t_r_seq);
+		Tboard tboards=dao.selectOne(t_r_seq);
+		mav.addObject("tboardref",tboardref);
+		mav.addObject("tboard",tboards);
+		return mav;
+	}
 }

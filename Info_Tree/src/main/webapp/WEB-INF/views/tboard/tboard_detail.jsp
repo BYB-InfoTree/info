@@ -34,20 +34,33 @@
 		  	});		
 		});		
 		function del(){
-			    var result = confirm("삭제하시겠습니까?");
+			var result = confirm("삭제하시겠습니까?");
 					    if(result){
 					    		alert('확인을 누르면 삭제됩니다.');			    		
 								$('#tBoardDelete').submit();
 					    }else{
 					    	return;
 					    } 
-				  
 		}
-
-		$(document).ready(function() {
+		
+		function delref(){ 
+			var refcomment=$('#t_refcomment').val();
+			if(refcomment.length=="0"||refcomment.length=="1"){
+				alert('댓글을 선택하세요. Insert Comment.');
+				return;
+			 }else{
+				 var result = confirm("댓글을 삭제하시겠습니까?");
+				 if(result){
+			    		alert('확인을 누르면 삭제됩니다.');			    		
+						$('#tBoardRefDelete').submit();
+			    }else{
+			    	return;
+			    } 
+			 }
+		}
+		$(document).ready(function() {	
 			$('#example').DataTable();
 			return;
-	
 		 });
 
 	</script>
@@ -56,6 +69,9 @@
 </head>
  
 <body>
+<form id="tBoardRefDelete" name="tBoardDelete" class="form-horizontal" action="tBoardRefDelete" method="post" role="form" >
+   <input  type="hidden" class="form-control" id="t_r_seq" name="t_r_seq" value="${tboardrefone.t_r_seq}" />
+</form>
 
 <form id="tBoardDelete" name="tBoardDelete" class="form-horizontal" action="tBoardDelete" method="post" role="form" >
    <input class="form-control" style="text-align:center" id="t_seq" type="hidden" name="t_seq"  value="${tboard.t_seq}" >
@@ -125,16 +141,21 @@
             <div class="col-md-12" style="border-bottom-style: solid; border-color: #BDBDBD; text-align: left;">
                   댓글수(${tboard.t_ref})         
             </div>
-            <input  type="text" class="form-control" text="text" value=" ${tboardrefone.t_comment}" readonly="readonly"/>
-
-            <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
-
+            <input  class="form-control" id="t_refcomment" name="t_refcomment" value="${tboardrefone.t_comment}" />
+        
+        <c:if test="${sessionmemberlevel == 'master' || sessionemail == tboard.t_email}">
+        	 <a href="tBoardRefUpdateForm?t_r_seq=${tboardrefone.t_r_seq}">수정</a> &nbsp;&nbsp;&nbsp;  <a onclick="delref()" >삭제</a>
+        </c:if>      
+               <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
                <div class="col-md-10">
                 <textarea class="form-control" rows="5" id="t_comment" name="t_comment" style=" resize: none;"></textarea>
              </div>
+         <c:if test="${sessionmemberlevel == 'master' || sessionemail == tboard.t_email}">     
 			<div class="col-md-2">
  				<button  id="insertref" type="button"  class="btn btn-info resultButton" style="height: 80px; width: 100px; font-size: 20px;">입력</button>
       		</div>
+      	</c:if>      	
+      		
       </div>
     </div>
      

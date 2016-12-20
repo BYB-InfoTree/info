@@ -51,4 +51,10 @@
 				<select id="selectRefOne" resultMap="tboardMap" >
 						select * from tboard where t_r_seq=#{t_r_seq}
 				</select>
+				<delete id="deleteRefRow" parameterType="hashMap"  >
+						delete from tboard  where t_r_seq=#{t_r_seq}
+				</delete>
+				<update id="updateRefRow" parameterType="hashMap" >
+						update tboard set t_comment-#{t_comment} where t_r_seq=#{t_r_seq}
+				</update>
 		</mapper>
