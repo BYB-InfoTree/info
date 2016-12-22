@@ -23,6 +23,8 @@
 </style>
 	<script>
 		$(document).ready(function() {
+			alert('${sessionnickname}');
+			
 			$('#insertref').click(function(){
 				if($('#t_comment').val()==""){
 					alert('댓글을 입력하세요. Insert Comment.');
@@ -90,55 +92,86 @@
     </div>
     
     <div class="container">
-	<table  id="example" class="display" cellspacing="0" width="100%">
-	        <thead>
-	            <tr>
-	    	        <th>NUMBER</th>
-	                <th>COMMENT</th>
-	                <th>DATE</th>
+<!-- 	<table  id="example" class="display" cellspacing="0" width="100%"> -->
+<!-- 	        <thead> -->
+<!-- 	            <tr> -->
+<!-- 	    	        <th>NUMBER</th> -->
+<!-- 	                <th>COMMENT</th> -->
+<!-- 	                <th>DATE</th> -->
 	               
 
-	            </tr>
-	        </thead>
+<!-- 	            </tr> -->
+<!-- 	        </thead> -->
 	       
-	        <tbody>
-	        		<c:forEach var="tboardref" items="${tboardref}">
-	            <tr>
+<!-- 	        <tbody> -->
+<%-- 	        		<c:forEach var="tboardref" items="${tboardref}"> --%>
+<!-- 	            <tr> -->
 		            
-	                <td>${tboardref.t_r_seq}</td>
-	                <td><a href="tBoardDetailList?t_r_seq=${tboardref.t_r_seq}">${tboardref.t_comment}</a></td>
-	                <td>${tboardref.t_date}</td>
+<%-- 	                <td>${tboardref.t_r_seq}</td> --%>
+<%-- 	                <td><a href="tBoardDetailList?t_r_seq=${tboardref.t_r_seq}">${tboardref.t_comment}</a></td> --%>
+<%-- 	                <td>${tboardref.t_date}</td> --%>
 
-	            </tr>
-	           </c:forEach>
-	        </tbody>
-	    </table>
+<!-- 	            </tr> -->
+<%-- 	           </c:forEach> --%>
+<!-- 	        </tbody> -->
+<!--     </table> -->
 	</div>
 	
-</form>     
+</form>  
 
-<form id="insertRef"  class="form-horizontal" action="insertRef" method="post" role="form" >
-     <input class="form-control" style="text-align:center" id="t_seq" type="hidden" name="t_seq"  value="${tboard.t_seq}" >
-     
-    <div class="container" style="margin-top: 30px; border-style: solid; border-color: #BDBDBD; border-width: 2px;">
+ <div class="container" style="margin-top: 30px; border-style: solid; border-color: #BDBDBD; border-width: 2px;">
       <div class="row" style="text-align: right; padding: 5px;">
             <div class="col-md-12" style="border-bottom-style: solid; border-color: #BDBDBD; text-align: left;">
                   댓글수(${tboard.t_ref})         
             </div>
-            <input  type="text" class="form-control" text="text" value=" ${tboardrefone.t_comment}" readonly="readonly"/>
+			<c:forEach var="tboardref" items="${tboardref}">
+				 <div class="container">
+	            	<div class="row" style="text-align: right; padding: 5px;">
+	            		<div>
+	            			${tboardref.t_nickname} : ${tboardref.t_date} 
+	            		</div>	
+	            	</div>
+	            	<p>
+	            		<span>${tboardref.t_comment}</span>			    
+	            	</p>
+	             </div>
+	             <br>
+            
+			
+			</c:forEach>
+			
+	
+<!--             <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;"> -->
+	
+<!--                  <div class="col-md-10"> -->
+<!-- 	                <textarea class="form-control" rows="5" id="t_comment" name="t_comment" style=" resize: none;"></textarea> -->
+<!-- 	             </div> -->
+<!-- 				 <div class="col-md-2"> -->
+<!-- 	 				<button  id="insertref" type="button"  class="btn btn-info resultButton" style="height: 80px; width: 100px; font-size: 20px;">입력</button> -->
+<!-- 	      		 </div> -->
+<!-- 	      	</div> -->
+	  </div>
+<!--    	</div>    -->
 
-            <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
-
-               <div class="col-md-10">
-                <textarea class="form-control" rows="5" id="t_comment" name="t_comment" style=" resize: none;"></textarea>
-             </div>
-			<div class="col-md-2">
- 				<button  id="insertref" type="button"  class="btn btn-info resultButton" style="height: 80px; width: 100px; font-size: 20px;">입력</button>
-      		</div>
-      </div>
-    </div>
+<form id="insertRef"  class="form-horizontal" action="insertRef" method="post" role="form" >
+     <input class="form-control" style="text-align:center" id="t_seq" type="hidden" name="t_seq"  value="${tboard.t_seq}" >
+     <input class="form-control" style="text-align:center" id="t_nickname" type="hidden" name="t_nickname"  value="${sessionnickname}" >
+     
+     <div class="row">
+         <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
+	
+                 <div class="col-md-10">
+	                <textarea class="form-control" rows="5" id="t_comment" name="t_comment" style=" resize: none;"></textarea>
+	             </div>
+				 <div class="col-md-2">
+	 				<button  id="insertref" type="button"  class="btn btn-info resultButton" style="height: 80px; width: 100px; font-size: 20px;">입력</button>
+	      		 </div>
+      	 </div>
+      </div>	 
      
 </form>
+</div>   
+    
 
 </body>
 </html>

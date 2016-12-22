@@ -232,7 +232,7 @@ public class TBoardController {
 		Date currentdate=new Date();
 		String t_date=simple.format(currentdate);
 		tboard.setT_date(t_date);
-		
+		System.out.println("닉네임 전송되나?? : "+tboard.getT_nickname());
 		String t_comment = "[댓글]"+tboard.getT_comment();
 		tboard.setT_comment(t_comment);
 		dao.insertRef(tboard);
