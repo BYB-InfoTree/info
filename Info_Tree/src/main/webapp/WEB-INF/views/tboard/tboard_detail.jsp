@@ -143,8 +143,8 @@
             </div>
             <input  class="form-control" id="t_refcomment" name="t_refcomment" value="${tboardrefone.t_comment}" />
         
-        <c:if test="${sessionmemberlevel == 'master' || sessionemail == tboard.t_email}">
-        	 <a href="tBoardRefUpdateForm?t_r_seq=${tboardrefone.t_r_seq}">수정</a> &nbsp;&nbsp;&nbsp;  <a onclick="delref()" >삭제</a>
+        <c:if test="${sessionmemberlevel == 'master' || sessiontemail == tboard.t_email}">
+        	  <a onclick="delref()" >삭제</a>
         </c:if>      
                <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
                <div class="col-md-10">

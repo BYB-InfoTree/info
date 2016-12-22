@@ -226,13 +226,14 @@ public class TBoardController {
 	}
 	
 	@RequestMapping(value = "/insertRef", method = RequestMethod.POST)
-	public ModelAndView insertRef(@ModelAttribute("tboard") Tboard tboard, @RequestParam int t_seq) {
+	public ModelAndView insertRef(@ModelAttribute("tboard") Tboard tboard, @RequestParam int t_seq,HttpSession session) {
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
 		Date currentdate=new Date();
 		String t_date=simple.format(currentdate);
 		tboard.setT_date(t_date);
-		
+		String email= (String) session.getAttribute("sessionemail");
+		tboard.setT_email(email);
 		String t_comment = "[댓글]"+tboard.getT_comment();
 		tboard.setT_comment(t_comment);
 		dao.insertRef(tboard);
@@ -245,10 +246,11 @@ public class TBoardController {
 	}
 	
 	@RequestMapping(value = "/tBoardDetailList", method = RequestMethod.GET)
-	public ModelAndView tBoardDetailList(@RequestParam int t_r_seq) {
+	public ModelAndView tBoardDetailList(@RequestParam int t_r_seq,HttpSession session) {
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
 		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
 		Tboard tboardrefone=dao.selectRefOne(t_r_seq);
+		session.setAttribute("sessiontemail", tboardrefone.getT_email());
 		int t_seq=tboardrefone.getT_ref();
 		Tboard tboards=dao.selectOne(t_seq);
 		int t_ref=t_seq;	
@@ -263,7 +265,6 @@ public class TBoardController {
 	@RequestMapping(value="/tBoardRefDelete", method = RequestMethod.POST)
 	public ModelAndView tBoardRefDelete(HttpSession session,HttpServletRequest request,@RequestParam int t_r_seq){
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
-		System.out.println("===trseq==="+t_r_seq);
 		dao.deleteRefRow(t_r_seq);
 		ArrayList<Tboard> tboard=dao.selectAll();
 		ModelAndView mav = new ModelAndView("tboard/tboard_detail");

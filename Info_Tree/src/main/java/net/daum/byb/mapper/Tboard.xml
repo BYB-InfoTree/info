@@ -42,8 +42,8 @@
 						delete from tboard  where t_seq=#{t_seq}
 				</delete>
 				<insert id="insertRef" parameterType="hashMap" >
-						insert into tboard (t_seq,t_comment,t_date,t_ref,t_r_seq) 
-						values ((select coalesce(max(t_seq)+1,1)from tboard),#{t_comment},#{t_date},#{t_seq},(select coalesce(max(t_r_seq)+1,1)from tboard))
+						insert into tboard (t_seq,t_comment,t_date,t_ref,t_r_seq,t_email) 
+						values ((select coalesce(max(t_seq)+1,1)from tboard),#{t_comment},#{t_date},#{t_seq},(select coalesce(max(t_r_seq)+1,1)from tboard),#{t_email})
 				</insert>
 				<select id="selectRef" resultMap="tboardMap" >
 						select * from tboard where t_ref=#{t_ref} order by t_r_seq DESC 
