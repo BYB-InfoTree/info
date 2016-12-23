@@ -161,7 +161,7 @@ public class TBoardController {
 	      try{
 	         String fileName = date+upload.getOriginalFilename();
 	         byte[] bytes = upload.getBytes();
-	         String uploadPath = "C:/Users/jsi/git/info/Info_Tree/src/main/webapp/resources/tfileupload/" + fileName;//저장경로
+	         String uploadPath = "C:/Users/grace/git/info/Info_Tree/src/main/webapp/resources/tfileupload/" + fileName;//저장경로
 	         out = new FileOutputStream(new File(uploadPath));
 	         out.write(bytes);
 	         this.sleep(3000);

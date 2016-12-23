@@ -57,11 +57,11 @@
 	<table  id="example" class="display" cellspacing="0" width="100%">
 	        <thead>
 	            <tr>
-	    	        <th>NUMBER</th>
-	                <th>TITLE</th>
-	                <th>EMAIL</th>
-	                <th>DATE</th>
-	                <th>HIT</th>
+	    	        <th>글번호</th>
+	                <th>글제목</th>
+	                <th>작성자</th>
+	                <th>작성일자</th>
+	                <th>조회순</th>
 	   
 	         <c:if test="${sessionmemberlevel == 'master'}"> 
 	                <th style="text-align: center !important;" > <input type="checkbox" id="allchk">
@@ -75,7 +75,7 @@
 		            
 	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboard.t_seq}</a></td>
 	                <td><a href="tBoardDetail?t_seq=${tboard.t_seq}">${tboard.t_title}</a></td>
-	                <td>${tboard.t_email}</td>
+	                <td>${tboard.t_nickname}</td>
 	                <td>${tboard.t_date}</td>
 	                <td>${tboard.t_hit}</td>
 	      

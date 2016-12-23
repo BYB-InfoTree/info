@@ -155,7 +155,7 @@ public class BoardController {
 	      try{
 	         String fileName = date+upload.getOriginalFilename();
 	         byte[] bytes = upload.getBytes();
-	         String uploadPath = "C:/Users/jsi/git/info/Info_Tree/src/main/webapp/resources/fileupload/" + fileName;//저장경로
+	         String uploadPath = "C:/Users/grace/git/info/Info_Tree/src/main/webapp/resources/fileupload/" + fileName;//저장경로
 	         out = new FileOutputStream(new File(uploadPath));
 	         out.write(bytes);
 	         String callback = request.getParameter("CKEditorFuncNum");
