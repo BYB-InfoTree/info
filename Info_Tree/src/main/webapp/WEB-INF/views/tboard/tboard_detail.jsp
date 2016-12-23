@@ -143,14 +143,14 @@
             </div>
             <input  class="form-control" id="t_refcomment" name="t_refcomment" value="${tboardrefone.t_comment}" />
         
-        <c:if test="${sessionmemberlevel == 'master' || sessiontemail == tboard.t_email}">
+        <c:if test="${sessionmemberlevel == 'master' ||  sessiontemail == sessionemail}">
         	  <a onclick="delref()" >삭제</a>
         </c:if>      
                <div class="col-md-12" style="background-color: #BDBDBD; padding: 5px; margin-top: 50px;">
                <div class="col-md-10">
                 <textarea class="form-control" rows="5" id="t_comment" name="t_comment" style=" resize: none;"></textarea>
              </div>
-         <c:if test="${sessionmemberlevel == 'master' || sessionemail == tboard.t_email}">     
+         <c:if test="${!(sessionemail == null)}">     
 			<div class="col-md-2">
  				<button  id="insertref" type="button"  class="btn btn-info resultButton" style="height: 80px; width: 100px; font-size: 20px;">입력</button>
       		</div>
