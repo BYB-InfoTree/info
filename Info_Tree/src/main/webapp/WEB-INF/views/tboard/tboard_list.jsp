@@ -61,7 +61,7 @@
 	                <th>글제목</th>
 	                <th>작성자</th>
 	                <th>작성일자</th>
-	                <th>조회순</th>
+	                <th>조회수</th>
 	   
 	         <c:if test="${sessionmemberlevel == 'master'}"> 
 	                <th style="text-align: center !important;" > <input type="checkbox" id="allchk">

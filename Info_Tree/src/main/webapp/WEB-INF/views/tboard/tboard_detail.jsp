@@ -81,7 +81,7 @@
    
    <div class="container" style="margin-top: 50px;">
       <div class="row">
-         <div class="input-group col-md-3">
+         <div class="input-group col-md-6">
                <span class="input-group-addon" style="width: 50px; background-color: #D9E5FF;" >작 성 자</span>
                <input id="t_nickname" name="t_nickname" type="text" class="form-control" text="text" value="${tboard.t_nickname}" readonly="readonly"/>
             </div>
@@ -109,9 +109,9 @@
 	<table  id="example" class="display" cellspacing="0" width="100%">
 	        <thead>
 	            <tr>
-	    	        <th>NUMBER</th>
-	                <th>COMMENT</th>
-	                <th>DATE</th>
+	   
+	                <th>댓   글</th>
+	                <th>작성일시</th>
 	               
 
 	            </tr>
@@ -120,10 +120,8 @@
 	        <tbody>
 	        		<c:forEach var="tboardref" items="${tboardref}">
 	            <tr>
-		            
-	                <td>${tboardref.t_r_seq}</td>
 	                <td><a href="tBoardDetailList?t_r_seq=${tboardref.t_r_seq}">${tboardref.t_comment}</a></td>
-	                <td>${tboardref.t_date}</td>
+	                <td><a href="tBoardDetailList?t_r_seq=${tboardref.t_r_seq}">${tboardref.t_date}</a></td>
 
 	            </tr>
 	           </c:forEach>

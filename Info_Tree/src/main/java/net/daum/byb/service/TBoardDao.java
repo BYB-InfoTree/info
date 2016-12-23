@@ -14,6 +14,8 @@ public interface TBoardDao {
 	public int updateRow(Tboard tboard);
 	public int deleteRow(int t_seq);
 	public int insertRef( Tboard tboard);
+	public int updatehit(Tboard tboard);
+	public int selecthit(int t_seq);
 	public ArrayList<Tboard> selectRef(int t_ref);
 	public Tboard selectRefOne( int t_r_seq);
 	public int deleteRefRow(int t_r_seq);

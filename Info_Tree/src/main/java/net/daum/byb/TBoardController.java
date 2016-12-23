@@ -194,13 +194,21 @@ public class TBoardController {
 	public ModelAndView tBoardDetail(@RequestParam int t_seq) {
 		ModelAndView mav=new ModelAndView("tboard/tboard_detail");
 		TBoardDao dao = sqlSession.getMapper(TBoardDao.class);
+		int t_hit = dao.selecthit(t_seq);
+		int hit = t_hit + 1;
+		Tboard tboard = new Tboard();
+		tboard.setT_seq(t_seq);
+		tboard.setT_hit(hit);
+		
+		dao.updatehit(tboard);
 		Tboard tboards=dao.selectOne(t_seq);
-		Tboard tboardreflist=dao.selectOne(t_seq);
+
 		int t_ref=t_seq;	
 		ArrayList<Tboard> tboardref=dao.selectRef(t_ref);
+	
 		mav.addObject("tboard",tboards);
 		mav.addObject("tboardref",tboardref);
-		mav.addObject("tboardreflist",tboardreflist);
+
 		mav.addObject("top",top);
 		return mav;
 
